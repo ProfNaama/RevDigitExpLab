@@ -135,7 +135,7 @@ const submitSurvey = function(){
     var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
     var userID = urlParams.get(QUALTRICS_USER_KEY);
     
-    if (!(experiemntID &&userID)){
+    if (!(experiemntID && userID)){
         alert("some query params are missing...");
         return;
     }
