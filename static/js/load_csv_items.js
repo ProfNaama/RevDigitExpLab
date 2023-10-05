@@ -87,6 +87,7 @@ const csvHandlersMethods = {
 var occupyItems = function(loadedElementTemplate, elementsData){
     for(var didx=0; didx < elementsData.length; didx++){
         var newItem = loadedElementTemplate.clone(true);
+        $(newItem).attr("id", "item_review_id_" + didx);
         var elementDataJson = elementsData[didx];
 
         Object.keys(elementDataJson)
@@ -99,7 +100,7 @@ var occupyItems = function(loadedElementTemplate, elementsData){
 
 var loadData = function(){
     $("<div/>").addClass("single-item-template").load(
-        "singleItem.html", 
+        "singleItem.html",
         function(responseTxt, statusTxt, xhr){
             if(statusTxt != "success"){
                 return;
@@ -115,6 +116,34 @@ var loadData = function(){
                 }
             });
     });
+};
+
+var global_data = {}
+const toggleCheckbox = function(element){
+    var currentElementId = $(element).parent().parent().parent().parent().attr("id");
+    global_data["key_" + currentElementId] = element.checked;
+}
+
+const submitSurvey = function(){
+    // those two params must be found in the url query string, as passed on from qualtrics
+    // SID is the experiment ID
+    // UID is the user ID
+    const QUALTRICS_EXPERIMENT_KEY = "SID";
+    const QUALTRICS_USER_KEY = "UID";
+    
+    let urlParams = (new URL(document.location)).searchParams;
+    var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
+    var userID = urlParams.get(QUALTRICS_USER_KEY);
+    
+    if (!(experiemntID &&userID)){
+        alert("some query params are missing...");
+        return;
+    }
+    var submitUrl = "http://fppvu.qualtrics.com/SE/?" + QUALTRICS_EXPERIMENT_KEY + "=" + experiemntID + "&" + QUALTRICS_USER_KEY + "=" + userID;
+    Object.keys(global_data).forEach(k => {
+        submitUrl += ("&" + k + "=" + global_data[k]);
+    });
+    alert(submitUrl);
 };
 
 $(document).ready(function(){
