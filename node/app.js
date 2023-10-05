@@ -9,4 +9,5 @@ app.use(function (req, res, next) {
 });
 app.use(express.static('../'))
 const server = http.createServer(app);
+console.log("\n\n Listening on port: " + port);
 server.listen(port)
