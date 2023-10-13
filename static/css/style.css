@@ -6,13 +6,12 @@
 .gridContainer {
     display: grid;
     grid-template-areas: 
-    'header header header header'
-    'nav main main map';
+    'header'
+    'main';
 }
 header {
     grid-area: header;
-    min-height: 100px;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(220, 220, 220);
 }
 
 nav {
