@@ -78,21 +78,6 @@ var reviewerAvatarHandler = function(newItem, value){
     reviewsElement.attr("src", "../static/graphics/"+value);
 };
 
-var reviewerNameHandler = function(newItem, value){
-    var reviewsElement = newItem.children().find(".reviewerName");
-    reviewsElement.text(value);
-}
-
-
-var fillReviewsTextHandler = function(newItem, value){
-    var reviewsElement = newItem.children().find(".card-text");
-    reviewsElement.text(value);
-}
-
-var fillReviewsTextSmallHandler = function(newItem, value){
-    var reviewsElement = newItem.children().find(".card-text-small");
-    reviewsElement.text(value);
-}
 
 // for each csv column, there should be a handler function for that type of data. (key should be the same as the csv header, handler should be written)
 const csvHandlersMethods = {
@@ -158,7 +143,7 @@ const submitSurvey = function(){
     const QUALTRICS_EXPERIMENT_KEY = "SID";
     const QUALTRICS_USER_KEY = "UID";
     
-    let urlParams = (new URL(document.location)).searchParams;
+    let urlParams = (new URL(window.location)).searchParams;
     var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
     var userID = urlParams.get(QUALTRICS_USER_KEY);
     
@@ -171,6 +156,7 @@ const submitSurvey = function(){
         submitUrl += ("&" + k + "=" + global_data[k]);
     });
     alert(submitUrl);
+    window.location.href = submitUrl;
 };
 
 $(document).ready(function(){

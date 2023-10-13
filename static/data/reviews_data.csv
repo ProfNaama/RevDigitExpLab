@@ -1,1 +1,3 @@
-res data
+reviewerName,reviwerStars,reviewerAvatar,reviewerLocation,reviewrBadges,restaurantStars,restaurantReviewText
+Name1,4,avatar1.jpeg,location1,badges1,4,text1
+Name2,3,avatar2.jpeg,location2,badges2,3,text2
