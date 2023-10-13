@@ -82,7 +82,7 @@ var reviewerAvatarHandler = function(newItem, value){
 // for each csv column, there should be a handler function for that type of data. (key should be the same as the csv header, handler should be written)
 const csvHandlersMethods = {
     reviewerName:textElementHandler(".reviewerName"),
-    reviwerStars:textElementHandler(".reviwerStars"),
+    reviwerStars:fillStarsHandler,
     reviewerAvatar:reviewerAvatarHandler,
     reviewerLocation:textElementHandler(".reviewerLocation"),
     reviewrBadges:textElementHandler(".reviewrBadges"),
