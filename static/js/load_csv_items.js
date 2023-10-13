@@ -131,7 +131,7 @@ const submitSurvey = function(){
     const QUALTRICS_EXPERIMENT_KEY = "SID";
     const QUALTRICS_USER_KEY = "UID";
     
-    let urlParams = (new URL(document.location)).searchParams;
+    let urlParams = (new URL(window.location)).searchParams;
     var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
     var userID = urlParams.get(QUALTRICS_USER_KEY);
     
@@ -143,7 +143,8 @@ const submitSurvey = function(){
     Object.keys(global_data).forEach(k => {
         submitUrl += ("&" + k + "=" + global_data[k]);
     });
-    alert(submitUrl);
+    // alert(submitUrl);
+    window.location.href = submitUrl;
 };
 
 $(document).ready(function(){
