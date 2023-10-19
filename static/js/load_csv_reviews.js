@@ -78,14 +78,23 @@ var reviewerAvatarHandler = function(newItem, value){
     reviewsElement.attr("src", "../static/graphics/"+value);
 };
 
+var EliteBadgeHandler = function (newItem, value) {
+    var reviewsElement = newItem.children().find(".EliteBadge");
+    if (value == "1") {
+        reviewsElement[0].style.display = "inline"
+    }
+    
+
+}
 
 // for each csv column, there should be a handler function for that type of data. (key should be the same as the csv header, handler should be written)
 const csvHandlersMethods = {
     reviewerName:textElementHandler(".reviewerName"),
-    reviwerStars:fillStarsHandler,
+    reviweStars:fillStarsHandler,
+    reviewerCount:textElementHandler(".reviewerCount"),
     reviewerAvatar:reviewerAvatarHandler,
     reviewerLocation:textElementHandler(".reviewerLocation"),
-    reviewrBadges:textElementHandler(".reviewrBadges"),
+    EliteBadge:EliteBadgeHandler,
     restaurantStars:textElementHandler(".restaurantStars"),
     restaurantReviewText:textElementHandler(".restaurantReviewText")
     /*

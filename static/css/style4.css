@@ -6,8 +6,8 @@
 .gridContainer {
     display: grid;
     grid-template-areas: 
-    'header'
-    'main';
+    'left header'
+    'left main';
 }
 header {
     grid-area: header;
@@ -18,17 +18,22 @@ main {
     grid-area: main;
 }
 
+.left {
+    grid-area: left;
+    background-color: rgb(248, 247, 247);
+    width: 15vw;
+}
+/* this is the container of the review card*/
 .reviewsContainer {
     display: flex;
     flex-direction: column;
 }
-
-
+/*
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
 }
-
+*/
 .checked{
     color:#fbc634 !important;
 }
@@ -36,15 +41,14 @@ main {
 .ratings i{
     font-size:large;
 }
-
+/*
 .badge {
     background-color: blue;
 }
-
+*/
 .card-body {
     width: 400px;
 }
-
 
 .container {
     margin: auto;
@@ -52,6 +56,54 @@ main {
     padding: 20px;
 }
 
-img {
+.reviewerAvatar {
     float: left;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.EliteBadge {
+    background-color: rgb(255, 0, 0);
+    border: 1 solid white;
+    border-radius: 20%;
+    display: none;
+}
+
+.reviewr {
+    overflow: hidden;
+}
+
+.reviewerName {
+    display: inline;
+}
+
+.usefulButton {
+    background-color: rgb(226, 252, 252);
+    border: 0.1 solid rgb(226, 252, 252);
+    border-radius: 10%;
+    color: rgb(0, 57, 57);
+    padding: 0px;
+}
+/* stars summar*/
+.stars_count_bar {
+    background-color: white;
+    width: 500px;
+    height: 25px;
+    border-radius: 15px;
+    padding: 0%; 
+    margin: 10px;
+}
+
+.stars_bar_fill {
+    background-color: rgb(255, 234, 0); 
+    color: white; 
+    padding: 0%; 
+    margin: 0%;
+    text-align: right; 
+    height: 100%; 
+    border-radius: 15px; 
+}
+
+.five_stars {
+    width: 80%
 }
