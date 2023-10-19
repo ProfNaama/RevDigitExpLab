@@ -1,3 +1,5 @@
-reviewerName,reviwerStars,reviewerAvatar,reviewerLocation,reviewrBadges,restaurantStars,restaurantReviewText
-Name1,4,avatar1.jpeg,location1,badges1,4,text1
-Name2,3,avatar2.jpeg,location2,badges2,3,text2
+reviewerName,reviweStars,reviewerCount,reviewerAvatar,reviewerLocation,EliteBadge,restaurantStars,restaurantReviewText
+Name1,4,20 reviews,avatar1.jpeg,New York NY,1,4,text1
+Name2,3,2000 reviews,avatar2.jpeg,PA,,3,text2
+Name1,4,20 reviews,avatar1.jpeg,New York NY,1,4,text1
+Name2,3,2000 reviews,avatar2.jpeg,PA,,3,text2
