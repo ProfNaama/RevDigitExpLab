@@ -171,4 +171,12 @@ const submitSurvey = function(){
 $(document).ready(function(){
     loadData();
   });
-  
+
+
+// event listener to usefull button
+const usefulButton = document.getElementsByClassName('usefulButton');
+usefulButton.addEventListener("click", clickedFunction); 
+function clickedFunction() {
+    document.getElementsByClassName.addClass = "clicked";
+    
+}

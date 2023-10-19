@@ -78,20 +78,32 @@ main {
 }
 
 .usefulButton {
-    background-color: rgb(226, 252, 252);
-    border: 0.1 solid rgb(226, 252, 252);
-    border-radius: 10%;
+    background-color: rgb(71, 249, 249);
+    border: 0 solid rgb(226, 252, 252);
+    border-radius: 15px;
     color: rgb(0, 57, 57);
-    padding: 0px;
+    padding: 4px;
+}
+
+.clicked {
+    border: 1 solid blackcs;
+
 }
 /* stars summar*/
+
+.stars_count {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+}
 .stars_count_bar {
     background-color: white;
     width: 500px;
-    height: 25px;
+    height: 10px;
     border-radius: 15px;
     padding: 0%; 
     margin: 10px;
+    clear:right;
 }
 
 .stars_bar_fill {
@@ -107,3 +119,18 @@ main {
 .five_stars {
     width: 80%
 }
+
+.four_stars {
+    width: 60%
+} 
+
+.three_stars {
+    width: 35%
+} 
+.two_stars {
+    width: 20%
+} 
+
+.one_stars {
+    width: 50%
+} 
