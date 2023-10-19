@@ -1,3 +1,6 @@
+import  "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";
+
+
 // based on: https://www.geeksforgeeks.org/how-to-convert-csv-to-json-file-and-vice-versa-in-javascript/
 // added some escaping for " (\") as well as for ' (\') as well as for \ (\\)
 var convertCsvToJson = function(csv){
