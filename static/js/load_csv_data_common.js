@@ -22,26 +22,29 @@ const convertCsvToJson = function(csv){
     return CSVToJSON(csv);
 }
 
-// a variation that returns a csv transpose (key per column)
+const JsonArrayToCsv = function(jsonArray){
+    let allColumns = new Set();
+    jsonArray.forEach(jsonObject => {
+        Object.keys(jsonObject).forEach(k => allColumns.add(k));
+    });
+    
+    let csvData = {};
+    allColumns.forEach(c => csvData[c]=[]);
+    jsonArray.forEach(jsonObject => {
+        Object.keys(csvData).forEach(k => {
+            if (k in jsonObject){
+                csvData[k].push(jsonObject[k]);
+            } else {
+                csvData[k].push(null);
+            }
+        });
+    })
+    return csvData;
+}
+
 const convertCsvToJsonTranspose = function(csv){
-    const CSVToJSONTranspose = csv => {
-        csv = csv.replaceAll('\r', '');
-        const lines = csv.split('\n');
-        const keys = lines[0].split(',');
-        let csvTranspose = {};
-        keys.forEach(k => {
-            csvTranspose[k] = [];
-        });
-        lines.slice(1).forEach(line => {
-            line = line.replaceAll("\\\\", escapeReplacement).replaceAll("\\,", commaReplacement).replaceAll("\\\"", quoteReplacement).replaceAll("\"", "");
-            line.split(',').reduce((acc, cur, i) => {
-                csvTranspose[keys[i]].push(cur.replaceAll(escapeReplacement, "\\").replaceAll(commaReplacement, ",").replaceAll(quoteReplacement, "\""));
-                return null;
-            }, null);
-        });
-        return csvTranspose;
-    };
-    return CSVToJSONTranspose(csv);
+    let jsonData = convertCsvToJson(csv);
+    return JsonArrayToCsv(jsonData);
 }
 
 var clearStars = function(newItem) {
@@ -83,29 +86,3 @@ var fillStarsHandler = function(newItem, value) {
         $(starsArray.get(i)).addClass( "checked" );
     }
 };
-
-const filterRestaurantCsvTransposeByName = function(restaurantsDataTranspose, restaurantName){
-    let filteredCsvData = {};
-    Object.keys(restaurantsDataTranspose).forEach(k=>{filteredCsvData[k] = []});
-    for(var idx=0; idx < restaurantsDataTranspose["restaurantName"].length; idx++){
-        if (restaurantsDataTranspose["restaurantName"][idx] === restaurantName){
-            Object.keys(restaurantsDataTranspose).forEach(k => {
-                filteredCsvData[k].push(restaurantsDataTranspose[k][idx]);
-            });
-        }
-    }
-    return filteredCsvData;
-}
-
-
-const filterJsonByRestaurantName = function(elementsJsonData, restaurantName){
-    let restaurantJsonData = []
-    elementsJsonData.forEach(element => {
-        if (element["restaurantName"] === restaurantName){
-            restaurantJsonData.push(element);
-        }
-    });
-    return restaurantJsonData;
-}
-
-

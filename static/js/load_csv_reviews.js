@@ -69,8 +69,8 @@ const occupySummaryData = function(restaurantElementsData, restaurantInfo){
 const occupyItems = function(loadedElementTemplate, elementsJsonData, restaurantDataJson){
     let urlParams = (new URL(window.location)).searchParams;
     let restaurantName = urlParams.get("res");
-    let restaurantElementsJson = filterJsonByRestaurantName(elementsJsonData, restaurantName);
-    let restaurantInfo = filterJsonByRestaurantName(restaurantDataJson, restaurantName)[0];
+    let restaurantElementsJson = elementsJsonData.filter(e => e["restaurantName"] === restaurantName);
+    let restaurantInfo = restaurantDataJson.filter(e => e["restaurantName"] === restaurantName)[0];
     occupySummaryData(restaurantElementsJson, restaurantInfo);
 
     for(var didx=0; didx < restaurantElementsJson.length; didx++){

@@ -19,30 +19,24 @@ const csvTransposeHandlersMethods = {
 
 };
 
-
-const occupyRestaurantItems = function(loadedRestaurantElementTemplate, restaurantsDataCsvTranspose, restaurantsInfoJson){
-    let restaurantsSet = new Set(restaurantsDataCsvTranspose["restaurantName"]);
+const occupyRestaurantItems = function(loadedRestaurantElementTemplate, reviewsDataJson, restaurantsInfoJson){
+    let restaurantSet = reviewsDataJson.reduce((acc, curr, i) => acc.add(curr["restaurantName"]), new Set());
     
-    restaurantsSet.forEach(rName => {
+    restaurantSet.forEach(rName => {
         var newRestaurantItem = loadedRestaurantElementTemplate.clone(true);
         newRestaurantItem.children().find(".restaurantName").text(rName);
-        let filteredCsvTransposeData = filterRestaurantCsvTransposeByName(restaurantsDataCsvTranspose, rName);
-        let restaurantInfoJson = {};
-        restaurantsInfoJson.forEach(v => {
-            if (v["restaurantName"] === rName){
-                restaurantInfoJson = v;
-            }
-        });
-        Object.keys(restaurantsDataCsvTranspose).forEach(k => {
+        let filteredCsvTransposeData = JsonArrayToCsv(reviewsDataJson.filter(element=>element["restaurantName"] === rName));
+        let restaurantInfo = restaurantsInfoJson.filter(element=>element["restaurantName"] === rName)[0];
+        Object.keys(filteredCsvTransposeData).forEach(k => {
             if (k in csvTransposeHandlersMethods){
-                csvTransposeHandlersMethods[k](newRestaurantItem, filteredCsvTransposeData[k], restaurantInfoJson);
+                csvTransposeHandlersMethods[k](newRestaurantItem, filteredCsvTransposeData[k], restaurantInfo);
             }
         });
         $(newRestaurantItem).appendTo('#reviewsContainer');
     });
 
     // in case only single restaurant, just lead to the reviews page
-    if (restaurantsSet.size == 1){
+    if (restaurantSet.size == 1){
         $($( ".restaurantButton")[0]).trigger( "click" );
     }
 }
@@ -70,9 +64,9 @@ var loadRestaurantsData = function(){
         const csvData = response2[2].responseText;
         const restuarantInfocsv = response3[2].responseText;
 
-        var dataCsvTranspose = convertCsvToJsonTranspose(csvData);
+        var dataJson = convertCsvToJson(csvData);
         var restaurantsInfoJson = convertCsvToJson(restuarantInfocsv);
-        occupyRestaurantItems($(restautantTemplate), dataCsvTranspose, restaurantsInfoJson);
+        occupyRestaurantItems($(restautantTemplate), dataJson, restaurantsInfoJson);
     });
 };
 
