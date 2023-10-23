@@ -35,7 +35,7 @@ const csvHandlersMethods = {
     restaurantReviewText:textElementHandler(".restaurantReviewText")
 };
 
-const occupySummaryData = function(restaurantElementsData){
+const occupySummaryData = function(restaurantElementsData, restaurantInfo){
     let starsSummary = new Array(0, 0, 0, 0, 0, 0);
     let starsClassNames = new Array(".zero_stars", ".one_stars", ".two_stars", ".three_stars", ".four_stars", ".five_stars");
     restaurantElementsData.forEach(element => {
@@ -60,18 +60,23 @@ const occupySummaryData = function(restaurantElementsData){
             element[0].style.width = (currentStarCount / restaurantElementsData.length) * 100 + "%";
         }
     });
+
+    $(".restaurantName").text(restaurantInfo["restaurantName"]);
+    $(".restaurantDescription").text(restaurantInfo["restaurantDescription"] + restaurantInfo["restaurantLocation"]);
+    $(".restaurantImage").attr("src", "../static/graphics/restaurants/" + restaurantInfo["restaurantImage"]);
 }
 
-const occupyItems = function(loadedElementTemplate, elementsJsonData){
+const occupyItems = function(loadedElementTemplate, elementsJsonData, restaurantDataJson){
     let urlParams = (new URL(window.location)).searchParams;
     let restaurantName = urlParams.get("res");
-    let restaurantElementsJsonData = filterJsonByRestaurantName(elementsJsonData, restaurantName);
-    occupySummaryData(restaurantElementsJsonData);
+    let restaurantElementsJson = filterJsonByRestaurantName(elementsJsonData, restaurantName);
+    let restaurantInfo = filterJsonByRestaurantName(restaurantDataJson, restaurantName)[0];
+    occupySummaryData(restaurantElementsJson, restaurantInfo);
 
-    for(var didx=0; didx < restaurantElementsJsonData.length; didx++){
+    for(var didx=0; didx < restaurantElementsJson.length; didx++){
         var newItem = loadedElementTemplate.clone(true);
         $(newItem).attr("id", "item_review_id_" + didx);
-        var elementDataJson = restaurantElementsJsonData[didx];
+        var elementDataJson = restaurantElementsJson[didx];
 
         Object.keys(elementDataJson).forEach(columnKey => {
             if (columnKey in csvHandlersMethods){
@@ -86,8 +91,7 @@ const occupyItems = function(loadedElementTemplate, elementsJsonData){
 
 var global_data = {};
 const toggleCheckbox = function(element) {
-    alert(element);
-    var currentElementId = $(element).parent().parent().parent().attr("id");
+    var currentElementId = $(element).parent().parent().attr("id");
     global_data["key_" + currentElementId] = element.checked;
 };
 
@@ -101,12 +105,16 @@ const submitSurvey = function() {
     let urlParams = (new URL(window.location)).searchParams;
     var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
     var userID = urlParams.get(QUALTRICS_USER_KEY);
+    var restaurantName = urlParams.get("res");
     
     if (!(experiemntID && userID)){
         alert("some query params are missing...");
         return;
     }
-    var submitUrl = "http://fppvu.qualtrics.com/SE/?" + QUALTRICS_EXPERIMENT_KEY + "=" + experiemntID + "&" + QUALTRICS_USER_KEY + "=" + userID;
+    var submitUrl = "http://fppvu.qualtrics.com/SE/?";
+    urlParams.forEach((v, k)=>{
+        submitUrl += ("&" + k + "=" + v);
+    });
     Object.keys(global_data).forEach(k => {
         submitUrl += ("&" + k + "=" + global_data[k]);
     });
@@ -118,16 +126,16 @@ const submitSurvey = function() {
 const loadData = function(){
     var defArr = [];
     defArr.push($.get('singleReviewTemplate.html'));
-    defArr.push($.get('singleRestaurantTemplate.html'));
     defArr.push($.get('../static/data/reviews_data.csv'));
+    defArr.push($.get('../static/data/restaurant_info.csv'));
     $.when.apply($,defArr).done(function(response1, response2, response3){
-        // const reviewTemplate = "<div>" + response1[2].responseText + "</div>";
-        const reviewTemplate =  response1[2].responseText ;
-        const restautantTemplate = "<div>" + response2[2].responseText +"</div>";
-        const csvData = response3[2].responseText;
+        const reviewTemplate = "<div>" + response1[2].responseText +"</div>";
+        const reviewsCsvData = response2[2].responseText;
+        const restaurantCsvData = response3[2].responseText;
 
-        var dataJson = convertCsvToJson(csvData);
-        occupyItems($(reviewTemplate), dataJson);
+        var reviewsDataJson = convertCsvToJson(reviewsCsvData);
+        var restaurantDataJson = convertCsvToJson(restaurantCsvData);
+        occupyItems($(reviewTemplate), reviewsDataJson,restaurantDataJson);
     });
 };
 

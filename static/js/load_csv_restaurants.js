@@ -1,5 +1,5 @@
 
-const restaurantStarsHandler = function(newRestaurantItem, rewtaurantTransposeDataColoumn){
+const restaurantStarsHandler = function(newRestaurantItem, rewtaurantTransposeDataColoumn, restaurantInfoJson){
     let reviewStarsHtml = newRestaurantItem.children().find(".restaurantReviewsCount");
     reviewStarsHtml.text(rewtaurantTransposeDataColoumn.length);
     let sum = 0;
@@ -7,23 +7,35 @@ const restaurantStarsHandler = function(newRestaurantItem, rewtaurantTransposeDa
         sum += parseFloat(rating);
     });
     fillStarsHandler(newRestaurantItem, (sum / rewtaurantTransposeDataColoumn.length));
+
+    newRestaurantItem.children().find(".restaurantReviewsCount").text(rewtaurantTransposeDataColoumn.length)
+    newRestaurantItem.children().find(".restaurantLocation").text(restaurantInfoJson["restaurantLocation"])
+    newRestaurantItem.children().find(".restaurantDescription").text(restaurantInfoJson["restaurantDescription"])
+    newRestaurantItem.children().find(".restaurantImage").attr("src", "../static/graphics/restaurants/" + restaurantInfoJson["restaurantImage"]);
 }
 
 const csvTransposeHandlersMethods = {
-    reviweStars:restaurantStarsHandler
+    reviweStars:restaurantStarsHandler,
+
 };
 
 
-const occupyRestaurantItems = function(loadedRestaurantElementTemplate, restaurantsDataTranspose){
-    let restaurantsSet = new Set(restaurantsDataTranspose["restaurantName"]);
+const occupyRestaurantItems = function(loadedRestaurantElementTemplate, restaurantsDataCsvTranspose, restaurantsInfoJson){
+    let restaurantsSet = new Set(restaurantsDataCsvTranspose["restaurantName"]);
     
     restaurantsSet.forEach(rName => {
         var newRestaurantItem = loadedRestaurantElementTemplate.clone(true);
         newRestaurantItem.children().find(".restaurantName").text(rName);
-        let filteredCsvTransposeData = filterRestaurantCsvTransposeByName(restaurantsDataTranspose, rName);
-        Object.keys(restaurantsDataTranspose).forEach(k => {
+        let filteredCsvTransposeData = filterRestaurantCsvTransposeByName(restaurantsDataCsvTranspose, rName);
+        let restaurantInfoJson = {};
+        restaurantsInfoJson.forEach(v => {
+            if (v["restaurantName"] === rName){
+                restaurantInfoJson = v;
+            }
+        });
+        Object.keys(restaurantsDataCsvTranspose).forEach(k => {
             if (k in csvTransposeHandlersMethods){
-                csvTransposeHandlersMethods[k](newRestaurantItem, filteredCsvTransposeData[k]);
+                csvTransposeHandlersMethods[k](newRestaurantItem, filteredCsvTransposeData[k], restaurantInfoJson);
             }
         });
         $(newRestaurantItem).appendTo('#reviewsContainer');
@@ -41,8 +53,8 @@ const onRestaurantChosen = function(restaurantNode){
     let urlParams = (new URL(window.location)).searchParams;
     let restaurantUrl = urlHost + "/views/ReviewsPage.html" + "?" + "res=" + restaurantName;
 
-    Object.keys(urlParams).forEach(k => {
-        restaurantUrl += ("&" + k + "=" + urlParams[k]);
+    urlParams.forEach((v, k) => {
+        restaurantUrl += ("&" + k + "=" + v);
     });
     // alert(window.location.protocol + "//" + restaurantUrl);
     window.location.href = window.location.protocol + "//" + restaurantUrl;
@@ -52,12 +64,15 @@ var loadRestaurantsData = function(){
     var defArr = [];
     defArr.push($.get('singleRestaurantTemplate.html'));
     defArr.push($.get('../static/data/reviews_data.csv'));
-    $.when.apply($,defArr).done(function(response1, response2){
+    defArr.push($.get('../static/data/restaurant_info.csv'));
+    $.when.apply($,defArr).done(function(response1, response2, response3){
         const restautantTemplate = "<div>" + response1[2].responseText +"</div>";
         const csvData = response2[2].responseText;
+        const restuarantInfocsv = response3[2].responseText;
 
-        var dataJsonTranspose = convertCsvToJsonTranspose(csvData);
-        occupyRestaurantItems($(restautantTemplate), dataJsonTranspose);
+        var dataCsvTranspose = convertCsvToJsonTranspose(csvData);
+        var restaurantsInfoJson = convertCsvToJson(restuarantInfocsv);
+        occupyRestaurantItems($(restautantTemplate), dataCsvTranspose, restaurantsInfoJson);
     });
 };
 
