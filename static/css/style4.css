@@ -117,20 +117,20 @@ main {
 }
 
 .five_stars {
-    width: 80%
+    width: 0%
 }
 
 .four_stars {
-    width: 60%
+    width: 0%
 } 
 
 .three_stars {
-    width: 35%
+    width: 0%
 } 
 .two_stars {
-    width: 20%
+    width: 0%
 } 
 
 .one_stars {
-    width: 50%
+    width: 0%
 } 

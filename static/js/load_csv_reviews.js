@@ -1,44 +1,4 @@
 
-var clearStars = function(newItem) {
-    var starsArray = newItem.children().find(".fa")
-    for (let i=0; i < starsArray.length; i++){
-        
-        var currentItem = $(starsArray.get(i));
-        currentItem.removeClass( "fa-star-half-o");
-        currentItem.removeClass( "checked");
-        currentItem.removeClass( "fa-star");
-        currentItem.addClass( "fa-star-o");
-    }
-};
-
-var fillStarsHandler = function(newItem, value) {
-    var ratingFloat = parseFloat(value)
-    if (Number.isNaN(ratingFloat)) {
-        return;
-    }
- 
-    // initialize with all stars empty (fa-star-o)
-    clearStars(newItem);
- 
-    var starsArray = newItem.children().find(".fa")
-    for (let i=0; (i<ratingFloat && i < starsArray.length); i++){
-        var currentItem = $(starsArray.get(i));
-        
-        // if current star idx is full, paint a full star (fa-star), otherwise, paint a semi-star (fa-star-half-o)
-        // if equal or more than 0.5, color with yello (checked)
-        var isCurrentStarFull = (ratingFloat - i) >= 1;
-        
-        if (isCurrentStarFull){
-            currentItem.removeClass("fa-star-o");
-            currentItem.addClass("fa-star");
-        } else {
-            currentItem.removeClass("fa-star-o");
-            currentItem.addClass( "fa-star-half-o");
-        }
-        $(starsArray.get(i)).addClass( "checked" );
-    }
-};
-
 var fillReviewsCountHandler = function(newItem, value){
     var reviewsElement = newItem.children().find(".reviews-count");
     reviewsElement.text(parseInt(value));
@@ -75,14 +35,50 @@ const csvHandlersMethods = {
     restaurantReviewText:textElementHandler(".restaurantReviewText")
 };
 
+const occupySummaryData = function(restaurantElementsData){
+    let starsSummary = new Array(0, 0, 0, 0, 0, 0);
+    let starsClassNames = new Array(".zero_stars", ".one_stars", ".two_stars", ".three_stars", ".four_stars", ".five_stars");
+    restaurantElementsData.forEach(element => {
+        if (parseFloat(element["reviweStars"]) >= 4.5){
+            starsSummary[5]+= 1;
+        } else if (parseFloat(element["reviweStars"]) >= 3.5){
+            starsSummary[4]+= 1;
+        } else if (parseFloat(element["reviweStars"]) >= 2.5){
+            starsSummary[3]+= 1;
+        } else if (parseFloat(element["reviweStars"]) >= 1.5){
+            starsSummary[2]+= 1;
+        } else if (parseFloat(element["reviweStars"]) >= 0.5){
+            starsSummary[1]+= 1;
+        } else {
+            starsSummary[0]+= 1;
+        }
+    });
+    starsSummary.forEach((currentStarCount, i) => {
+        let currentStarsClassName = starsClassNames[i];
+        let element = $(".overall_Star_rating").children().find(currentStarsClassName);
+        if (element.length > 0){
+            element[0].style.width = (currentStarCount / restaurantElementsData.length) * 100 + "%";
+        }
+    });
+}
+
 const occupyItems = function(loadedElementTemplate, elementsData){
-    for(var didx=0; didx < elementsData.length; didx++){
+    let urlParams = (new URL(window.location)).searchParams;
+    let restaurantName = urlParams.get("res");
+    let restaurantElementsData = []
+    elementsData.forEach(element => {
+        if (element["restaurantName"] === restaurantName){
+            restaurantElementsData.push(element);
+        }
+    });
+    occupySummaryData(restaurantElementsData);
+    
+    for(var didx=0; didx < restaurantElementsData.length; didx++){
         var newItem = loadedElementTemplate.clone(true);
         $(newItem).attr("id", "item_review_id_" + didx);
-        var elementDataJson = elementsData[didx];
+        var elementDataJson = restaurantElementsData[didx];
 
-        Object.keys(elementDataJson)
-        .forEach(columnKey => {
+        Object.keys(elementDataJson).forEach(columnKey => {
             if (columnKey in csvHandlersMethods){
                 csvHandlersMethods[columnKey](newItem, elementDataJson[columnKey]);
             }
