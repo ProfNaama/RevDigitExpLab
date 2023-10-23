@@ -62,21 +62,16 @@ const occupySummaryData = function(restaurantElementsData){
     });
 }
 
-const occupyItems = function(loadedElementTemplate, elementsData){
+const occupyItems = function(loadedElementTemplate, elementsJsonData){
     let urlParams = (new URL(window.location)).searchParams;
     let restaurantName = urlParams.get("res");
-    let restaurantElementsData = []
-    elementsData.forEach(element => {
-        if (element["restaurantName"] === restaurantName){
-            restaurantElementsData.push(element);
-        }
-    });
-    occupySummaryData(restaurantElementsData);
-    
-    for(var didx=0; didx < restaurantElementsData.length; didx++){
+    let restaurantElementsJsonData = filterJsonByRestaurantName(elementsJsonData, restaurantName);
+    occupySummaryData(restaurantElementsJsonData);
+
+    for(var didx=0; didx < restaurantElementsJsonData.length; didx++){
         var newItem = loadedElementTemplate.clone(true);
         $(newItem).attr("id", "item_review_id_" + didx);
-        var elementDataJson = restaurantElementsData[didx];
+        var elementDataJson = restaurantElementsJsonData[didx];
 
         Object.keys(elementDataJson).forEach(columnKey => {
             if (columnKey in csvHandlersMethods){

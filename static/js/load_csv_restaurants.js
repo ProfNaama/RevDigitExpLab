@@ -28,6 +28,11 @@ const occupyRestaurantItems = function(loadedRestaurantElementTemplate, restaura
         });
         $(newRestaurantItem).appendTo('#reviewsContainer');
     });
+
+    // in case only single restaurant, just lead to the reviews page
+    if (restaurantsSet.size == 1){
+        $($( ".restaurantButton")[0]).trigger( "click" );
+    }
 }
 
 const onRestaurantChosen = function(restaurantNode){
@@ -39,7 +44,7 @@ const onRestaurantChosen = function(restaurantNode){
     Object.keys(urlParams).forEach(k => {
         restaurantUrl += ("&" + k + "=" + urlParams[k]);
     });
-    alert(window.location.protocol + "//" + restaurantUrl);
+    // alert(window.location.protocol + "//" + restaurantUrl);
     window.location.href = window.location.protocol + "//" + restaurantUrl;
 }
 

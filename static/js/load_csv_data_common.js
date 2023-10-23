@@ -98,3 +98,14 @@ const filterRestaurantCsvTransposeByName = function(restaurantsDataTranspose, re
 }
 
 
+const filterJsonByRestaurantName = function(elementsJsonData, restaurantName){
+    let restaurantJsonData = []
+    elementsJsonData.forEach(element => {
+        if (element["restaurantName"] === restaurantName){
+            restaurantJsonData.push(element);
+        }
+    });
+    return restaurantJsonData;
+}
+
+
