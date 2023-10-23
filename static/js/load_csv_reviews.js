@@ -1,28 +1,3 @@
-import  "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js";
-
-
-// based on: https://www.geeksforgeeks.org/how-to-convert-csv-to-json-file-and-vice-versa-in-javascript/
-// added some escaping for " (\") as well as for ' (\') as well as for \ (\\)
-var convertCsvToJson = function(csv){
-    const escapeReplacement = "__RESERVED_ESCAPE_PLACEHOLDER_CHAR__";
-    const commaReplacement = "__RESERVED_COMMA_PLACEHOLDER_CHAR__";
-    const quoteReplacement = "__RESERVED_QUOTE_PLACEHOLDER_CHAR__";
-
-    const CSVToJSON = csv => {
-        csv = csv.replaceAll('\r', '');
-        const lines = csv.split('\n');
-        const keys = lines[0].split(',');
-        return lines.slice(1).map(line => {
-            line = line.replaceAll("\\\\", escapeReplacement).replaceAll("\\,", commaReplacement).replaceAll("\\\"", quoteReplacement).replaceAll("\"", "");
-            return line.split(',').reduce((acc, cur, i) => {
-                const toAdd = {};
-                toAdd[keys[i]] = cur.replaceAll(escapeReplacement, "\\").replaceAll(commaReplacement, ",").replaceAll(quoteReplacement, "\"");
-                return { ...acc, ...toAdd };
-            }, {});
-        });
-    };
-    return CSVToJSON(csv);
-}
 
 var clearStars = function(newItem) {
     var starsArray = newItem.children().find(".fa")
@@ -86,8 +61,6 @@ var EliteBadgeHandler = function (newItem, value) {
     if (value == "1") {
         reviewsElement[0].style.display = "inline"
     }
-    
-
 }
 
 // for each csv column, there should be a handler function for that type of data. (key should be the same as the csv header, handler should be written)
@@ -100,55 +73,34 @@ const csvHandlersMethods = {
     EliteBadge:EliteBadgeHandler,
     restaurantStars:textElementHandler(".restaurantStars"),
     restaurantReviewText:textElementHandler(".restaurantReviewText")
-    /*
-    ratingScore:fillStarsHandler,
-    cardText:fillReviewsTextHandler,
-    reviewesCount:fillReviewsCountHandler,
-    cardTextSmall:fillReviewsTextSmallHandler
-    */
 };
 
-var occupyItems = function(loadedElementTemplate, elementsData){
+const occupyItems = function(loadedElementTemplate, elementsData){
     for(var didx=0; didx < elementsData.length; didx++){
         var newItem = loadedElementTemplate.clone(true);
         $(newItem).attr("id", "item_review_id_" + didx);
         var elementDataJson = elementsData[didx];
 
         Object.keys(elementDataJson)
-        .forEach(columnKey => 
-            csvHandlersMethods[columnKey](newItem, elementDataJson[columnKey]));
+        .forEach(columnKey => {
+            if (columnKey in csvHandlersMethods){
+                csvHandlersMethods[columnKey](newItem, elementDataJson[columnKey]);
+            }
+        });
 
         $(newItem).appendTo('#reviewsContainer');
     }
 }
 
-var loadData = function(){
-    $("<div/>").addClass("single-review-template").load(
-        "singleReviewTemplate.html",
-        function(responseTxt, statusTxt, xhr){
-            if(statusTxt != "success"){
-                return;
-            }
 
-            $.ajax({
-                type: "GET",
-                url: "../static/data/reviews_data.csv",
-                dataType: "text",
-                success: function(csvData){
-                    var dataJson = convertCsvToJson(csvData);
-                    occupyItems($(responseTxt), dataJson);
-                }
-            });
-    });
+var global_data = {};
+const toggleCheckbox = function(element) {
+    alert(element);
+    var currentElementId = $(element).parent().parent().parent().attr("id");
+    global_data["key_" + currentElementId] = element.checked;
 };
 
-var global_data = {}
-const toggleCheckbox = function(element){
-    var currentElementId = $(element).parent().parent().parent().parent().attr("id");
-    global_data["key_" + currentElementId] = element.checked;
-}
-
-const submitSurvey = function(){
+const submitSurvey = function() {
     // those two params must be found in the url query string, as passed on from qualtrics
     // SID is the experiment ID
     // UID is the user ID
@@ -171,15 +123,23 @@ const submitSurvey = function(){
     window.location.href = submitUrl;
 };
 
+
+const loadData = function(){
+    var defArr = [];
+    defArr.push($.get('singleReviewTemplate.html'));
+    defArr.push($.get('singleRestaurantTemplate.html'));
+    defArr.push($.get('../static/data/reviews_data.csv'));
+    $.when.apply($,defArr).done(function(response1, response2, response3){
+        // const reviewTemplate = "<div>" + response1[2].responseText + "</div>";
+        const reviewTemplate =  response1[2].responseText ;
+        const restautantTemplate = "<div>" + response2[2].responseText +"</div>";
+        const csvData = response3[2].responseText;
+
+        var dataJson = convertCsvToJson(csvData);
+        occupyItems($(reviewTemplate), dataJson);
+    });
+};
+
 $(document).ready(function(){
     loadData();
-  });
-
-
-// event listener to usefull button
-const usefulButton = document.getElementsByClassName('usefulButton');
-usefulButton.addEventListener("click", clickedFunction); 
-function clickedFunction() {
-    document.getElementsByClassName.addClass = "clicked";
-    
-}
+});
