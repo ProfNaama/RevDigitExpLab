@@ -77,6 +77,10 @@ main {
     display: inline;
 }
 
+.reviewRestaurantName {
+    display: none;
+}
+
 .usefulButton {
     background-color: rgb(71, 249, 249);
     border: 0 solid rgb(226, 252, 252);

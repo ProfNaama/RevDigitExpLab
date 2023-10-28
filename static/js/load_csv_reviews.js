@@ -1,3 +1,8 @@
+const toggleCheckbox = function(checkboxElement){
+    let key = $(checkboxElement).parent().parent().attr("id");
+    let restaurantName = $(checkboxElement).parent().parent().children().find(".reviewRestaurantName").text();
+    addPairToQuestionairData(restaurantName + "_" + key, checkboxElement.checked)
+}
 
 var fillReviewsCountHandler = function(newItem, value){
     var reviewsElement = newItem.children().find(".reviews-count");
@@ -32,7 +37,8 @@ const csvHandlersMethods = {
     reviewerLocation:textElementHandler(".reviewerLocation"),
     EliteBadge:EliteBadgeHandler,
     restaurantStars:textElementHandler(".restaurantStars"),
-    restaurantReviewText:textElementHandler(".restaurantReviewText")
+    restaurantReviewText:textElementHandler(".restaurantReviewText"),
+    restaurantName:textElementHandler(".reviewRestaurantName")
 };
 
 const occupySummaryData = function(restaurantElementsData, restaurantInfo){
@@ -88,41 +94,6 @@ const occupyItems = function(loadedElementTemplate, elementsJsonData, restaurant
     }
 }
 
-
-var global_data = {};
-const toggleCheckbox = function(element) {
-    var currentElementId = $(element).parent().parent().attr("id");
-    global_data["key_" + currentElementId] = element.checked;
-};
-
-const submitSurvey = function() {
-    // those two params must be found in the url query string, as passed on from qualtrics
-    // SID is the experiment ID
-    // UID is the user ID
-    const QUALTRICS_EXPERIMENT_KEY = "SID";
-    const QUALTRICS_USER_KEY = "UID";
-    
-    let urlParams = (new URL(window.location)).searchParams;
-    var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
-    var userID = urlParams.get(QUALTRICS_USER_KEY);
-    var restaurantName = urlParams.get("res");
-    
-    if (!(experiemntID && userID)){
-        alert("some query params are missing...");
-        return;
-    }
-    var submitUrl = "http://fppvu.qualtrics.com/SE/?";
-    urlParams.forEach((v, k)=>{
-        submitUrl += ("&" + k + "=" + v);
-    });
-    Object.keys(global_data).forEach(k => {
-        submitUrl += ("&" + k + "=" + global_data[k]);
-    });
-    alert(submitUrl);
-    window.location.href = submitUrl;
-};
-
-
 const loadData = function(){
     var defArr = [];
     defArr.push($.get('singleReviewTemplate.html'));
@@ -140,5 +111,6 @@ const loadData = function(){
 };
 
 $(document).ready(function(){
+    decodeCookiesParams();
     loadData();
 });
