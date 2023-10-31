@@ -6,8 +6,8 @@
 .gridContainer {
     display: grid;
     grid-template-areas: 
-    'left header'
-    'left main';
+    'left header header header'
+    'left main main main';
 }
 header {
     grid-area: header;
@@ -21,7 +21,6 @@ main {
 .left {
     grid-area: left;
     background-color: rgb(248, 247, 247);
-    width: 15vw;
 }
 /* this is the container of the review card*/
 .reviewsContainer {
@@ -35,7 +34,7 @@ main {
 }
 */
 .checked{
-    color:#fbc634 !important;
+    color:#fbab34 !important;
 }
 
 .ratings i{
@@ -63,9 +62,10 @@ main {
 }
 
 .EliteBadge {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 0, 51);
+    color: white;
     border: 1 solid white;
-    border-radius: 20%;
+    border-radius: 15%;
     display: none;
 }
 
@@ -111,7 +111,7 @@ main {
 }
 
 .stars_bar_fill {
-    background-color: rgb(255, 234, 0); 
+    background-color: rgb(255, 170, 0); 
     color: white; 
     padding: 0%; 
     margin: 0%;
@@ -138,3 +138,8 @@ main {
 .one_stars {
     width: 0%
 } 
+
+.UsefullButton {
+    padding: 25px;
+}
+
