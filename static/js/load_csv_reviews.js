@@ -111,6 +111,5 @@ const loadData = function(){
 };
 
 $(document).ready(function(){
-    decodeCookiesParams();
     loadData();
 });

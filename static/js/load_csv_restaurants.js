@@ -71,7 +71,6 @@ var loadRestaurantsData = function(){
 };
 
 $(document).ready(function(){
-    decodeCookiesParams();
     loadRestaurantsData();
   });
 
