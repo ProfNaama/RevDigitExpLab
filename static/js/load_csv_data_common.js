@@ -93,6 +93,13 @@ const addPairToQuestionairData = function(k,v){
     encodeSessionParams(sessionData);
 }
 
+const clearAllPairStartingWithKey = function(removePrefix){
+    let sessionData = decodeSessionParams();
+    let filteredSessionData = {};
+    Object.keys(sessionData).filter(k => {return !k.startsWith(removePrefix)}).forEach(k => filteredSessionData[k]=sessionData[k]);
+    encodeSessionParams(filteredSessionData);
+}
+
 const QUESTIONAIRE_DATA_KEY = "__QQ__=";
 const COOKIE_EXPIRATION_MINUTES = 10; 
 const INTERNAL_SEPARATOR = "__SEP__";
