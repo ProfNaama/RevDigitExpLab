@@ -42,7 +42,7 @@ const occupyRestaurantItems = function(loadedRestaurantElementTemplate, reviewsD
 }
 
 const onRestaurantChosen = function(restaurantNode){
-    let restaurantName = $(restaurantNode).parent().children().find(".restaurantName")[0].innerText;
+    let restaurantName = $(restaurantNode).children().find(".restaurantName")[0].innerText;
     let urlHost = (new URL(window.location)).host;
     let urlParams = (new URL(window.location)).searchParams;
     let restaurantUrl = urlHost + "/views/ReviewsPage.html" + "?" + "res=" + restaurantName;
