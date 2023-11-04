@@ -89,8 +89,9 @@ var fillStarsHandler = function (newItem, value) {
 
 var globalData = {}
 const addPairToQuestionairData = function(k,v){
-    globalData[k] = v;
-    encodeCookiesParams();
+    let sessionData = decodeSessionParams();
+    sessionData[k] = v;
+    encodeSessionParams(sessionData);
 }
 
 const QUESTIONAIRE_DATA_PREFIX = "__QQ__=";
