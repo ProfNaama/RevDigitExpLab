@@ -15,14 +15,37 @@
 <body>
     <div class="gridContainer">
         <header>
-            <h1 class="restaurantName">restaurant name</h1>
+            <div class="resHeader">
+                <h1 class="resName">restaurant name</h1>
+                <div class="overallStars">
+                    <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half-o"></span>
+                        <span class="fa fa-star"></span>
+                        <span>3.5 (158 reviews)</span>
+                    </div>
+                </div>
+                <p class="resTag">Restaurant tag line</p>
+            </div>
             <!--
-                <img class="restaurantImage"></img>
-            --> 
-            <p class = "restaurantDescription">maybe a title will be here</p>
+            <h1 class="restaurantName">restaurant name</h1>
+            <img class="restaurantImage"></img>
+            <p class = "restaurantDescription" ==> "resTag" >maybe a title will be here</p>
+            -->
             <div class="overall_Star_rating">
-                <h3>restaurente overall rating</h3>
-                <div>overall stars</div>
+                <div class="stars_float" id="stars_total">
+                    <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star-half-o"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+                <div class="stars_float">
+                    <div>overall stars</div>
                 <div class="stars_count">
                     <p>5 stars</p>
                     <div class="stars_count_bar">
@@ -52,6 +75,7 @@
                     <div class="stars_count_bar">
                         <div class="stars_bar_fill one_stars"></div>
                     </div>
+                </div>
                 </div>
             </div>
         </header>
