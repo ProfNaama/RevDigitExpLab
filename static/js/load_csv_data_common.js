@@ -87,52 +87,44 @@ var fillStarsHandler = function (newItem, value) {
     }
 };
 
-var globalData = {}
 const addPairToQuestionairData = function(k,v){
     let sessionData = decodeSessionParams();
     sessionData[k] = v;
     encodeSessionParams(sessionData);
 }
 
-const QUESTIONAIRE_DATA_PREFIX = "__QQ__=";
+const clearAllPairStartingWithKey = function(removePrefix){
+    let sessionData = decodeSessionParams();
+    let filteredSessionData = {};
+    Object.keys(sessionData).filter(k => {return !k.startsWith(removePrefix)}).forEach(k => filteredSessionData[k]=sessionData[k]);
+    encodeSessionParams(filteredSessionData);
+}
+
+const QUESTIONAIRE_DATA_KEY = "__QQ__=";
 const COOKIE_EXPIRATION_MINUTES = 10; 
 const INTERNAL_SEPARATOR = "__SEP__";
 const INTERNAL_EQUAL = "__EQ__";
 
-const encodeCookiesParams = function () {
+const encodeSessionParams = function (sessionData) {
     let decodedArray = []
-    Object.keys(globalData).forEach(k => {
-        decodedArray.push(k + INTERNAL_EQUAL + globalData[k]);
+    Object.keys(sessionData).forEach(k => {
+        decodedArray.push(k + INTERNAL_EQUAL + sessionData[k]);
     });
     let decodedDataString = decodedArray.join(INTERNAL_SEPARATOR);
-    const d = new Date();
-    d.setTime(d.getTime() + (COOKIE_EXPIRATION_MINUTES * 60 * 1000));
-    document.cookie = QUESTIONAIRE_DATA_PREFIX + decodedDataString + ";expires=" + d.toUTCString() + ";path=/";
+    sessionStorage.setItem(QUESTIONAIRE_DATA_KEY, decodedDataString);
 }
 
-const decodeCookiesParams = function () {
-    globalData = {};
-    let cookies = decodeURIComponent(document.cookie);
-    let ca = cookies.split(';');
-    let encodedDataString = null;
-    
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(QUESTIONAIRE_DATA_PREFIX) == 0) {
-            encodedDataString = c.substring(QUESTIONAIRE_DATA_PREFIX.length, c.length);
-            break;
-        }
-    }
+const decodeSessionParams = function () {
+    let sessionData = {};
+    let encodedDataString = sessionStorage.getItem(QUESTIONAIRE_DATA_KEY);
     if (encodedDataString){
         encodedDataString.split(INTERNAL_SEPARATOR).forEach(kv => {
             let keyvalue = kv.split(INTERNAL_EQUAL);
-            globalData[keyvalue[0]] = keyvalue[1];
+            sessionData[keyvalue[0]] = keyvalue[1];
         });
     }
-    // alert(JSON.stringify(globalData));
+    // alert(JSON.stringify(sessionData));
+    return sessionData;ß
 }
 
 const submitSurvey = function() {
@@ -154,16 +146,10 @@ const submitSurvey = function() {
     urlParams.forEach((v, k)=>{
         submitUrl += ("&" + k + "=" + v);
     });
-    Object.keys(globalData).forEach(k => {
-        submitUrl += ("&" + k + "=" + globalData[k]);
+    let sessionData = decodeSessionParams();
+    Object.keys(sessionData).forEach(k => {
+        submitUrl += ("&" + k + "=" + sessionData[k]);
     });
     alert(submitUrl);
     window.location.href = submitUrl;
 };
-
-$(window).bind("pageshow", function(event) {
-    if (event.originalEvent.persisted) {
-        // alert("forcing reload..")
-        window.location.reload(); 
-    }
-});
