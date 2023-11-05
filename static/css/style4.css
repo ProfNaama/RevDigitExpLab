@@ -69,6 +69,11 @@ main {
     display: flex;
     flex-direction: column;
 }
+.restaurantsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 /*
 .card-horizontal {
     display: flex;

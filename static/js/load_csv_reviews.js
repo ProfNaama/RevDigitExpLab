@@ -67,8 +67,8 @@ const occupySummaryData = function(restaurantElementsData, restaurantInfo){
         }
     });
 
-    $(".restaurantName").text(restaurantInfo["restaurantName"]);
-    $(".restaurantDescription").text(restaurantInfo["restaurantDescription"] + restaurantInfo["restaurantLocation"]);
+    $(".resName").text(restaurantInfo["restaurantName"]);
+    $(".resTag").text(restaurantInfo["restaurantDescription"] + restaurantInfo["restaurantLocation"]);
     $(".restaurantImage").attr("src", "../static/graphics/restaurants/" + restaurantInfo["restaurantImage"]);
 }
 
@@ -112,6 +112,5 @@ const loadData = function(){
 };
 
 $(document).ready(function(){
-    decodeCookiesParams();
     loadData();
 });
