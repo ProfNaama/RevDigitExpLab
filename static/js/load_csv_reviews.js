@@ -1,4 +1,4 @@
-const toggleCheckbox = function(reviewButtonElement){
+const usefullReviewClicked = function(reviewButtonElement){
     let key = $(reviewButtonElement).parent().parent().attr("id");
     let restaurantName = $(reviewButtonElement).parent().parent().children().find(".reviewRestaurantName").text();
     const currentElementKey = restaurantName + "_" + key;
