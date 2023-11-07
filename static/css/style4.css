@@ -26,7 +26,6 @@ header {
 
 .resHeader {
     height: 38%;
-    background-image: url(../graphics/steak_1.jpeg), url(../graphics/steak_1.jpeg);
     background-repeat: no-repeat, repeat;
     background-size: contain, cover;
     color: white;
