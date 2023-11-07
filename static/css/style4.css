@@ -70,12 +70,6 @@ main {
     flex-direction: column;
 }
 
-/*
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-}
-*/
 .checked{
     color:#fbab34 !important;
 }
@@ -83,11 +77,7 @@ main {
 .ratings i{
     font-size:large;
 }
-/*
-.badge {
-    background-color: blue;
-}
-*/
+
 .card-body {
     width: 400px;
 }
@@ -122,14 +112,6 @@ main {
 
 .reviewRestaurantName {
     display: none;
-}
-
-.usefulButton {
-    background-color: rgb(71, 249, 249);
-    border: 0 solid rgb(226, 252, 252);
-    border-radius: 15px;
-    color: rgb(0, 57, 57);
-    padding: 4px;
 }
 
 .clicked {
@@ -183,6 +165,9 @@ main {
 } 
 
 .UsefullButton {
-    padding: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 4px;
 }
 
