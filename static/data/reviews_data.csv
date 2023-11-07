@@ -1,6 +1,10 @@
 restaurantName,reviewerName,reviweStars,reviewerCount,reviewerAvatar,reviewerLocation,EliteBadge,restaurantStars,restaurantReviewText
 RestA,Name1,4,20 reviews,avatar1.jpeg,New York NY,1,4,text1
-RestB,Name2,3,2000 reviews,avatar2.jpeg,PA,,3,text2
+RestA,Name2,3,2000 reviews,avatar2.jpeg,PA,,3,text2
 RestA,Name1,5,20 reviews,avatar1.jpeg,New York NY,1,4,text1
-RestB,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2
-RestB,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2
+RestA,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2
+RestA,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2
+RestA,Name1,3,20 reviews,avatar1.jpeg,New York NY,1,2,text1
+RestA,Name2,5,2000 reviews,avatar2.jpeg,PA,,2,text2
+RestA,Name1,3,20 reviews,avatar1.jpeg,New York NY,1,1,text1
+RestB,Name2,1,2000 reviews,avatar2.jpeg,PA,,3,text2
