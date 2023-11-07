@@ -69,7 +69,9 @@ const occupySummaryData = function(restaurantElementsData, restaurantInfo){
 
     $(".resName").text(restaurantInfo["restaurantName"]);
     $(".resTag").text(restaurantInfo["restaurantDescription"] + restaurantInfo["restaurantLocation"]);
-    $(".restaurantImage").attr("src", "../static/graphics/restaurants/" + restaurantInfo["restaurantImage"]);
+    let imageUrl = "url(../static/graphics/restaurants/"+ restaurantInfo["restaurantImage"] + ")";
+    imageUrl += ("," + imageUrl);
+    $(".resHeader")[0].style["background-image"] = imageUrl;
 }
 
 const occupyItems = function(loadedElementTemplate, elementsJsonData, restaurantDataJson){
