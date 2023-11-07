@@ -11,37 +11,32 @@
 }
 header {
     grid-area: header;
-    background-color: rgb(220, 220, 220, 0.5);
+    overflow: auto;
 }
 
-
 .resHeader {
-    height: 200px;
+    height: 38%;
     background-image: url(../graphics/steak_1.jpeg), url(../graphics/steak_1.jpeg);
     background-repeat: no-repeat, repeat;
     background-size: contain, cover;
     color: white;
-    padding-left: 25%;
-    padding-top: 20px;
+    padding-left: 30%;
+    padding-top: 5%;
 }
 
 /*Overall star rating*/
 .overallStars .stars .fa {
-    border: 1px solid rgba(255, 255, 255, 0.002);
+    border: 1px solid rgba(94, 94, 94, 0.002);
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.250);
+    background-color: rgba(96, 96, 96, 0.25);
 }
 
 /*second elemnt on page with stars and bars*/
 .overall_Star_rating{
     display: flex;
-    height: 250px;
+    background-color:lightgray;
 }
 
-.overall_Star_rating .stars_float {
-    flex-direction: row;
-    height: 100%;
-}
 
 #stars_total {
   display: flex;
@@ -49,11 +44,12 @@ header {
   align-items: center;
 }
 
-#stars_total span {
+#stars_total .fa {
     margin: 5px;
     padding: 5px;
-    border: 1px solid white;
-    border-radius: 5px; 
+    border: 1px solid rgba(100, 100, 100, 0.002);
+    border-radius: 5px;
+    background-color: rgba(100, 100, 100, 0.250);
 }
 
 main {
