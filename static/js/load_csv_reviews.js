@@ -1,7 +1,9 @@
-const toggleCheckbox = function(checkboxElement){
-    let key = $(checkboxElement).parent().parent().attr("id");
-    let restaurantName = $(checkboxElement).parent().parent().children().find(".reviewRestaurantName").text();
-    addPairToQuestionairData(restaurantName + "_" + key, checkboxElement.checked)
+const toggleCheckbox = function(reviewButtonElement){
+    let key = $(reviewButtonElement).parent().parent().attr("id");
+    let restaurantName = $(reviewButtonElement).parent().parent().children().find(".reviewRestaurantName").text();
+    const currentElementKey = restaurantName + "_" + key;
+    reviewButtonElement.style.background = "red";
+    addPairToQuestionairData(currentElementKey, "yes");
 }
 
 var fillReviewsCountHandler = function(newItem, value){
