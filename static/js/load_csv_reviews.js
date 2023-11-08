@@ -98,23 +98,23 @@ const occupyStarBars = function(restaurantElementsData){
 
 }
 
-const occupySummaryData = function(restaurantElementsData, restaurantInfo){
+const occupySummaryData = function(restaurantElementsData){
     occupySummaryStars(restaurantElementsData);
     occupyStarBars(restaurantElementsData);
-    $(".resName").text(restaurantInfo["restaurantName"]);
-    $(".resTag").text(restaurantInfo["restaurantDescription"] + restaurantInfo["restaurantLocation"]);
-    let imageUrl = "url(../static/graphics/restaurants/"+ restaurantInfo["restaurantImage"] + ")";
+    let firstReviewInfo = restaurantElementsData[0];
+    $(".resName").text(firstReviewInfo["restaurantName"]);
+    $(".resTag").text(firstReviewInfo["restaurantDescription"] + firstReviewInfo["restaurantLocation"]);
+    let imageUrl = "url(../static/graphics/restaurants/"+ firstReviewInfo["restaurantImage"] + ")";
     imageUrl += ("," + imageUrl);
     $(".resHeader")[0].style["background-image"] = imageUrl;
 }
 
-const occupyItems = function(loadedElementTemplate, elementsJsonData, restaurantDataJson){
+const occupyItems = function(loadedElementTemplate, elementsJsonData){
     let urlParams = (new URL(window.location)).searchParams;
     let restaurantName = urlParams.get("res");
     clearAllPairStartingWithKey(restaurantName);
     let restaurantElementsJson = elementsJsonData.filter(e => e["restaurantName"] === restaurantName);
-    let restaurantInfo = restaurantDataJson.filter(e => e["restaurantName"] === restaurantName)[0];
-    occupySummaryData(restaurantElementsJson, restaurantInfo);
+    occupySummaryData(restaurantElementsJson);
 
     for(var didx=0; didx < restaurantElementsJson.length; didx++){
         var newItem = loadedElementTemplate.clone(true);
@@ -135,15 +135,12 @@ const loadData = function(){
     var defArr = [];
     defArr.push($.get('singleReviewTemplate.html'));
     defArr.push($.get('../static/data/reviews_data.csv'));
-    defArr.push($.get('../static/data/restaurant_info.csv'));
-    $.when.apply($,defArr).done(function(response1, response2, response3){
+    $.when.apply($,defArr).done(function(response1, response2){
         const reviewTemplate = "<div>" + response1[2].responseText +"</div>";
         const reviewsCsvData = response2[2].responseText;
-        const restaurantCsvData = response3[2].responseText;
 
         var reviewsDataJson = convertCsvToJson(reviewsCsvData);
-        var restaurantDataJson = convertCsvToJson(restaurantCsvData);
-        occupyItems($(reviewTemplate), reviewsDataJson,restaurantDataJson);
+        occupyItems($(reviewTemplate), reviewsDataJson);
     });
 };
 
