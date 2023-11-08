@@ -3,9 +3,7 @@
     --red: rgb(255, 100, 61);
     --orange_D: rgb(255, 135, 66);
     --orange: rgb(255, 173, 72);
-    --yellow: rgb(255, 204, 75)
-
-
+    --yellow: rgb(255, 204, 75);
 }
 
 * {
@@ -13,46 +11,27 @@
     padding: 2px;
     margin: 2px;
 }
+
+@font-face {
+    font-family: Anton;
+    src: url(../graphics/fonts/Anton/Anton-Regular.ttf);
+}
+
+@font-face {
+    font-family: Python;
+    src: url(../graphics/fonts/Paytone_One/PaytoneOne-Regular.ttf);
+}
 .gridContainer {
     display: grid;
     grid-template-areas: 
     'left header header header'
-    'left main main main';
+    'left main main main'
+    'left footer footer footer';
 }
+
 header {
     grid-area: header;
     overflow: auto;
-}
-
-.resHeader {
-    height: 38%;
-    background-repeat: no-repeat, repeat;
-    background-size: contain, cover;
-    color: white;
-    padding-left: 30%;
-    padding-top: 5%;
-}
-
-
-/*second elemnt on page with stars and bars*/
-.overall_Star_rating{
-    display: flex;
-    background-color:lightgray;
-}
-
-
-#stars_total {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#stars_total .fa {
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid rgba(100, 100, 100, 0.002);
-    border-radius: 5px;
-    background-color: rgba(100, 100, 100, 0.250);
 }
 
 main {
@@ -63,66 +42,56 @@ main {
     grid-area: left;
     background-color: rgb(248, 247, 247);
 }
-/* this is the container of the review card*/
-.reviewsContainer {
-    display: flex;
-    flex-direction: column;
+
+footer {
+    grid-area: footer;
 }
-.restaurantsContainer {
-    display: flex;
-    flex-direction: column;
+
+
+/* element 1 in header: title + img*/
+.resHeader {
+    height: 38%;
+    background-repeat: no-repeat, repeat;
+    background-size: contain, cover;
+    color: white;
+    padding-left: 30%;
+    padding-top: 5%;
+    font-family: Anton;
+    font-weight:bolder;
+}
+
+/*stars ---- IMPORTANT!!!!----*/
+.fa-star, .fa-star-half-o {
+    background-color: rgb(122, 122, 122, 0.5);
+    color: rgb(255, 255, 255);
+    border-radius: 5px
 }
 
 .checked{
-    color:#fbab34 !important;
+    color:white !important;
+    background-color: var(--red);
+    border: 1px solid var(--red);
+    border-radius: 5px;
 }
 
-.ratings i{
-    font-size:large;
+
+/* elemnt 2 in header: stars and bars*/
+.overall_Star_rating{
+    display: flex;
+    background-color:lightgray;
 }
 
-.card-body {
-    width: 400px;
+#stars_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container {
-    margin: auto;
-    width: 80%;
-    padding: 20px;
+#stars_total .fa {
+    font-size: x-large;
 }
 
-.reviewerAvatar {
-    float: left;
-    height: 100px;
-    border-radius: 100%;
-}
-
-.EliteBadge {
-    background-color: var(--red_D);
-    color: white;
-    border: 1 solid white;
-    border-radius: 15%;
-    display: none;
-}
-
-.reviewr {
-    overflow: hidden;
-}
-
-.reviewerName {
-    display: inline;
-}
-
-.reviewRestaurantName {
-    display: none;
-}
-
-.clicked {
-    border: 1 solid blackcs;
-
-}
 /* stars summar*/
-
 .stars_count {
     display: flex;
     margin: 0px;
@@ -171,10 +140,149 @@ main {
     background-color: var(--yellow); 
 } 
 
-.UsefullButton {
-    border: 1px solid black;
+/* review card container*/
+.reviewsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurantsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.review {
+    border: 1px solid rgba(168, 168, 168, 0.5);
+    padding: 10px;
+    box-shadow: 3px 5px 4px rgba(168, 168, 168, 0.5);
+    border-radius: 4px;
+}
+
+.ratings i{
+    font-size:large;
+}
+
+.card-body {
+    width: 400px;
+}
+
+.container {
+    margin: auto;
+    width: 80%;
+    padding: 20px;
+}
+
+.reviewerAvatar {
+    float: left;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.EliteBadge {
+    background-color: var(--red_D);
+    color: white;
+    border: 1 solid white;
+    border-radius: 5px;
+    display: none;
+}
+
+.reviewr {
+    overflow: hidden;
+}
+
+.reviewerName {
+    display: inline;
+}
+
+.reviewRestaurantName {
+    display: none;
+}
+
+.clicked {
+    border: 1 solid blackcs;
+}
+
+.UsefullBTN {
+    border: 1px solid rgb(168, 168, 168);
     border-radius: 5px;
     background-color: white;
     padding: 4px;
 }
+
+#FinishedBTN {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 4px;
+    box-shadow: 2px 2px 2px 2px rgba(168, 168, 168, 0.5);
+    font-size: x-large;
+}
+
+.finish {
+    margin: auto;
+    width: 50%;
+}
+
+/*for the symbols*/
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+
+/*stars expr*/
+.containerSTAR {
+    font-size: xx-large;
+    position: relative;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    min-height: 0em;
+    vertical-align: middle;
+}
+
+.star-under {
+    background-color: #ddd;
+    vertical-align: top;
+    padding: 4px;
+    margin: 0px;
+}
+
+.star-over {
+    background-color: var(--orange_D);
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    padding: 4px;
+    margin: 0px;
+}
+
+.one {
+    width: 100%;
+}
+
+.two {
+    width: 100%;
+}
+
+.three {
+    width: 100%;
+}
+
+.four {
+    width: 70%;
+    border-top-right-radius:0px ;
+    border-bottom-right-radius: 0px;
+}
+
+.five {
+    width: 0%;
+    padding: 0% !important; 
+}
+
 

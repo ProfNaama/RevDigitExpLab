@@ -11,17 +11,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
     <script src="../static/js/load_csv_data_common.js" ></script>
     <script src="../static/js/load_csv_reviews.js" ></script>
+    <!--this is for icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <div class="gridContainer">
         <header>
             <div class="resHeader">
                 <h1 class="resName">restaurant name</h1>
-                <p class="resTag">Restaurant tag line</p>
+                <p class="resTag">Restaurant tag line </p>
             </div>
             <div class="overall_Star_rating">
                 <div>
-                    <div id="stars_total">
+                    <!--
+                        <div id="stars_total">
                         <div class="stars">
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -31,46 +34,77 @@
                             <span>3.5 (158 reviews)</span>
                         </div>
                     </div>
-                <div class="stars_count">
-                    <p>5 stars</p>
-                    <div class="stars_count_bar">
-                        <div class="stars_bar_fill five_stars"></div>
+                    -->
+                    <div class="stars">
+                        <div class="containerSTAR">
+                            <span class="star star-under fa fa-star">
+                                <span class="star star-over fa fa-star one"></span>
+                            </span>
+                        </div>
+                        <div class="containerSTAR">
+                            <span class="star star-under fa fa-star">
+                                <span class="star star-over fa fa-star two"></span>
+                            </span>
+                        </div>
+                        <div class="containerSTAR">
+                            <span class="star star-under fa fa-star">
+                                <span class="star star-over fa fa-star three"></span>
+                            </span>
+                        </div>
+                        <div class="containerSTAR">
+                            <span class="star star-under fa fa-star">
+                                <span class="star star-over fa fa-star four"></span>
+                            </span>
+                        </div>
+                        <div class="containerSTAR">
+                            <span class="star star-under fa fa-star">
+                                <span class="star star-over fa fa-star five"></span>
+                            </span>
+                        </div>
+                        <span class="count_of_revs">3.5 (158 reviews)</span>
                     </div>
-                </div>
-                <div class="stars_count">
-                    <p>4 stars</p>
-                    <div class="stars_count_bar">
-                        <div class="stars_bar_fill four_stars"></div>
+                    <div class="stars_count">
+                        <p>5 stars</p>
+                        <div class="stars_count_bar">
+                            <div class="stars_bar_fill five_stars"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="stars_count">
-                    <p>3 stars</p>
-                    <div class="stars_count_bar">
-                        <div class="stars_bar_fill three_stars"></div>
+                    <div class="stars_count">
+                        <p>4 stars</p>
+                        <div class="stars_count_bar">
+                            <div class="stars_bar_fill four_stars"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="stars_count">
-                    <p>2 stars</p>
-                    <div class="stars_count_bar">
-                        <div class="stars_bar_fill two_stars"></div>
+                    <div class="stars_count">
+                        <p>3 stars</p>
+                        <div class="stars_count_bar">
+                            <div class="stars_bar_fill three_stars"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="stars_count">
-                    <p>1 stars</p>
-                    <div class="stars_count_bar">
-                        <div class="stars_bar_fill one_stars"></div>
+                    <div class="stars_count">
+                        <p>2 stars</p>
+                        <div class="stars_count_bar">
+                            <div class="stars_bar_fill two_stars"></div>
+                        </div>
                     </div>
-                </div>
+                    <div class="stars_count">
+                        <p>1 stars</p>
+                        <div class="stars_count_bar">
+                            <div class="stars_bar_fill one_stars"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
         <div class="left"></div>
         <main class="main">
             <div class="reviewsContainer" id="reviewsContainer"></div>
-            <div class="finish">
-                <button type="button" onclick="submitSurvey()">finished</button>
-            </div>
         </main>
+        <footer>
+            <div class="finish">
+                <button id="FinishedBTN" type="button" onclick="submitSurvey()">Submit</button>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
