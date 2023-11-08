@@ -43,7 +43,34 @@ const csvHandlersMethods = {
     restaurantName:textElementHandler(".reviewRestaurantName")
 };
 
-const occupySummaryData = function(restaurantElementsData, restaurantInfo){
+
+const occupySummaryStars = function(restaurantElementsData){
+    let ratingSum = 0.0;
+    restaurantElementsData.forEach(element => {
+        ratingSum += parseFloat(element["reviweStars"]);
+    });
+    let avgRatingPercent = (ratingSum * 100) / restaurantElementsData.length;
+    
+    $(".star-over").each((idx, starElement) => {
+        if (avgRatingPercent >= 100.0){
+            $(starElement).removeClass("empty-star");
+            $(starElement).addClass("full-star");
+        }
+        else if (avgRatingPercent > 0){
+            $(starElement).removeClass("empty-star");
+            $(starElement).addClass("partially-full-star");
+            starElement.style.width =  "" + avgRatingPercent + "%";
+
+        }
+        avgRatingPercent -= 100.0;
+    });
+    $(".avg-rating-num").text("" + Math.round((ratingSum / restaurantElementsData.length) * 10) / 10);
+    $(".count_of_revs").text("(" + restaurantElementsData.length + " reviews)");
+    
+    
+}
+
+const occupyStarBars = function(restaurantElementsData){
     let starsSummary = new Array(0, 0, 0, 0, 0, 0);
     let starsClassNames = new Array(".zero_stars", ".one_stars", ".two_stars", ".three_stars", ".four_stars", ".five_stars");
     restaurantElementsData.forEach(element => {
@@ -69,6 +96,11 @@ const occupySummaryData = function(restaurantElementsData, restaurantInfo){
         }
     });
 
+}
+
+const occupySummaryData = function(restaurantElementsData, restaurantInfo){
+    occupySummaryStars(restaurantElementsData);
+    occupyStarBars(restaurantElementsData);
     $(".resName").text(restaurantInfo["restaurantName"]);
     $(".resTag").text(restaurantInfo["restaurantDescription"] + restaurantInfo["restaurantLocation"]);
     let imageUrl = "url(../static/graphics/restaurants/"+ restaurantInfo["restaurantImage"] + ")";
