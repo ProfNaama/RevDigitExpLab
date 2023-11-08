@@ -110,8 +110,7 @@ const occupySummaryData = function(restaurantElementsData){
 }
 
 const occupyItems = function(loadedElementTemplate, elementsJsonData){
-    let urlParams = (new URL(window.location)).searchParams;
-    let restaurantName = urlParams.get("res");
+    let restaurantName = elementsJsonData[0]["restaurantName"];
     clearAllPairStartingWithKey(restaurantName);
     let restaurantElementsJson = elementsJsonData.filter(e => e["restaurantName"] === restaurantName);
     occupySummaryData(restaurantElementsJson);
