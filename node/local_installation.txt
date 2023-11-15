@@ -1,5 +1,0 @@
-#from within node directory:
-
-npm init
-npm install express
-npm start
