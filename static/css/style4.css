@@ -24,14 +24,13 @@
 .gridContainer {
     display: grid;
     grid-template-areas: 
-    'left header header header'
-    'left main main main'
-    'left footer footer footer';
+    'left header header header right'
+    'left main main main right'
+    'left footer footer footer right';
 }
 
 header {
     grid-area: header;
-    overflow: auto;
 }
 
 main {
@@ -40,7 +39,10 @@ main {
 
 .left {
     grid-area: left;
-    background-color: rgb(248, 247, 247);
+}
+
+.right {
+    grid-area: left;
 }
 
 footer {
@@ -58,6 +60,10 @@ footer {
     padding-top: 5%;
     font-family: Anton;
     font-weight:bolder;
+}
+
+.resName, .resTag{
+    background-color: rgb(128, 128, 128, 0.5);
 }
 
 /*stars ---- IMPORTANT!!!!----*/
@@ -78,7 +84,6 @@ footer {
 /* elemnt 2 in header: stars and bars*/
 .overall_Star_rating{
     display: flex;
-    background-color:lightgray;
 }
 
 #stars_total {
@@ -91,15 +96,15 @@ footer {
     font-size: x-large;
 }
 
-/* stars summar*/
+/* agregative stars element*/
 .stars_count {
     display: flex;
     margin: 0px;
     padding: 0px;
 }
 .stars_count_bar {
-    background-color: white;
-    width: 500px;
+    background-color: lightgray;
+    width: 70%;
     height: 10px;
     border-radius: 15px;
     padding: 0%; 
@@ -179,9 +184,9 @@ footer {
 }
 
 .EliteBadge {
-    background-color: var(--red_D);
+    background-image: linear-gradient(to bottom right, var(--red),var(--orange_D), var(--yellow));
     color: white;
-    border: 1 solid white;
+    font-style: italic;
     border-radius: 15px;
     display: none;
     padding-left: 15px;
@@ -218,12 +223,11 @@ footer {
 }
 
 #FinishedBTN {
-    border: 1px solid black;
     border-radius: 25px;
-    background-color: white;
+    background-image: linear-gradient(to bottom right, var(--orange), var(--yellow));
     padding: 4px;
     box-shadow: 2px 2px 2px 2px rgba(168, 168, 168, 0.5);
-    font-size: x-large;
+    font-size: large;
     padding-left: 25px;
     padding-right: 25px;
 }
@@ -232,7 +236,6 @@ footer {
     margin: auto;
     width: 50%;
 }
-
 
 /*stars expr*/
 .containerSTAR {
