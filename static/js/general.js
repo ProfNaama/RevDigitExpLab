@@ -7,12 +7,3 @@ setTimeout(()=> {
     console.log("done");
 },3000)
 
-
-var UsefulBTNArray = document.getElementsByClassName("UsefullBTN");
-console.log(UsefulBTNArray);
-
-UsefulBTNArray.forEach(element => {
-    element.addEventListener("click", function(reviewButtonElement){
-        reviewButtonElement.style.border = "1px solid red";
-    })
-});
