@@ -10,6 +10,7 @@
     font-family: Arial, Helvetica, sans-serif;
     padding: 2px;
     margin: 2px;
+    /*border: 1px solid black;*/
 }
 
 @font-face {
@@ -23,6 +24,8 @@
 }
 .gridContainer {
     display: grid;
+    grid-template-columns: 23% 18% 18% 18% 23%;
+    grid-template-rows: auto;
     grid-template-areas: 
     'left header header header right'
     'left main main main right'
@@ -43,10 +46,12 @@ main {
 
 .right {
     grid-area: left;
+
 }
 
 footer {
     grid-area: footer;
+    
 }
 
 
@@ -84,6 +89,8 @@ footer {
 /* elemnt 2 in header: stars and bars*/
 .overall_Star_rating{
     display: flex;
+    flex-direction: column;
+
 }
 
 #stars_total {
@@ -233,11 +240,12 @@ footer {
 }
 
 .finish {
-    margin: auto;
-    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/*stars expr*/
+/*stars totoal expr*/
 .containerSTAR {
     font-size: xx-large;
     position: relative;
