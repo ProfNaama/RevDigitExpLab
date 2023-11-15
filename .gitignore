@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # local node server
-.node/
+node/
