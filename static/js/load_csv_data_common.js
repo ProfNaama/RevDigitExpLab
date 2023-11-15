@@ -101,7 +101,6 @@ const clearAllPairStartingWithKey = function(removePrefix){
 }
 
 const QUESTIONAIRE_DATA_KEY = "__QQ__=";
-const COOKIE_EXPIRATION_MINUTES = 10; 
 const INTERNAL_SEPARATOR = "__SEP__";
 const INTERNAL_EQUAL = "__EQ__";
 
