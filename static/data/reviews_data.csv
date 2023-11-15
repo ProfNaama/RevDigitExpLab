@@ -1,10 +1,11 @@
-restaurantName,reviewerName,reviweStars,reviewerCount,reviewerAvatar,reviewerLocation,EliteBadge,restaurantStars,restaurantReviewText,restaurantLocation,restaurantDescription,restaurantImage
-RestA,Name1,4,20 reviews,avatar1.jpeg,New York NY,1,4,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name2,3,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name1,5,20 reviews,avatar1.jpeg,New York NY,1,4,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name1,3,20 reviews,avatar1.jpeg,New York NY,1,2,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name2,5,2000 reviews,avatar2.jpeg,PA,,2,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestA,Name1,3,20 reviews,avatar1.jpeg,New York NY,1,1,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
-RestB,Name2,1,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+treatmentGroup,restaurantName,reviewerName,reviweStars,reviewerCount,reviewerAvatar,reviewerLocation,EliteBadge,restaurantStars,restaurantReviewText,restaurantLocation,restaurantDescription,restaurantImage
+1,RestA,Name1,4,20 reviews,avatar1.jpeg,New York NY,1,4,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+1,RestA,Name2,3,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+1,RestA,Name1,5,20 reviews,avatar1.jpeg,New York NY,1,4,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+1,RestA,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+1,RestA,Name2,2,2000 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+1,RestA,Name1,3,20 reviews,avatar1.jpeg,New York NY,1,2,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+2,RestA,Name2,5,2000 reviews,avatar2.jpeg,PA,,2,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+2,RestA,Name1,3,20 reviews,avatar1.jpeg,New York NY,1,1,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+2,RestA,Name2,1,200 reviews,avatar2.jpeg,PA,,3,text2,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg
+1,RestA,Name3,3,20 reviews,avatar1.jpeg,New York NY,1,2,text1,ResA location is in Pittsburgh,ResA description: nice expensive good food,steak_1.jpeg

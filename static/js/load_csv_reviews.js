@@ -109,24 +109,37 @@ const occupySummaryData = function(restaurantElementsData){
     $(".resHeader")[0].style["background-image"] = imageUrl;
 }
 
+const getRandomTreatmentGroup = function(restaurantElementsJson){
+    let treatmentGroups = new Set();
+    restaurantElementsJson.forEach(element => {
+        treatmentGroups.add(parseInt(element["treatmentGroup"]));
+    });
+    const elementIdx = Math.floor(Math.random() * treatmentGroups.size);
+    return Array.from(treatmentGroups)[elementIdx];
+}
+
 const occupyItems = function(loadedElementTemplate, elementsJsonData){
     let restaurantName = elementsJsonData[0]["restaurantName"];
     clearAllPairStartingWithKey(restaurantName);
     let restaurantElementsJson = elementsJsonData.filter(e => e["restaurantName"] === restaurantName);
     occupySummaryData(restaurantElementsJson);
+    
+    const treatmentGroup = getRandomTreatmentGroup(restaurantElementsJson);
 
     for(var didx=0; didx < restaurantElementsJson.length; didx++){
-        var newItem = loadedElementTemplate.clone(true);
-        $(newItem).attr("id", "item_review_id_" + didx);
         var elementDataJson = restaurantElementsJson[didx];
-
-        Object.keys(elementDataJson).forEach(columnKey => {
-            if (columnKey in csvHandlersMethods){
-                csvHandlersMethods[columnKey](newItem, elementDataJson[columnKey]);
-            }
-        });
-
-        $(newItem).appendTo('#reviewsContainer');
+        // we want the review idx to continue to advance regardless of the treatment group
+        if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){
+            var newItem = loadedElementTemplate.clone(true);
+            $(newItem).attr("id", "item_review_id_" + didx);
+    
+            Object.keys(elementDataJson).forEach(columnKey => {
+                if (columnKey in csvHandlersMethods){
+                    csvHandlersMethods[columnKey](newItem, elementDataJson[columnKey]);
+                }
+            });
+            $(newItem).appendTo('#reviewsContainer');
+        }
     }
 }
 
