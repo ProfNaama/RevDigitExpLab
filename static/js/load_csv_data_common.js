@@ -12,14 +12,18 @@ const convertCsvToJson = function (csv) {
         const keys = lines[0].split(',');
         return lines.slice(1).map(line => {
             line = line.replaceAll("\\\\", escapeReplacement).replaceAll("\\,", commaReplacement).replaceAll("\\\"", quoteReplacement).replaceAll("\"", "");
-            return line.split(',').reduce((acc, cur, i) => {
-                const toAdd = {};
-                toAdd[keys[i]] = cur.replaceAll(escapeReplacement, "\\").replaceAll(commaReplacement, ",").replaceAll(quoteReplacement, "\"");
-                return { ...acc, ...toAdd };
-            }, {});
+            let tokens = line.split(',');
+            if (tokens.length == keys.length){
+                return tokens.reduce((acc, cur, i) => {
+                    const toAdd = {};
+                    toAdd[keys[i]] = cur.replaceAll(escapeReplacement, "\\").replaceAll(commaReplacement, ",").replaceAll(quoteReplacement, "\"");
+                    return { ...acc, ...toAdd };
+                }, {});
+            }
         });
     };
-    return CSVToJSON(csv);
+    let allJson = CSVToJSON(csv);
+    return allJson.filter(e => e);
 }
 
 const JsonArrayToCsv = function (jsonArray) {
