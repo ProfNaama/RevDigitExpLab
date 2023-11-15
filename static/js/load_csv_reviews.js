@@ -120,20 +120,30 @@ const occupySummaryData = function(restaurantElementsData){
     $(".resHeader")[0].style["background-image"] = imageUrl;
 }
 
+const TREATMENT_GROUP_PARAM = "IDRAND"
 const getRandomTreatmentGroup = function(restaurantElementsJson){
-    let treatmentGroupCache = sessionStorage.getItem("TreatmentGroup");
+    let treatmentGroupCache = sessionStorage.getItem(TREATMENT_GROUP_PARAM);
     if (treatmentGroupCache){
         return parseInt(treatmentGroupCache);
     }
-
+    
     let treatmentGroups = new Set();
     restaurantElementsJson.forEach(element => {
         treatmentGroups.add(parseInt(element["treatmentGroup"]));
     });
-    const elementIdx = Math.floor(Math.random() * treatmentGroups.size);
-    treatmentGroupCache = Array.from(treatmentGroups)[elementIdx];
-    sessionStorage.setItem("TreatmentGroup", treatmentGroupCache);
-    return treatmentGroupCache;
+        
+    let elementIdx = null;
+    let urlParams = (new URL(window.location)).searchParams;
+    let treatmentGroupSearchParam = urlParams.get(TREATMENT_GROUP_PARAM);
+    
+    if (treatmentGroupSearchParam){
+        elementIdx = (parseInt(treatmentGroupSearchParam) % treatmentGroups.size);
+    } else {
+        elementIdx = Math.floor(Math.random() * treatmentGroups.size);
+    }
+    let treatmentGroupID = Array.from(treatmentGroups)[elementIdx];
+    sessionStorage.setItem(TREATMENT_GROUP_PARAM, treatmentGroupID);
+    return treatmentGroupID;
 }
 
 const occupyItems = function(loadedElementTemplate, allReviewsJson){
