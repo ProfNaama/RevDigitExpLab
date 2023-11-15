@@ -1,9 +1,21 @@
-const usefullReviewClicked = function(reviewButtonElement){
+const getReviewButtonKey = function(reviewButtonElement){
     let key = $(reviewButtonElement).parent().parent().attr("id");
     let restaurantName = $(reviewButtonElement).parent().parent().children().find(".reviewRestaurantName").text();
-    const currentElementKey = restaurantName + "_" + key;
-    reviewButtonElement.style.background = "red";
+    return restaurantName + "_" + key;
+}
+
+const usefullReviewClicked = function(reviewButtonElement){
+    const currentElementKey = getReviewButtonKey(reviewButtonElement);
+    reviewButtonElement.style.border = "1px solid red";
     addPairToQuestionairData(currentElementKey, "yes");
+    $(reviewButtonElement).attr("onclick", "usefullReviewUnClicked(this)");
+}
+
+const usefullReviewUnClicked = function(reviewButtonElement){
+    const currentElementKey = getReviewButtonKey(reviewButtonElement);
+    reviewButtonElement.style.border = "1px solid black";
+    addPairToQuestionairData(currentElementKey, "no");
+    $(reviewButtonElement).attr("onclick", "usefullReviewClicked(this)");
 }
 
 var fillReviewsCountHandler = function(newItem, value){
@@ -42,7 +54,6 @@ const csvHandlersMethods = {
     restaurantReviewText:textElementHandler(".restaurantReviewText"),
     restaurantName:textElementHandler(".reviewRestaurantName")
 };
-
 
 const occupySummaryStars = function(restaurantElementsData){
     let ratingSum = 0.0;
@@ -110,12 +121,19 @@ const occupySummaryData = function(restaurantElementsData){
 }
 
 const getRandomTreatmentGroup = function(restaurantElementsJson){
+    let treatmentGroupCache = sessionStorage.getItem("TreatmentGroup");
+    if (treatmentGroupCache){
+        return parseInt(treatmentGroupCache);
+    }
+
     let treatmentGroups = new Set();
     restaurantElementsJson.forEach(element => {
         treatmentGroups.add(parseInt(element["treatmentGroup"]));
     });
     const elementIdx = Math.floor(Math.random() * treatmentGroups.size);
-    return Array.from(treatmentGroups)[elementIdx];
+    treatmentGroupCache = Array.from(treatmentGroups)[elementIdx];
+    sessionStorage.setItem("TreatmentGroup", treatmentGroupCache);
+    return treatmentGroupCache;
 }
 
 const occupyItems = function(loadedElementTemplate, elementsJsonData){
