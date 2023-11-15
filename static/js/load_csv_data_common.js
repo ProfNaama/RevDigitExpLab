@@ -101,7 +101,6 @@ const clearAllPairStartingWithKey = function(removePrefix){
 }
 
 const QUESTIONAIRE_DATA_KEY = "__QQ__=";
-const COOKIE_EXPIRATION_MINUTES = 10; 
 const INTERNAL_SEPARATOR = "__SEP__";
 const INTERNAL_EQUAL = "__EQ__";
 
@@ -139,7 +138,7 @@ const submitSurvey = function() {
     var userID = urlParams.get(QUALTRICS_USER_KEY);
     
     if (!(experiemntID && userID)){
-        alert("some query params are missing...");
+        alert("some query params are missing... required qualtrix get params: " + QUALTRICS_EXPERIMENT_KEY + " as well as " + QUALTRICS_USER_KEY);
         return;
     }
     var submitUrl = "http://fppvu.qualtrics.com/SE/?";

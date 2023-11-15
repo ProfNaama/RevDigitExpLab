@@ -136,16 +136,15 @@ const getRandomTreatmentGroup = function(restaurantElementsJson){
     return treatmentGroupCache;
 }
 
-const occupyItems = function(loadedElementTemplate, elementsJsonData){
-    let restaurantName = elementsJsonData[0]["restaurantName"];
-    clearAllPairStartingWithKey(restaurantName);
-    let restaurantElementsJson = elementsJsonData.filter(e => e["restaurantName"] === restaurantName);
-    occupySummaryData(restaurantElementsJson);
+const occupyItems = function(loadedElementTemplate, allReviewsJson){
+    const treatmentGroup = getRandomTreatmentGroup(allReviewsJson);
+    clearAllPairStartingWithKey("");
+    let treatmentGroupElementsJson = allReviewsJson.filter(e => e["treatmentGroup"] == treatmentGroup);
+    occupySummaryData(treatmentGroupElementsJson);
     
-    const treatmentGroup = getRandomTreatmentGroup(restaurantElementsJson);
 
-    for(var didx=0; didx < restaurantElementsJson.length; didx++){
-        var elementDataJson = restaurantElementsJson[didx];
+    for(var didx=0; didx < allReviewsJson.length; didx++){
+        var elementDataJson = allReviewsJson[didx];
         // we want the review idx to continue to advance regardless of the treatment group
         if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){
             var newItem = loadedElementTemplate.clone(true);
