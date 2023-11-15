@@ -39,12 +39,10 @@ main {
 
 .left {
     grid-area: left;
-    background-color: rgb(248, 247, 247);
 }
 
-.ç {
+.right {
     grid-area: left;
-    background-color: rgb(248, 247, 247);
 }
 
 footer {
@@ -62,6 +60,10 @@ footer {
     padding-top: 5%;
     font-family: Anton;
     font-weight:bolder;
+}
+
+.resName, .resTag{
+    background-color: rgb(128, 128, 128, 0.5);
 }
 
 /*stars ---- IMPORTANT!!!!----*/
@@ -82,7 +84,6 @@ footer {
 /* elemnt 2 in header: stars and bars*/
 .overall_Star_rating{
     display: flex;
-    background-color:lightgray;
 }
 
 #stars_total {
@@ -95,15 +96,15 @@ footer {
     font-size: x-large;
 }
 
-/* stars summar*/
+/* agregative stars element*/
 .stars_count {
     display: flex;
     margin: 0px;
     padding: 0px;
 }
 .stars_count_bar {
-    background-color: white;
-    width: 500px;
+    background-color: lightgray;
+    width: 70%;
     height: 10px;
     border-radius: 15px;
     padding: 0%; 
@@ -235,7 +236,6 @@ footer {
     margin: auto;
     width: 50%;
 }
-
 
 /*stars expr*/
 .containerSTAR {
