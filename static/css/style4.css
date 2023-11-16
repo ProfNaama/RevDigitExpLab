@@ -54,6 +54,19 @@ footer {
 }
 
 
+@media screen and (max-width:660px) {
+    .gridContainer {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        'header'
+        'main'
+        'footer';
+    }
+    
+}
+
 /* element 1 in header: title + img*/
 .resHeader {
     height: 38%;

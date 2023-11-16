@@ -6,7 +6,7 @@ const getReviewButtonKey = function(reviewButtonElement){
 
 const usefullReviewClicked = function(reviewButtonElement){
     const currentElementKey = getReviewButtonKey(reviewButtonElement);
-    reviewButtonElement.style.border = "1px solid red";
+    reviewButtonElement.style.border = "1px solid var(--red)";
     addPairToQuestionairData(currentElementKey, "yes");
     $(reviewButtonElement).attr("onclick", "usefullReviewUnClicked(this)");
 }
