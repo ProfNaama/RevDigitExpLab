@@ -241,7 +241,6 @@ footer {
 
 #FinishedBTN {
     border-radius: 25px;
-    background-image: linear-gradient(to bottom right, var(--orange), var(--yellow));
     padding: 4px;
     box-shadow: 2px 2px 2px 2px rgba(168, 168, 168, 0.5);
     font-size: large;
@@ -297,3 +296,5 @@ footer {
     width: 0%;
     padding: 0% !important; 
 }
+
+

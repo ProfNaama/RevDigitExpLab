@@ -32,7 +32,7 @@ var textElementHandler = function(jqueryLocator){
 
 var reviewerAvatarHandler = function(newItem, value){
     var reviewsElement = newItem.children().find(".reviewerAvatar");
-    reviewsElement.attr("src", "../static/graphics/"+value);
+    reviewsElement.attr("src", "../static/graphics/avatars/"+value);
 };
 
 var EliteBadgeHandler = function (newItem, value) {
