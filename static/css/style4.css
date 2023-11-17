@@ -335,7 +335,7 @@ footer {
     }
     
     .bars {
-        width: fit-content%;
+        width: 100%;
         margin: auto;
         padding-left: 5%;
     }
