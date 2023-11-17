@@ -16,12 +16,12 @@
 
 .gridContainer {
     display: grid;
-    grid-template-columns: 23% 18% 18% 18% 23%;
+    grid-template-columns: 20% 60% 20%;
     grid-template-rows: auto;
     grid-template-areas: 
-    'left header header header right'
-    'left main main main right'
-    'left footer footer footer right';
+    'left header right'
+    'left main right'
+    'left footer right';
 }
 
 header {
@@ -307,7 +307,21 @@ footer {
 }
 
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width:1500px) {
+
+    .gridContainer {
+        display: grid;
+        grid-template-columns: 12% 76% 12%;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        'left header right'
+        'left main right'
+        'left footer right';
+    }
+
+}
+
+@media screen and (max-width:1070px) {
     .gridContainer {
         display: grid;
         grid-template-columns: 100%;
@@ -341,6 +355,6 @@ footer {
         display: block;
     }
 
-    }
+}
 
 
