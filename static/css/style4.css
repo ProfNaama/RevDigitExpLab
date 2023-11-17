@@ -29,7 +29,7 @@
 
 header {
     grid-area: header;
-    margin-bottom: 20px;
+    height: fit-content;
 }
 
 main {
@@ -371,7 +371,7 @@ footer {
 
 }
 
-@media screen and (max-width:390px) {
+@media screen and (max-width:445px) {
 
     .stars_count > p {
         font-size: x-small;
