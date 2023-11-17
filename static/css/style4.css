@@ -14,6 +14,8 @@
     /* border: 1px solid black; */
 }
 
+/*grid system*/
+
 .gridContainer {
     display: grid;
     grid-template-columns: 20% 60% 20%;
@@ -46,25 +48,7 @@ footer {
     
 }
 
-
-/* element 1 in header: title + img*/
-.resHeader {
-    height: 38%;
-    background-repeat: no-repeat, repeat;
-    background-size: contain, cover;
-    color: white;
-    padding-left: 30%;
-    padding-top: 5%;
-    font-weight:bolder;
-}
-
-.resName, .resTag{
-    background-color: rgb(128, 128, 128, 0.5);
-    font-family: 'Manrope', sans-serif;
-
-}
-
-/*stars ---- IMPORTANT!!!!----*/
+/* stars element in review ---- LOCATION IMPORTANT!!!!----*/
 .fa-star, .fa-star-half-o {
     background-color: rgb(122, 122, 122, 0.5);
     color: rgb(255, 255, 255);
@@ -78,14 +62,42 @@ footer {
     border-radius: 5px;
 }
 
+#stars_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stars_total .fa {
+    font-size: x-large;
+}
+
+
+/*-----header-----*/
+/* elemnt 1 in header: restaurante title + img*/
+.resHeader {
+    height: 50%;
+    background-repeat: no-repeat, repeat;
+    background-size: contain, cover;
+    color: white;
+    padding-left: 30%;
+    padding-top: 5%;
+    font-weight:bolder;
+}
+
+.resName, .resTag{
+    background-color: rgb(128, 128, 128, 0.5);
+}
 
 /* elemnt 2 in header: stars and bars*/
 .overall_Star_rating{
+    height: 40%;
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
+/*stars containers*/
 .starsAGR {
     width: 50%;
     margin: auto;
@@ -106,22 +118,57 @@ footer {
     width: 50%
 }
 
-#stars_total {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/*stars totoal expr*/
+.containerSTAR {
+    font-size: xx-large;
+    position: relative;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    min-height: 0em;
+    vertical-align: middle;
 }
 
-#stars_total .fa {
-    font-size: x-large;
+.star-under {
+    background-color: #ddd;
+    vertical-align: top;
+    padding: 4px;
+    margin: 0px;
 }
 
-/* agregative stars element*/
+.star-over {
+    background-color: var(--orange_D);
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    padding: 4px;
+    margin: 0px;
+}
+
+.full-star {
+    width: 100%;
+}
+
+.partially-full-star {
+    width: 100%;
+    border-top-right-radius:0px ;
+    border-bottom-right-radius: 0px;
+}
+
+.empty-star {
+    width: 0%;
+    padding: 0% !important; 
+}
+
+/* stars count */
 .stars_count {
     display: flex;
     margin: 0px;
     padding: 0px;
 }
+
+/* stars bars*/
 .stars_count_bar {
     background-color: lightgray;
     width: 80%;
@@ -154,7 +201,8 @@ footer {
 .three_stars {
     width: 0%;
     background-color: var(--orange_D); 
-} 
+}
+
 .two_stars {
     width: 0%;
     background-color: var(--orange); 
@@ -165,7 +213,8 @@ footer {
     background-color: var(--yellow); 
 } 
 
-/* review card container*/
+/*-----main-----*/
+/* reviews container and cards*/
 .reviewsContainer {
     display: flex;
     flex-direction: column;
@@ -244,6 +293,8 @@ footer {
     font-family: 'Manrope', sans-serif;
 }
 
+
+/*-----footer-----*/
 #FinishedBTN {
     border-radius: 25px;
     padding: 4px;
@@ -260,48 +311,6 @@ footer {
     align-items: center;
 }
 
-/*stars totoal expr*/
-.containerSTAR {
-    font-size: xx-large;
-    position: relative;
-    display: inline-block;
-    padding: 0px;
-    margin: 0px;
-    min-height: 0em;
-    vertical-align: middle;
-}
-
-.star-under {
-    background-color: #ddd;
-    vertical-align: top;
-    padding: 4px;
-    margin: 0px;
-}
-
-.star-over {
-    background-color: var(--orange_D);
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    padding: 4px;
-    margin: 0px;
-}
-
-.full-star {
-    width: 100%;
-}
-
-.partially-full-star {
-    width: 100%;
-    border-top-right-radius:0px ;
-    border-bottom-right-radius: 0px;
-}
-
-.empty-star {
-    width: 0%;
-    padding: 0% !important; 
-}
 
 
 @media screen and (max-width:1500px) {
