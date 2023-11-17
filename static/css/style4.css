@@ -364,4 +364,14 @@ footer {
 
 }
 
+@media screen and (max-width:390px) {
 
+    .stars_count > p {
+        font-size: x-small;
+    }
+
+    .avgStars > span {
+        font-size: small;
+    }
+
+}
