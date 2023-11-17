@@ -8,20 +8,12 @@
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Manrope', sans-serif;
     padding: 2px;
     margin: 2px;
     /* border: 1px solid black; */
 }
 
-@font-face {
-    font-family: Anton;
-    src: url(../graphics/fonts/Anton/Anton-Regular.ttf);
-}
-
-@font-face {
-    font-family: Python;
-    src: url(../graphics/fonts/Paytone_One/PaytoneOne-Regular.ttf);
-}
 .gridContainer {
     display: grid;
     grid-template-columns: 23% 18% 18% 18% 23%;
@@ -63,12 +55,13 @@ footer {
     color: white;
     padding-left: 30%;
     padding-top: 5%;
-    font-family: Anton;
     font-weight:bolder;
 }
 
 .resName, .resTag{
     background-color: rgb(128, 128, 128, 0.5);
+    font-family: 'Manrope', sans-serif;
+
 }
 
 /*stars ---- IMPORTANT!!!!----*/
@@ -134,7 +127,7 @@ footer {
 }
 .stars_count_bar {
     background-color: lightgray;
-    width: 70%;
+    width: 80%;
     height: 10px;
     border-radius: 15px;
     padding: 0%; 
@@ -221,6 +214,7 @@ footer {
     display: none;
     padding-left: 15px;
     padding-right: 15px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .reviewr {
@@ -250,6 +244,7 @@ footer {
     padding: 4px;
     padding-left: 35px;
     padding-right: 15px;
+    font-family: 'Manrope', sans-serif;
 }
 
 #FinishedBTN {
@@ -259,6 +254,7 @@ footer {
     font-size: large;
     padding-left: 25px;
     padding-right: 25px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .finish {
@@ -311,7 +307,7 @@ footer {
 }
 
 
-@media screen and (max-width:660px) {
+@media screen and (max-width:1000px) {
     .gridContainer {
         display: grid;
         grid-template-columns: 100%;
