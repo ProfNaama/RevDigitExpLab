@@ -10,6 +10,7 @@
     font-family: Arial, Helvetica, sans-serif;
     padding: 2px;
     margin: 2px;
+    /* border: 1px solid black; */
 }
 
 @font-face {
@@ -97,14 +98,22 @@ footer {
     margin: auto;
 }
 
-.bars {
-    width: 50%
+.starsIcons {
+    width: fit-content;
+    margin: auto;
 }
 
 .avgStars {
     text-align: center;
-    display: inline;
+    width: fit-content;
+    margin: auto;
 }
+
+.bars {
+    width: 50%
+}
+
+
 
 
 #stars_total {
@@ -320,11 +329,13 @@ footer {
     }
     
     .starsAGR {
+        width: fit-content;
         margin: auto;
         padding: 0px;
     }
     
     .bars {
+        width: fit-content%;
         margin: auto;
         padding-left: 5%;
     }
