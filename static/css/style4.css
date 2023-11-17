@@ -86,10 +86,14 @@ footer {
     font-weight:bolder;
 }
 
-.resName, .resTag{
+.resName {
     background-color: rgb(128, 128, 128, 0.5);
 }
 
+.resTag{
+    background-color: rgb(128, 128, 128, 0.5);
+    font-style: italic;
+}
 /* elemnt 2 in header: stars and bars*/
 .overall_Star_rating{
     min-height: 40%;
@@ -304,6 +308,7 @@ footer {
 
 /*-----footer-----*/
 #FinishedBTN {
+    background-color: var(--gray);
     border-radius: 25px;
     padding: 4px;
     box-shadow: 2px 2px 2px 2px rgba(168, 168, 168, 0.5);
