@@ -130,6 +130,33 @@ const decodeSessionParams = function () {
     return sessionData;ß
 }
 
+
+const TREATMENT_GROUP_PARAM = "IDRAND"
+const getRandomTreatmentGroup = function(restaurantElementsJson){
+    let treatmentGroupCache = sessionStorage.getItem(TREATMENT_GROUP_PARAM);
+    if (treatmentGroupCache){
+        return parseInt(treatmentGroupCache);
+    }
+    
+    let treatmentGroups = new Set();
+    restaurantElementsJson.forEach(element => {
+        treatmentGroups.add(parseInt(element["treatmentGroup"]));
+    });
+        
+    let elementIdx = null;
+    let urlParams = (new URL(window.location)).searchParams;
+    let treatmentGroupSearchParam = urlParams.get(TREATMENT_GROUP_PARAM);
+    
+    if (treatmentGroupSearchParam){
+        elementIdx = (parseInt(treatmentGroupSearchParam) % treatmentGroups.size);
+    } else {
+        elementIdx = Math.floor(Math.random() * treatmentGroups.size);
+    }
+    let treatmentGroupID = Array.from(treatmentGroups)[elementIdx];
+    sessionStorage.setItem(TREATMENT_GROUP_PARAM, treatmentGroupID);
+    return treatmentGroupID;
+}
+
 const submitSurvey = function() {
     // those two params must be found in the url query string, as passed on from qualtrics
     // SID is the experiment ID
@@ -144,8 +171,16 @@ const submitSurvey = function() {
     if (!(experiemntID && userID)){
         alert("some query params are missing... required qualtrix get params: " + QUALTRICS_EXPERIMENT_KEY + " as well as " + QUALTRICS_USER_KEY);
         return;
+    }    
+    
+    // treatmentGroup id should already be in session storage after page load.
+    let treatmentGroupCache = getRandomTreatmentGroup(null);
+    if (!treatmentGroupCache){
+        alert("problem... no treatment group found... please refresh the page or open another tab and try again...");
+        return;
     }
-    var submitUrl = "http://fppvu.qualtrics.com/SE/?";
+
+    let submitUrl = "http://fppvu.qualtrics.com/SE/?treatment_group_id" + "="+ treatmentGroupCache;
     urlParams.forEach((v, k)=>{
         submitUrl += ("&" + k + "=" + v);
     });
