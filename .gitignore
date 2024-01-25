@@ -1,5 +1,5 @@
 # local node server
-node/
+#node/
 
 # General
 .DS_Store
