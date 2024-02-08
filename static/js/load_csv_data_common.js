@@ -126,7 +126,6 @@ const decodeSessionParams = function () {
             sessionData[keyvalue[0]] = keyvalue[1];
         });
     }
-    // alert(JSON.stringify(sessionData));
     return sessionData;ß
 }
 
@@ -158,18 +157,15 @@ const getRandomTreatmentGroup = function(restaurantElementsJson){
 }
 
 const submitSurvey = function() {
-    // those two params must be found in the url query string, as passed on from qualtrics
-    // SID is the experiment ID
+    // the query parameter "UID" must be found in the url query string, as passed on from the feeding platform
     // UID is the user ID
-    const QUALTRICS_EXPERIMENT_KEY = "SID";
-    const QUALTRICS_USER_KEY = "UID";
+    const UNIQUE_USER_KEY = "UID";
     
     let urlParams = (new URL(window.location)).searchParams;
-    var experiemntID = urlParams.get(QUALTRICS_EXPERIMENT_KEY);
-    var userID = urlParams.get(QUALTRICS_USER_KEY);
+    var userID = urlParams.get(UNIQUE_USER_KEY);
     
-    if (!(experiemntID && userID)){
-        alert("some query params are missing... required qualtrix get params: " + QUALTRICS_EXPERIMENT_KEY + " as well as " + QUALTRICS_USER_KEY);
+    if (!userID){
+        alert("GET query parameter is missing: " + UNIQUE_USER_KEY);
         return;
     }    
     
@@ -188,6 +184,5 @@ const submitSurvey = function() {
     Object.keys(sessionData).forEach(k => {
         submitUrl += ("&" + k + "=" + sessionData[k]);
     });
-    alert(submitUrl);
     window.location.href = submitUrl;
 };

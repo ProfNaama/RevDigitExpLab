@@ -1,20 +1,18 @@
 const getReviewButtonKey = function(reviewButtonElement){
-    let key = $(reviewButtonElement).parent().parent().attr("id");
-    let restaurantName = $(reviewButtonElement).parent().parent().children().find(".reviewRestaurantName").text();
-    return restaurantName + "_" + key;
+    return $(reviewButtonElement).parent().parent().attr("id");
 }
 
 const usefullReviewClicked = function(reviewButtonElement){
     const currentElementKey = getReviewButtonKey(reviewButtonElement);
     reviewButtonElement.style.border = "1px solid var(--red)";
-    addPairToQuestionairData(currentElementKey, "yes");
+    addPairToQuestionairData(currentElementKey, "1");
     $(reviewButtonElement).attr("onclick", "usefullReviewUnClicked(this)");
 }
 
 const usefullReviewUnClicked = function(reviewButtonElement){
     const currentElementKey = getReviewButtonKey(reviewButtonElement);
     reviewButtonElement.style.border = "1px solid black";
-    addPairToQuestionairData(currentElementKey, "no");
+    addPairToQuestionairData(currentElementKey, "0");
     $(reviewButtonElement).attr("onclick", "usefullReviewClicked(this)");
 }
 
@@ -132,7 +130,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
         // we want the review idx to continue to advance regardless of the treatment group
         if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){
             var newItem = loadedElementTemplate.clone(true);
-            $(newItem).attr("id", "item_review_id_" + didx);
+            $(newItem).attr("id", elementDataJson["reviewID"]);
     
             Object.keys(elementDataJson).forEach(columnKey => {
                 if (columnKey in csvHandlersMethods){
