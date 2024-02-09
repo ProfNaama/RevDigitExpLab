@@ -30,7 +30,7 @@ var textElementHandler = function(jqueryLocator){
 
 var reviewerAvatarHandler = function(newItem, value){
     var reviewsElement = newItem.children().find(".reviewerAvatar");
-    reviewsElement.attr("src", "../static/graphics/avatars/"+value);
+    reviewsElement.attr("src", "../static/surveyData/graphics/avatars/"+value);
 };
 
 var EliteBadgeHandler = function (newItem, value) {
@@ -113,7 +113,7 @@ const occupySummaryData = function(reviewSubjectElementsData){
     let firstReviewInfo = reviewSubjectElementsData[0];
     $(".resName").text(firstReviewInfo["reviewSubjectName"]);
     $(".resTag").text(firstReviewInfo["reviewSubjectDescription"] + firstReviewInfo["reviewSubjectLocation"]);
-    let imageUrl = "url(../static/graphics/reviewSubjects/"+ firstReviewInfo["reviewSubjectImage"] + ")";
+    let imageUrl = "url(../static/surveyData/graphics/reviewSubjects/"+ firstReviewInfo["reviewSubjectImage"] + ")";
     imageUrl += ("," + imageUrl);
     $(".resHeader")[0].style["background-image"] = imageUrl;
 }
