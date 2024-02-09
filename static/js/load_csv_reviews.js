@@ -144,7 +144,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
 
 const loadData = function(){
     var defArr = [];
-    defArr.push($.get('singleReviewTemplate.html'));
+    defArr.push($.get('../static/html/singleReviewTemplate.html'));
     defArr.push($.get('../static/data/reviews_data.csv'));
     defArr.push($.get('../static/data/redirect_url.txt'));
     $.when.apply($,defArr).done(function(response1, response2, response3){
