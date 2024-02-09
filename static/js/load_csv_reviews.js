@@ -43,7 +43,7 @@ var EliteBadgeHandler = function (newItem, value) {
 // for each csv column, there should be a handler function for that type of data. (key should be the same as the csv header, handler should be written)
 const csvHandlersMethods = {
     reviewerName:textElementHandler(".reviewerName"),
-    reviweStars:fillStarsHandler,
+    reviewStars:fillStarsHandler,
     reviewerCount:textElementHandler(".reviewerCount"),
     reviewerAvatar:reviewerAvatarHandler,
     reviewerLocation:textElementHandler(".reviewerLocation"),
@@ -56,7 +56,7 @@ const csvHandlersMethods = {
 const occupySummaryStars = function(reviewSubjectElementsData){
     let ratingSum = 0.0;
     reviewSubjectElementsData.forEach(element => {
-        ratingSum += parseFloat(element["reviweStars"]);
+        ratingSum += parseFloat(element["reviewStars"]);
     });
     let avgRatingPercent = (ratingSum * 100) / reviewSubjectElementsData.length;
     
@@ -83,15 +83,15 @@ const occupyStarBars = function(reviewSubjectElementsData){
     let starsSummary = new Array(0, 0, 0, 0, 0, 0);
     let starsClassNames = new Array(".zero_stars", ".one_stars", ".two_stars", ".three_stars", ".four_stars", ".five_stars");
     reviewSubjectElementsData.forEach(element => {
-        if (parseFloat(element["reviweStars"]) >= 4.5){
+        if (parseFloat(element["reviewStars"]) >= 4.5){
             starsSummary[5]+= 1;
-        } else if (parseFloat(element["reviweStars"]) >= 3.5){
+        } else if (parseFloat(element["reviewStars"]) >= 3.5){
             starsSummary[4]+= 1;
-        } else if (parseFloat(element["reviweStars"]) >= 2.5){
+        } else if (parseFloat(element["reviewStars"]) >= 2.5){
             starsSummary[3]+= 1;
-        } else if (parseFloat(element["reviweStars"]) >= 1.5){
+        } else if (parseFloat(element["reviewStars"]) >= 1.5){
             starsSummary[2]+= 1;
-        } else if (parseFloat(element["reviweStars"]) >= 0.5){
+        } else if (parseFloat(element["reviewStars"]) >= 0.5){
             starsSummary[1]+= 1;
         } else {
             starsSummary[0]+= 1;
