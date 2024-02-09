@@ -48,7 +48,7 @@ const csvHandlersMethods = {
     reviewerAvatar:reviewerAvatarHandler,
     reviewerLocation:textElementHandler(".reviewerLocation"),
     EliteBadge:EliteBadgeHandler,
-    reviewSubjectReviewText:textElementHandler(".reviewSubjectReviewText"),
+    reviewText:textElementHandler(".reviewText"),
     reviewSubjectName:textElementHandler(".reviewReviewSubjectName")
 };
 
