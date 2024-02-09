@@ -5,6 +5,6 @@ setTimeout(()=> {
     //document.getElementById("FinishedBTN").style.display="block"
     FinishedBTN.disabled = false; 
     console.log("done");
-},3000)
+},30000)
 
 
