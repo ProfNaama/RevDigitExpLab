@@ -126,7 +126,7 @@ const decodeSessionParams = function () {
             sessionData[keyvalue[0]] = keyvalue[1];
         });
     }
-    return sessionData;ß
+    return sessionData;
 }
 
 
