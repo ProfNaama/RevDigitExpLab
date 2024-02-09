@@ -176,7 +176,14 @@ const submitSurvey = function() {
         return;
     }
 
-    let submitUrl = "http://fppvu.qualtrics.com/SE/?treatment_group_id" + "="+ treatmentGroupCache;
+    let submitUrlBase = $("#FinishedBTN").attr("destination");
+    if (submitUrlBase.search("\\?") == -1){
+        submitUrlBase += "?";
+    }
+    else {
+        submitUrlBase += "&";
+    }
+    let submitUrl = submitUrlBase + "treatment_group_id" + "="+ treatmentGroupCache;
     urlParams.forEach((v, k)=>{
         submitUrl += ("&" + k + "=" + v);
     });

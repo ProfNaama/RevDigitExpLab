@@ -146,12 +146,15 @@ const loadData = function(){
     var defArr = [];
     defArr.push($.get('singleReviewTemplate.html'));
     defArr.push($.get('../static/data/reviews_data.csv'));
-    $.when.apply($,defArr).done(function(response1, response2){
+    defArr.push($.get('../static/data/redirect_url.txt'));
+    $.when.apply($,defArr).done(function(response1, response2, response3){
         const reviewTemplate = "<div>" + response1[2].responseText +"</div>";
         const reviewsCsvData = response2[2].responseText;
+        const redirectPrefix = response3[2].responseText;
 
         var reviewsDataJson = convertCsvToJson(reviewsCsvData);
         occupyItems($(reviewTemplate), reviewsDataJson);
+        $("#FinishedBTN").attr("destination", redirectPrefix);
     });
 };
 
