@@ -131,14 +131,14 @@ const decodeSessionParams = function () {
 
 
 const TREATMENT_GROUP_PARAM = "IDRAND"
-const getRandomTreatmentGroup = function(restaurantElementsJson){
+const getRandomTreatmentGroup = function(reviewSubjectElementsJson){
     let treatmentGroupCache = sessionStorage.getItem(TREATMENT_GROUP_PARAM);
     if (treatmentGroupCache){
         return parseInt(treatmentGroupCache);
     }
     
     let treatmentGroups = new Set();
-    restaurantElementsJson.forEach(element => {
+    reviewSubjectElementsJson.forEach(element => {
         treatmentGroups.add(parseInt(element["treatmentGroup"]));
     });
         

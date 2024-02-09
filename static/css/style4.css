@@ -75,7 +75,7 @@ footer {
 }
 
 /*-----header-----*/
-/* elemnt 1 in header: restaurante title + img*/
+/* elemnt 1 in header: reviewSubjecte title + img*/
 .resHeader {
     height: 50%;
     background-repeat: no-repeat, repeat;
@@ -225,7 +225,7 @@ footer {
     flex-direction: column;
 }
 
-.restaurantsContainer {
+.reviewSubjectsContainer {
     display: flex;
     flex-direction: column;
 } */
@@ -283,7 +283,7 @@ footer {
     display: inline;
 }
 
-.reviewRestaurantName {
+.reviewReviewSubjectName {
     display: none;
 }
 

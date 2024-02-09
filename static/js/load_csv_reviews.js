@@ -48,17 +48,17 @@ const csvHandlersMethods = {
     reviewerAvatar:reviewerAvatarHandler,
     reviewerLocation:textElementHandler(".reviewerLocation"),
     EliteBadge:EliteBadgeHandler,
-    restaurantStars:textElementHandler(".restaurantStars"),
-    restaurantReviewText:textElementHandler(".restaurantReviewText"),
-    restaurantName:textElementHandler(".reviewRestaurantName")
+    reviewSubjectStars:textElementHandler(".reviewSubjectStars"),
+    reviewSubjectReviewText:textElementHandler(".reviewSubjectReviewText"),
+    reviewSubjectName:textElementHandler(".reviewReviewSubjectName")
 };
 
-const occupySummaryStars = function(restaurantElementsData){
+const occupySummaryStars = function(reviewSubjectElementsData){
     let ratingSum = 0.0;
-    restaurantElementsData.forEach(element => {
+    reviewSubjectElementsData.forEach(element => {
         ratingSum += parseFloat(element["reviweStars"]);
     });
-    let avgRatingPercent = (ratingSum * 100) / restaurantElementsData.length;
+    let avgRatingPercent = (ratingSum * 100) / reviewSubjectElementsData.length;
     
     $(".star-over").each((idx, starElement) => {
         if (avgRatingPercent >= 100.0){
@@ -73,16 +73,16 @@ const occupySummaryStars = function(restaurantElementsData){
         }
         avgRatingPercent -= 100.0;
     });
-    $(".avg-rating-num").text("" + Math.round((ratingSum / restaurantElementsData.length) * 10) / 10);
-    $(".count_of_revs").text("(" + restaurantElementsData.length + " reviews)");
+    $(".avg-rating-num").text("" + Math.round((ratingSum / reviewSubjectElementsData.length) * 10) / 10);
+    $(".count_of_revs").text("(" + reviewSubjectElementsData.length + " reviews)");
     
     
 }
 
-const occupyStarBars = function(restaurantElementsData){
+const occupyStarBars = function(reviewSubjectElementsData){
     let starsSummary = new Array(0, 0, 0, 0, 0, 0);
     let starsClassNames = new Array(".zero_stars", ".one_stars", ".two_stars", ".three_stars", ".four_stars", ".five_stars");
-    restaurantElementsData.forEach(element => {
+    reviewSubjectElementsData.forEach(element => {
         if (parseFloat(element["reviweStars"]) >= 4.5){
             starsSummary[5]+= 1;
         } else if (parseFloat(element["reviweStars"]) >= 3.5){
@@ -101,19 +101,19 @@ const occupyStarBars = function(restaurantElementsData){
         let currentStarsClassName = starsClassNames[i];
         let element = $(".overall_Star_rating").children().find(currentStarsClassName);
         if (element.length > 0){
-            element[0].style.width = (currentStarCount / restaurantElementsData.length) * 100 + "%";
+            element[0].style.width = (currentStarCount / reviewSubjectElementsData.length) * 100 + "%";
         }
     });
 
 }
 
-const occupySummaryData = function(restaurantElementsData){
-    occupySummaryStars(restaurantElementsData);
-    occupyStarBars(restaurantElementsData);
-    let firstReviewInfo = restaurantElementsData[0];
-    $(".resName").text(firstReviewInfo["restaurantName"]);
-    $(".resTag").text(firstReviewInfo["restaurantDescription"] + firstReviewInfo["restaurantLocation"]);
-    let imageUrl = "url(../static/graphics/restaurants/"+ firstReviewInfo["restaurantImage"] + ")";
+const occupySummaryData = function(reviewSubjectElementsData){
+    occupySummaryStars(reviewSubjectElementsData);
+    occupyStarBars(reviewSubjectElementsData);
+    let firstReviewInfo = reviewSubjectElementsData[0];
+    $(".resName").text(firstReviewInfo["reviewSubjectName"]);
+    $(".resTag").text(firstReviewInfo["reviewSubjectDescription"] + firstReviewInfo["reviewSubjectLocation"]);
+    let imageUrl = "url(../static/graphics/reviewSubjects/"+ firstReviewInfo["reviewSubjectImage"] + ")";
     imageUrl += ("," + imageUrl);
     $(".resHeader")[0].style["background-image"] = imageUrl;
 }
