@@ -130,7 +130,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
         // we want the review idx to continue to advance regardless of the treatment group
         if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){
             var newItem = loadedElementTemplate.clone(true);
-            $(newItem).attr("id", elementDataJson["reviewID"]);
+            $(newItem).attr("id", elementDataJson["reviewKey"]);
     
             Object.keys(elementDataJson).forEach(columnKey => {
                 if (columnKey in csvHandlersMethods){
