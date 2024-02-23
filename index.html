@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="../static/js/general.js"></script>
     <script>
-        let urlParams = (new URL(window.location)).searchParams;
-        submitUrl = "./views/pre.html"
-        if (urlParams.size > 0){
-            counter = 1;
-            submitUrl += "?";
-            urlParams.forEach((v, k)=>{
-                submitUrl += (k + "=" + v);
-                if (counter < urlParams.size) {
-                    submitUrl += "&"
-                }
-                counter += 1;
-            });
-        }
-        window.location.href = submitUrl;
+        redirectWithGetParams("./views/pre.html");
     </script>
 </head>
 </html>

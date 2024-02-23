@@ -11,9 +11,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
     <!--scripts-->
+    <script src="../static/js/general.js"></script>
     <script src="../static/js/load_csv_data_common.js" ></script>
     <script src="../static/js/load_csv_reviews.js" ></script>
-    <script defer src="../static/js/general.js"></script>
+    <script>
+        $(document).ready(loadReviesData);
+        setTimeout(()=> {
+            var FinishedBTN = document.getElementById("FinishedBTN");
+            FinishedBTN.disabled = false; 
+        },30000);
+    </script>
     </head>
 <body>
     <div class="gridContainer">
@@ -98,7 +105,7 @@
         <div class="right"></div>
         <footer>
             <div class="finish">
-                <button id="FinishedBTN" type="button" onclick="submitSurvey()">Submit</button>
+                <button id="FinishedBTN" type="button" onclick="submitSurvey()" disabled="True">Submit</button>
             </div>
             <p>Icons made by <a href="https://www.flaticon.com/authors/famo" title="Famo">Famo</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
         </footer>

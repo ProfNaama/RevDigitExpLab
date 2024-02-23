@@ -1,3 +1,5 @@
+
+
 const getReviewButtonKey = function(reviewButtonElement){
     return $(reviewButtonElement).parent().parent().attr("id");
 }
@@ -16,38 +18,80 @@ const usefullReviewUnClicked = function(reviewButtonElement){
     $(reviewButtonElement).attr("onclick", "usefullReviewClicked(this)");
 }
 
-var fillReviewsCountHandler = function(newItem, value){
-    var reviewsElement = newItem.children().find(".reviews-count");
-    reviewsElement.text(parseInt(value));
-}
-
-var textElementHandler = function(jqueryLocator){
+const textElementHandler = function(jqueryLocator){
     return function(newItem, value){
         var reviewsElement = newItem.children().find(jqueryLocator);
         reviewsElement.text(value);
     }
 }
 
-var reviewerAvatarHandler = function(newItem, value){
-    var reviewsElement = newItem.children().find(".reviewerAvatar");
-    reviewsElement.attr("src", "../static/surveyData/graphics/avatars/"+value);
+const imgElementHandler = function(imgClassName, basePath="./"){
+    return function(newItem, value) {
+        var reviewsElement = newItem.children().find(imgClassName);
+        reviewsElement.attr("src", basePath+value);
+    }
 };
 
-var EliteBadgeHandler = function (newItem, value) {
-    var reviewsElement = newItem.children().find(".EliteBadge");
-    if (value == "1") {
-        reviewsElement[0].style.display = "inline"
+const styleDisplayHandler = function (className) {
+    return function(newItem, value) {
+        var reviewsElement = newItem.children().find(className);
+        if (value == "1") {
+            reviewsElement[0].style.display = "inline"
+        }
+        else if (value == "0") {
+            reviewsElement[0].style.display = "disable"
+        }
     }
 }
+
+const clearStars = function (newItem) {
+    var starsArray = newItem.children().find(".fa")
+    for (let i = 0; i < starsArray.length; i++) {
+
+        var currentItem = $(starsArray.get(i));
+        currentItem.removeClass("fa-star-half-o");
+        currentItem.removeClass("checked");
+        currentItem.removeClass("fa-star");
+        currentItem.addClass("fa-star-o");
+    }
+};
+
+const fillStarsHandler = function (newItem, value) {
+    var ratingFloat = parseFloat(value)
+    if (Number.isNaN(ratingFloat)) {
+        return;
+    }
+
+    // initialize with all stars empty (fa-star-o)
+    clearStars(newItem);
+
+    var starsArray = newItem.children().find(".fa")
+    for (let i = 0; (i < ratingFloat && i < starsArray.length); i++) {
+        var currentItem = $(starsArray.get(i));
+
+        // if current star idx is full, paint a full star (fa-star), otherwise, paint a semi-star (fa-star-half-o)
+        // if equal or more than 0.5, color with yello (checked)
+        var isCurrentStarFull = (ratingFloat - i) >= 1;
+
+        if (isCurrentStarFull) {
+            currentItem.removeClass("fa-star-o");
+            currentItem.addClass("fa-star");
+        } else {
+            currentItem.removeClass("fa-star-o");
+            currentItem.addClass("fa-star-half-o");
+        }
+        $(starsArray.get(i)).addClass("checked");
+    }
+};
 
 // for each csv column, there should be a handler function for that type of data. (key should be the same as the csv header, handler should be written)
 const csvHandlersMethods = {
     reviewerName:textElementHandler(".reviewerName"),
     reviewStars:fillStarsHandler,
     reviewerCount:textElementHandler(".reviewerCount"),
-    reviewerAvatar:reviewerAvatarHandler,
+    reviewerAvatar:imgElementHandler(".reviewerAvatar", "../static/surveyData/graphics/avatars/"),
     reviewerLocation:textElementHandler(".reviewerLocation"),
-    EliteBadge:EliteBadgeHandler,
+    EliteBadge:styleDisplayHandler(".EliteBadge"),
     reviewText:textElementHandler(".reviewText"),
     reviewSubjectName:textElementHandler(".reviewReviewSubjectName")
 };
@@ -141,7 +185,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
     }
 }
 
-const loadData = function(){
+const loadReviesData = function(){
     var defArr = [];
     defArr.push($.get('../static/html/singleReviewTemplate.html'));
     defArr.push($.get('../static/surveyData/reviews_data.csv'));
@@ -156,7 +200,3 @@ const loadData = function(){
         $("#FinishedBTN").attr("destination", redirectPrefix);
     });
 };
-
-$(document).ready(function(){
-    loadData();
-});

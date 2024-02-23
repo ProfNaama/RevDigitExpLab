@@ -13,7 +13,7 @@
     <!--scripts-->
     <!-- <script src="../static/js/load_csv_data_common.js" ></script> -->
     <!-- <script src="../static/js/load_csv_reviews.js" ></script> -->
-    <!-- <script defer src="../static/js/general.js"></script> -->
+    <script src="../static/js/general.js"></script>
     </head>
 <body>
     <div class="gridContainer">
@@ -68,27 +68,10 @@
             <div class="Instructions">
                 <p>We are working on a new review site, OnlineConsumerReview.com, which will provide consumer reviews of online stores. The purpose of this section is to help improve the data mining algorithms of the website.  To aid in this process, you are asked to evaluate four real reviews of a website that sells electronics. We collected these reviews from a pilot test of the platform. You will evaluate one review at a time.</p>
             </div>
-            <button onclick="startExp(this.name)" name="./ReviewsPage.html" >START</button>
+            <button onclick="redirectWithGetParams(this.name)" name="./ReviewsPage.html" >START</button>
         </main>
         <div class="right"></div>
         <footer></footer>
     </div>    
 </body>
-<script>
-    function startExp(submitUrl) {
-        let urlParams = (new URL(window.location)).searchParams;
-        if (urlParams.size > 0){
-            counter = 1;
-            submitUrl += "?";
-            urlParams.forEach((v, k)=>{
-                submitUrl += (k + "=" + v);
-                if (counter < urlParams.size) {
-                    submitUrl += "&"
-                }
-                counter += 1;
-            });
-        }
-        window.location.href = submitUrl;
-    };
-</script>
 </html>
