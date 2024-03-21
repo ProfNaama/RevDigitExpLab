@@ -4,6 +4,26 @@ const getReviewButtonKey = function(reviewButtonElement){
     return $(reviewButtonElement).parent().parent().attr("id");
 }
 
+var currentReviewIdx = 0;
+var reviewElementsArray = [];
+const nextReviewClicked = function(reviewButtonElement){
+    if (currentReviewIdx < reviewElementsArray.length - 1){
+        $(reviewElementsArray[currentReviewIdx]).hide();
+        currentReviewIdx++;
+        $(reviewElementsArray[currentReviewIdx]).show();
+    }
+    document.body.scrollTop = document.documentElement.scrollTop = 0
+}
+
+const prevReviewClicked = function(reviewButtonElement){
+    if (currentReviewIdx > 0){
+        $(reviewElementsArray[currentReviewIdx]).hide();
+        currentReviewIdx--;
+        $(reviewElementsArray[currentReviewIdx]).show();
+    }
+    document.body.scrollTop = document.documentElement.scrollTop = 0
+}
+
 const usefullReviewClicked = function(reviewButtonElement){
     const currentElementKey = getReviewButtonKey(reviewButtonElement);
     reviewButtonElement.style.border = "1px solid var(--red)";
@@ -181,8 +201,12 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
                 }
             });
             $(newItem).appendTo('#reviewsContainer');
+            reviewElementsArray.push(newItem);
+            $(newItem).hide();
+
         }
     }
+    $(reviewElementsArray[currentReviewIdx]).show();
 }
 
 const loadReviesData = function(){
