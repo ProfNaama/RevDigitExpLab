@@ -5,6 +5,7 @@
     --orange: rgb(255, 173, 72);
     --yellow: rgb(255, 204, 75);
     --gray: rgb(230, 230, 223); 
+    --grayOPC: rgb(230, 230, 223, 0.5); 
 }
 
 * {
@@ -87,11 +88,11 @@ footer {
 }
 
 .resName {
-    background-color: rgb(128, 128, 128, 0.5);
+    background-color: rgb(128, 128, 128, 0.8);
 }
 
 .resTag{
-    background-color: rgb(128, 128, 128, 0.5);
+    background-color: rgb(128, 128, 128, 0.8);
     font-style: italic;
 }
 /* elemnt 2 in header: stars and bars*/
@@ -305,7 +306,26 @@ footer {
     font-family: 'Manrope', sans-serif;
 }
 
+.RatingForm {
+    border-top: 1px solid var(--gray);
+    /* display: flex;
+    justify-content: center; */
+}
 
+/* .DV {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+} */
+
+
+.radio {
+    background-color: var(--grayOPC);
+    border-radius: 25px;
+    margin: 0 auto;
+    text-align: center;
+    width: 40vw;
+}
 /*-----footer-----*/
 #FinishedBTN {
     background-color: var(--gray);
