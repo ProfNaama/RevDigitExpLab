@@ -17,7 +17,7 @@
     </div>
     <p class="reviewReviewSubjectName"></p>
     <p class="reviewText"></p>
-    <input class="UsefullBTN" type="button" value="useful" onclick="usefullReviewClicked(this)">
+    <!-- <input class="UsefullBTN" type="button" value="useful" onclick="usefullReviewClicked(this)"> -->
     <form class="RatingForm" action="">
         <br><br>
         <p>Considering the review above, please answer the following questions</p>
@@ -136,64 +136,6 @@
                 </td>
                 <td>
                     <label for="7">A lot of time</label>
-                </td>
-            </tr> 
-        </table>
-        <label for="">Overall, how would you describe the customer's feelings regarding their experience?</label>
-        <table class="radio">
-            <tr>
-                <td>
-                    <label for="1">Very bad</label>
-                </td>
-                <td>
-                    <input type="radio" id="1" name="feelings" value="1">
-                    <input type="radio" id="2" name="feelings" value="2">
-                    <input type="radio" id="3" name="feelings" value="3">
-                    <input type="radio" id="4" name="feelings" value="4">
-                    <input type="radio" id="5" name="feelings" value="5">
-                    <input type="radio" id="6" name="feelings" value="6">
-                    <input type="radio" id="7" name="feelings" value="7">
-                </td>
-                <td>
-                    <label for="7">Very good</label>
-                </td>
-            </tr> 
-        </table>
-        <table class="radio">
-            <tr>
-                <td>
-                    <label for="1">Very unfavorable</label>
-                </td>
-                <td>
-                    <input type="radio" id="1" name="unfavorable" value="1">
-                    <input type="radio" id="2" name="unfavorable" value="2">
-                    <input type="radio" id="3" name="unfavorable" value="3">
-                    <input type="radio" id="4" name="unfavorable" value="4">
-                    <input type="radio" id="5" name="unfavorable" value="5">
-                    <input type="radio" id="6" name="unfavorable" value="6">
-                    <input type="radio" id="7" name="unfavorable" value="7">
-                </td>
-                <td>
-                    <label for="7">Very favorable</label>
-                </td>
-            </tr> 
-        </table>
-        <table class="radio">
-            <tr>
-                <td>
-                    <label for="1">Very unpleasant</label>
-                </td>
-                <td>
-                    <input type="radio" id="1" name="unpleasant" value="1">
-                    <input type="radio" id="2" name="unpleasant" value="2">
-                    <input type="radio" id="3" name="unpleasant" value="3">
-                    <input type="radio" id="4" name="unpleasant" value="4">
-                    <input type="radio" id="5" name="unpleasant" value="5">
-                    <input type="radio" id="6" name="unpleasant" value="6">
-                    <input type="radio" id="7" name="unpleasant" value="7">
-                </td>
-                <td>
-                    <label for="7">Very pleasant</label>
                 </td>
             </tr> 
         </table>
@@ -374,6 +316,25 @@
                 </td>
             </tr> 
         </table>
+        <table class="radio">
+            <tr>
+                <td>
+                    <label for="1_valence_c">Very unpleasant</label>
+                </td>
+                <td>
+                    <input type="radio" id="1" name="valence_c" value="1">
+                    <input type="radio" id="2" name="valence_c" value="2">
+                    <input type="radio" id="3" name="valence_c" value="3">
+                    <input type="radio" id="4" name="valence_c" value="4">
+                    <input type="radio" id="5" name="valence_c" value="5">
+                    <input type="radio" id="6" name="valence_c" value="6">
+                    <input type="radio" id="7" name="valence_c" value="7">
+                </td>
+                <td>
+                    <label for="7-valence_c">Very pleasant</label>
+                </td>
+            </tr> 
+        </table>
         <label for="">How confident are you in your assessment of the customer's feelings?</label>
         <table class="radio">
             <tr>
@@ -397,3 +358,68 @@
     </form>
     
 </div>
+
+
+
+
+
+
+
+<!-- <label for="">Overall, how would you describe the customer's feelings regarding their experience?</label>
+<table class="radio">
+    <tr>
+        <td>
+            <label for="1">Very bad</label>
+        </td>
+        <td>
+            <input type="radio" id="1" name="feelings" value="1">
+            <input type="radio" id="2" name="feelings" value="2">
+            <input type="radio" id="3" name="feelings" value="3">
+            <input type="radio" id="4" name="feelings" value="4">
+            <input type="radio" id="5" name="feelings" value="5">
+            <input type="radio" id="6" name="feelings" value="6">
+            <input type="radio" id="7" name="feelings" value="7">
+        </td>
+        <td>
+            <label for="7">Very good</label>
+        </td>
+    </tr> 
+</table>
+<table class="radio">
+    <tr>
+        <td>
+            <label for="1">Very unfavorable</label>
+        </td>
+        <td>
+            <input type="radio" id="1" name="unfavorable" value="1">
+            <input type="radio" id="2" name="unfavorable" value="2">
+            <input type="radio" id="3" name="unfavorable" value="3">
+            <input type="radio" id="4" name="unfavorable" value="4">
+            <input type="radio" id="5" name="unfavorable" value="5">
+            <input type="radio" id="6" name="unfavorable" value="6">
+            <input type="radio" id="7" name="unfavorable" value="7">
+        </td>
+        <td>
+            <label for="7">Very favorable</label>
+        </td>
+    </tr> 
+</table>
+<table class="radio">
+    <tr>
+        <td>
+            <label for="1">Very unpleasant</label>
+        </td>
+        <td>
+            <input type="radio" id="1" name="unpleasant" value="1">
+            <input type="radio" id="2" name="unpleasant" value="2">
+            <input type="radio" id="3" name="unpleasant" value="3">
+            <input type="radio" id="4" name="unpleasant" value="4">
+            <input type="radio" id="5" name="unpleasant" value="5">
+            <input type="radio" id="6" name="unpleasant" value="6">
+            <input type="radio" id="7" name="unpleasant" value="7">
+        </td>
+        <td>
+            <label for="7">Very pleasant</label>
+        </td>
+    </tr> 
+</table> -->
