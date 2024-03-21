@@ -318,14 +318,22 @@ footer {
     justify-content: flex-end;
 } */
 
+td {
+    width: 30%;
+}
 
 .radio {
     background-color: var(--grayOPC);
     border-radius: 25px;
-    margin: 0 auto;
     text-align: center;
-    width: 40vw;
+    width: 45vw;
+    /* margin: 5px; */
+    margin: 10px ;
 }
+.RatingForm * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /*-----footer-----*/
 #FinishedBTN {
     background-color: var(--gray);
