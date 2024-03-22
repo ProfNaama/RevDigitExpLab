@@ -31,6 +31,11 @@ const usefullReviewClicked = function(reviewButtonElement){
     $(reviewButtonElement).attr("onclick", "usefullReviewUnClicked(this)");
 }
 
+const onRadioButtonClicked = function(radioBtnElement){
+    const currentElementKey =  $(radioBtnElement).parent().parent().parent().parent().parent().parent().parent().attr("id");
+    addPairToQuestionairData(currentElementKey + "_" + radioBtnElement.name, radioBtnElement.value);
+}
+
 const usefullReviewUnClicked = function(reviewButtonElement){
     const currentElementKey = getReviewButtonKey(reviewButtonElement);
     reviewButtonElement.style.border = "1px solid black";
@@ -207,6 +212,8 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
         }
     }
     $(reviewElementsArray[currentReviewIdx]).show();
+    $(".range_radio_btn").on("click", function () {onRadioButtonClicked(this)});
+    //$(".range_radio_btn").on("click", function() {alert(JSON.stringify($(this).parent().parent()))});
 }
 
 const loadReviesData = function(){
