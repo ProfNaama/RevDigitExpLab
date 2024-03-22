@@ -45,7 +45,7 @@
             </table>
         </div>
         
-        <script onload="loadReviwQuestions">
+        <script>
             function loadReviwQuestions() {
                 var reviewQuestions = [
                     {name: "usefull", for_1: "Not at all usefull", for_7: "Very usefull", label: "Using the scales below, how would you describe the above consumer review?"},
@@ -85,7 +85,7 @@
         
             // this script (with this function) is being executed when the template is appended to its parent.
             // this happens in load_csv_reviews.js in occupyItems function.
-            //loadReviwQuestions();
+            loadReviwQuestions();
         </script>
     </div>
     
