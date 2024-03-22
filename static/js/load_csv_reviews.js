@@ -207,13 +207,11 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
             });
             $(newItem).appendTo('#reviewsContainer');
             reviewElementsArray.push(newItem);
+            // hide all reviews except the first one
             $(newItem).hide();
-
         }
     }
     $(reviewElementsArray[currentReviewIdx]).show();
-    $(".range_radio_btn").on("click", function () {onRadioButtonClicked(this)});
-    //$(".range_radio_btn").on("click", function() {alert(JSON.stringify($(this).parent().parent()))});
 }
 
 const loadReviesData = function(){
