@@ -51,7 +51,7 @@
         </table>
     </div>
     <script>
-        function loadReviwQuestions() {
+        function onTemplateInstanceLoad() {
             const reviewQuestions = [
                 {name: "usefull", for_1: "Not at all usefull", for_7: "Very usefull", label: "Using the scales below, how would you describe the above consumer review?"},
                 {name: "helpfull", for_1: "Not at all helpfull", for_7: "Very helpfull"},
@@ -88,7 +88,7 @@
                 q.show();
             });
         }
-        loadReviwQuestions();
+        onTemplateInstanceLoad();
     </script>
 </div>
 
