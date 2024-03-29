@@ -32,7 +32,7 @@ const usefullReviewClicked = function(reviewButtonElement){
 }
 
 const onRadioButtonClicked = function(radioBtnElement){
-    const currentElementKey =  $(radioBtnElement).parent().parent().parent().parent().parent().parent().parent().attr("id");
+    const currentElementKey =  $(radioBtnElement).parent().parent().parent().parent().parent().parent().parent().parent().attr("id");
     addPairToQuestionairData(currentElementKey + "_" + radioBtnElement.name, radioBtnElement.value);
 }
 
