@@ -6,6 +6,19 @@ const getReviewButtonKey = function(reviewButtonElement){
 
 var currentReviewIdx = 0;
 var reviewElementsArray = [];
+
+const renderSubmitButton = function() {
+    if (currentReviewIdx == reviewElementsArray.length - 1) {
+        $("#FinishedBTN").show();
+        $("#nextBTN").hide();
+        
+    }
+    else {
+        $("#FinishedBTN").hide();
+        $("#nextBTN").show();
+    }
+}
+
 const nextReviewClicked = function(reviewButtonElement){
     if (currentReviewIdx < reviewElementsArray.length - 1){
         $(reviewElementsArray[currentReviewIdx]).hide();
@@ -13,15 +26,7 @@ const nextReviewClicked = function(reviewButtonElement){
         $(reviewElementsArray[currentReviewIdx]).show();
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0
-}
-
-const prevReviewClicked = function(reviewButtonElement){
-    if (currentReviewIdx > 0){
-        $(reviewElementsArray[currentReviewIdx]).hide();
-        currentReviewIdx--;
-        $(reviewElementsArray[currentReviewIdx]).show();
-    }
-    document.body.scrollTop = document.documentElement.scrollTop = 0
+    renderSubmitButton();
 }
 
 const usefullReviewClicked = function(reviewButtonElement){
@@ -212,6 +217,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
         }
     }
     $(reviewElementsArray[currentReviewIdx]).show();
+    renderSubmitButton();
 }
 
 const loadReviesData = function(){
