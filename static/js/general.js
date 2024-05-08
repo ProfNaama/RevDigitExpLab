@@ -13,3 +13,9 @@ const redirectWithGetParams = function(submitUrl) {
         }
         window.location.href = submitUrl;
 };
+
+
+const verifyConsentNRedirect = function(x,y) {
+    alert(x);
+    alert(y);
+}

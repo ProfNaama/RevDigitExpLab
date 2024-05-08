@@ -26,7 +26,7 @@
                 <h2>Online Consent for Study number STUDY2024_00000187</h2>
                 <p>This task is part of a research study conducted by Dr. Naama Ilany-Tzur at Carnegie Mellon University.</p>
                 <h3></h3>
-                <form action="">
+                <form>
                     <div>
                         <input type="checkbox" id="age" name="age"/>
                         <label for="age">I am age 18 or older.</label>
@@ -39,12 +39,13 @@
                         <input type="checkbox" id="consent" name="consent"/>
                         <label for="consent">I want to participate.</label>
                     </div>
+                    <button onclick="verifyConsentNRedirect(this.parentElement, this.name)" name="./ReviewsPage.html" >Start</button>
                 </form>
             </div>
             <!-- <div class="Instructions">
                 <p>We are working on a new review site, OnlineConsumerReview.com, which will provide consumer reviews of online stores. The purpose of this section is to help improve the data mining algorithms of the website.  To aid in this process, you are asked to evaluate four real reviews of a website that sells electronics. We collected these reviews from a pilot test of the platform. You will evaluate one review at a time.</p>
             </div> -->
-            <button onclick="redirectWithGetParams(this.name)" name="./ReviewsPage.html" >START</button>
+            <!-- <button onclick="redirectWithGetParams(this.name)" name="./ReviewsPage.html" >START</button> -->
         </main>
         <div class="right"></div>
         <footer></footer>
