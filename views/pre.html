@@ -25,19 +25,49 @@
             <div class="consent_form">
                 <h2>Online Consent for Study number STUDY2024_00000187</h2>
                 <p>This task is part of a research study conducted by Dr. Naama Ilany-Tzur at Carnegie Mellon University.</p>
-                <h3></h3>
+                <h3>Purpose</h3>
+                <p>The purpose of the research is to investigate online reviews.</p>
+                <h3>Procedure</h3>
+                <p>Next you will be redirected to a webpage in which you will be asked to read and evaluate online reviews. The expected duration of participation is approximately 10 minutes.</p>
+                <h3>Participant Requirements</h3>
+                <p>Participation in this study is limited to individuals age 18 and older.</p>
+                <h3>Risk</h3>
+                <p>The risks and discomfort associated with participation in this study are no greater than those ordinarily encountered in daily life or during other online activities. </p>
+                <h3>Benefits</h3>
+                <p>There may be no personal benefit from your participation in the study but the knowledge received may be of value the general understanding of how online reviews are interpreted by users.</p>
+                <h3>Compensation & Costs</h3>
+                <p>You will be compensated for your time, as mentioned in Prolific. There will be no cost to you if you participate in this study.</p>
+                <h3>Future Use of Information</h3>
+                <p>In the future once we have removed all identifiable information from your data, we may use it for our research studies, or we may distribute the data to other researchers for their research studies. We would do this without getting additional informed consent from you. Sharing of data with other researchers will only be done in such a manner that you will not be identified.</p>
+                <h3>Confidentiality</h3>
+                <p>The data captured for the research does not include any personally identifiable information about you. Your IP address will not be captured.</p>
+                <h3>Right to Ask Questions & Contact Information</h3>
+                <p>If you have any questions about this study, you should feel free to ask them by contacting the Principal Investigator now at nilanytz@andrew.cmu.edu. If you have questions later, desire additional information, or wish to withdraw your participation, please contact the Principal Investigator by e-mail in accordance with the contact information listed above.
+                    <br>If you have questions pertaining to your rights as a research participant, or you wish to report concerns, you should contact the Office of Research integrity and Compliance at Carnegie Mellon University.  Email: irb-review@andrew.cmu.edu . Phone: 412-268-4721.
+                </p>
+                <h3>Voluntary Participation</h3>
+                <p>Your participation in this research is voluntary. You may discontinue participation at any time during the research activity. You may print a copy of this consent form for your records. </p>
                 <form>
                     <div>
-                        <input type="checkbox" id="age" name="age"/>
                         <label for="age">I am age 18 or older.</label>
+                        <input type="checkbox" id="18Yes" name="18Yes"/>
+                        <label for="18Yes">Yes</label>
+                        <input type="checkbox" id="18No" name="18No"/>
+                        <label for="18No">No</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="read" name="read"/>
                         <label for="read">I have read and understand the information.</label>
+                        <input type="checkbox" id="infoYes" name="infoYes"/>
+                        <label for="infoYes">Yes</label>
+                        <input type="checkbox" id="infoNo" name="infoNo"/>
+                        <label for="infoNo">No</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="consent" name="consent"/>
                         <label for="consent">I want to participate.</label>
+                        <input type="checkbox" id="consentYes" name="consentYes"/>
+                        <label for="consentYes">Yes</label>
+                        <input type="checkbox" id="consentNo" name="consentNo"/>
+                        <label for="consentNo">No</label>
                     </div>
                     <button onclick="verifyConsentNRedirect(this.parentElement, this.name)" name="./ReviewsPage.html" >Start</button>
                 </form>
