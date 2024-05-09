@@ -6,19 +6,26 @@
     <title>Reviews experiment option 1</title>
     <style> @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');</style>
     <link rel="stylesheet" href="../static/css/style4.css">
-    <!--bootstrap-->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script> -->
-    <!--scripts-->
-    <!-- <script src="../static/js/load_csv_data_common.js" ></script> -->
-    <!-- <script src="../static/js/load_csv_reviews.js" ></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
     <script src="../static/js/general.js"></script>
+    <script>
+        const verifyConsentNRedirect = function(consentForm, validUrl, invalidUrl) {
+            const consent1 = $(consentForm).children().find("#18Yes")[0].checked;
+            const consent2 = $(consentForm).children().find("#infoYes")[0].checked;
+            const consent3 = $(consentForm).children().find("#consentYes")[0].checked;
+            if (consent1 && consent2 && consent3) {
+                redirectWithGetParams(validUrl);
+            }
+            else {                
+                redirectWithGetParams(invalidUrl);
+            }
+        }
+    </script>
     </head>
 <body>
     <div class="gridContainer">
         <header>
-            <!-- <h1>Hi, </h1> -->
         </header>
         <div class="left"></div>
         <main class="main">
@@ -50,32 +57,28 @@
                 <form>
                     <div>
                         <label for="age">I am age 18 or older.</label>
-                        <input type="checkbox" id="18Yes" name="18Yes"/>
+                        <input type="radio" id="18Yes" name="18" required/>
                         <label for="18Yes">Yes</label>
-                        <input type="checkbox" id="18No" name="18No"/>
+                        <input type="radio" id="18No" name="18" required/>
                         <label for="18No">No</label>
                     </div>
                     <div>
                         <label for="read">I have read and understand the information.</label>
-                        <input type="checkbox" id="infoYes" name="infoYes"/>
+                        <input type="radio" id="infoYes" name="info" required/>
                         <label for="infoYes">Yes</label>
-                        <input type="checkbox" id="infoNo" name="infoNo"/>
+                        <input type="radio" id="infoNo" name="info" required/>
                         <label for="infoNo">No</label>
                     </div>
                     <div>
                         <label for="consent">I want to participate.</label>
-                        <input type="checkbox" id="consentYes" name="consentYes"/>
+                        <input type="radio" id="consentYes" name="consent" required/>
                         <label for="consentYes">Yes</label>
-                        <input type="checkbox" id="consentNo" name="consentNo"/>
+                        <input type="radio" id="consentNo" name="consent" required/>
                         <label for="consentNo">No</label>
                     </div>
-                    <button onclick="verifyConsentNRedirect(this.parentElement, this.name)" name="./ReviewsPage.html" >Start</button>
                 </form>
-            </div>
-            <!-- <div class="Instructions">
-                <p>We are working on a new review site, OnlineConsumerReview.com, which will provide consumer reviews of online stores. The purpose of this section is to help improve the data mining algorithms of the website.  To aid in this process, you are asked to evaluate four real reviews of a website that sells electronics. We collected these reviews from a pilot test of the platform. You will evaluate one review at a time.</p>
-            </div> -->
-            <!-- <button onclick="redirectWithGetParams(this.name)" name="./ReviewsPage.html" >START</button> -->
+                <button onclick="verifyConsentNRedirect(this.parentElement, './ReviewsPage.html', './thank_you.html')">Start</button>
+                </div>
         </main>
         <div class="right"></div>
         <footer></footer>
