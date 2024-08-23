@@ -51,6 +51,10 @@ footer {
     
 }
 
+p {
+    line-height: 200%;
+}
+
 /* stars element in review ---- LOCATION IMPORTANT!!!!----*/
 .fa-star, .fa-star-half-o {
     background-color: rgb(122, 122, 122, 0.5);

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews experiment option 1</title>
+    <style> @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');</style>
+    <link rel="stylesheet" href="../static/css/style4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" ></script>
+    <script src="../static/js/general.js"></script>
+    <script>
+        const verifyConsentNRedirect = function(consentForm, validUrl, invalidUrl) {
+            const consent1 = $(consentForm).children().find("#18Yes")[0].checked;
+            const consent2 = $(consentForm).children().find("#infoYes")[0].checked;
+            const consent3 = $(consentForm).children().find("#consentYes")[0].checked;
+            if (consent1 && consent2 && consent3) {
+                redirectWithGetParams(validUrl);
+            }
+            else {                
+                redirectWithGetParams(invalidUrl);
+            }
+        }
+    </script>
+    </head>
+<body>
+    <div class="gridContainer">
+        <header>
+        </header>
+        <div class="left"></div>
+        <main class="main">
+            <div class="instructions">
+                <h2>Welcome! </h2>
+                <p>We are OnlineConsumerReview.com, a third-party review site dedicated to providing consumer reviews of various online stores.
+                    <br>
+                    To help us improve our data mining algorithms, we ask that you evaluate a series of real text reviews collected from our platform about DigiMart, a store offering a wide range of digital devices and electronics. Your feedback is crucial in enhancing the accuracy and effectiveness of these algorithms.
+                    <br>
+                    Thank you for your participation!
+                    <br><br>
+                </p>
+                <h3>Before you begin, please answer the following questions.</h3>
+                <form>
+                    <div>
+                        <label for="age">What type of products does DigiMart offer?</label>
+                        <br>
+                        <input type="radio" id="Attention1.1" name="Attention1" required/>
+                        <label for="Attention1.1">Clothing and accessories</label>
+                        <br>
+                        <input type="radio" id="Attention1.2" name="Attention1" required/>
+                        <label for="Attention1.2">Digital devices and electronics</label>
+                        <br>
+                        <input type="radio" id="Attention1.3" name="Attention1" required/>
+                        <label for="Attention1.3">Home appliances</label>
+                        <br>
+                        <input type="radio" id="Attention1.4" name="Attention1" required/>
+                        <label for="Attention1.4">Books and stationery</label>
+                        <br>
+                    </div>
+                    <div>
+                        <label for="age">According to the instructions above, what is your task?</label>
+                        <br>
+                        <input type="radio" id="Attention2.1" name="Attention2" required/>
+                        <label for="Attention2.1">Write new product reviews</label>
+                        <br>
+                        <input type="radio" id="Attention2.2" name="Attention2" required/>
+                        <label for="Attention2.2">Evaluate text reviews from OnlineConsumerReview.com</label>
+                        <br>
+                        <input type="radio" id="Attention2.3" name="Attention2" required/>
+                        <label for="Attention2.3">Purchase digital devices and electronics</label>
+                        <br>
+                        <input type="radio" id="Attention2.4" name="Attention2" required/>
+                        <label for="Attention2.4">Create data mining algorithms</label>
+                        <br>
+                    </div>
+                </form>
+                <button onclick="verifyConsentNRedirect(this.parentElement, './ReviewsPage.html', './thank_you.html')">Start</button>
+            </div>
+        </main>
+        <div class="right"></div>
+        <footer></footer>
+    </div>    
+</body>
+</html>

@@ -53,23 +53,53 @@
     <script>
         function onTemplateInstanceLoad() {
             const reviewQuestions = [
-                {name: "usefull", for_1: "Not at all usefull", for_7: "Very usefull", label: "Using the scales below, how would you describe the above consumer review?"},
-                {name: "helpfull", for_1: "Not at all helpfull", for_7: "Very helpfull"},
-                {name: "informative", for_1: "Not at all informative", for_7: "Very informative"},
-                {name: "effort", for_1: "Very little effort", for_7: "A lot of effort", label: "In your opinion, how much effort had the reviewer put into writing this review?"},
-                {name: "thought", for_1: "Very little thought", for_7: "A lot of thought", label: "In your opinion, how much thought had the reviewer given to the above review when he/she wrote it?"},
-                {name: "time", for_1: "Very little time", for_7: "A lot of time", label: "In your opinion, how much time did the reviewer spend writing this review?"},
-                {name: "passive", for_1: "Very passive", for_7: "Very active", label: "Using the scales below, how do you think the reviewer was feeling at the time that he/she wrote the review?"},
-                {name: "mellow", for_1: "Very mellow", for_7: "Very fired up"},
-                {name: "energy", for_1: "Very low energy level", for_7: "Very low energy level"},
-                {name: "reasons", for_1: "Not at all", for_7: "Very much", label: "There are a wide variety of reasons that customers might write a store review. Rate the extent to which you agree with the following statements: The cause of the review was something about the reviewer."},
-                {name: "empathy_a", for_1: "Not at all", for_7: "Very much", label: "While reading this review, to what extent did you feel like you were experiencing the same emotions as the reviewer?"},
-                {name: "empathy_b", for_1: "Not at all", for_7: "Very much", label: "While reading this review, to what extent did you feel concerned for the reviewer?"},
-                {name: "empathy_c", for_1: "Not at all", for_7: "Very much", label: "While reading this review, to what extent did you feel moved by the review?"},
-                {name: "valence_a", for_1: "Very bad", for_7: "Very good", label: "Overall, how would you describe the customer's feelings regarding the experience he/she wrote in the review above?"},
-                {name: "valence", for_1: "Very unfavorable", for_7: "Very unfavorable"},
-                {name: "valence_c", for_1: "Very unpleasant", for_7: "Very pleasant"},
-                {name: "Confidence", for_1: "Not confident at all", for_7: "Very confident", label: "How confident are you in your assessment of the customer's feelings?"}
+                {name: "decision", for_1: "Not at all helpfull", for_7: "Very helpfull", label: "This review is helpful for me to decide about the product."},
+                {name: "familiarity", for_1: "Not at all helpfull", for_7: "Very helpfull", label: "This review is helpful in familiarizing me with the product."},
+                {name: "Quality", for_1: "Not at all helpfull", for_7: "Very helpfull", label: "This review is useful for me to assess the quality of the product."},
+                {name: "informative", for_1: "Not at all helpfull", for_7: "Very helpfull", label: "I find this review informative."},
+                
+                {name: "dependable", for_1: "Not at all credible", for_7: "Very credible", label: "This review is dependable."},
+                {name: "honest", for_1: "Not at all credible", for_7: "Very credible", label: "This review is honest."},
+                {name: "sincere", for_1: "Not at all credible", for_7: "Very credible", label: "This review is sincere."},
+                {name: "trustworthy", for_1: "Not at all credible", for_7: "Very credible", label: "This review is trustworthy."},
+                {name: "credible", for_1: "Not at all credible", for_7: "Very credible", label: "This review is credible."},
+                
+                {name: "consistent", for_1: "Not at all consistent", for_7: "Very consistent", label: "The information provided in this review is consistent."},
+                {name: "uniform", for_1: "Not at all uniform", for_7: "Very uniform", label: "The information provided in this review is uniform."},
+                {name: "similar", for_1: "Not at all similar", for_7: "Very similar", label: "The arguments provided in this review are similar to its rating."},
+
+                {name: "complete", for_1: "Not at all complete", for_7: "Very complete", label: "This review appears to be complete."},
+                {name: "understandable", for_1: "Not at all understandable", for_7: "Very understandable", label: "This review is easy to understand."},
+                {name: "timely", for_1: "Not at all timely", for_7: "Very timely", label: "This review is timely."},
+                {name: "accurate", for_1: "Not at all accurate", for_7: "Very accurate", label: "This review appears to be accurate."},
+                {name: "relevant", for_1: "Not at all relevant", for_7: "Very relevant", label: "This review is relevant."},
+                {name: "makes_sense", for_1: "Not at all makes sense", for_7: "Very makes sense", label: "This review makes sense"},
+                {name: "meaningful", for_1: "Not at all meaningful", for_7: "Very meaningful", label: "This review is meaningful."},
+                
+                {name: "desirable", for_1: "Not at all desirable", for_7: "Very desirable", label: "How desirable is this product in your opinion?"},
+                {name: "good", for_1: "Not at all good", for_7: "Very good", label: "How good is this product in your opinion?"},
+                {name: "worthwhile", for_1: "Not at all worthwhile", for_7: "Very worthwhile", label: "How worthwhile is this product in your opinion?"},
+                {name: "useful", for_1: "Not at all useful", for_7: "Very useful", label: "How useful is this product in your opinion?"},
+
+                {name: "undesirable", for_1: "Not at all undesirable", for_7: "Very undesirable", label: "How undesirable is this product in your opinion?"},
+                {name: "bad", for_1: "Not at all bad", for_7: "Very bad", label: "How bad is this product in your opinion?"},
+                {name: "worthless", for_1: "Not at all worthless", for_7: "Very worthless", label: "How worthless is this product in your opinion?"},
+                {name: "useless", for_1: "Not at all useless", for_7: "Very useless", label: "How useless is this product in your opinion?"},
+
+                {name: "feelings", for_1: "Very much disagree", for_7: "Very much agree", label: "I have mixed feelings about this product."},
+                {name: "opinions", for_1: "Very much disagree", for_7: "Very much agree", label: "I have mixed opinions both for and against this product, all at the same time."},
+                {name: "love_hate", for_1: "Very much disagree", for_7: "Very much agree", label: "I am torn between loving and hating this product."},
+
+                {name: "matter", for_1: "Very much disagree", for_7: "Very much agree", label: "This product really doesn't matter to me."},
+                {name: "feelings2", for_1: "Very much disagree", for_7: "Very much agree", label: "I don't have any feelings about this product at all."},
+                {name: "thought", for_1: "Very much disagree", for_7: "Very much agree", label: "I give little thought to this product."},
+                {name: "indifferent", for_1: "Very much disagree", for_7: "Very much agree", label: "I'm pretty indifferent toward this product."},
+                {name: "relevance", for_1: "Very much disagree", for_7: "Very much agree", label: "This product doesn't have much personal relevance to me."},
+                {name: "concern", for_1: "Very much disagree", for_7: "Very much agree", label: "I don't concern myself much with this product."},
+
+                {name: "confident", for_1: "Very little confidence", for_7: "A lot of confidence", label: "How confident are you of your assessments of this product?"},
+                {name: "certain", for_1: "Very little confidence", for_7: "A lot of confidence", label: "How certain are you of your assessments of this product?"}
+
             ];
     
             reviewQuestions.forEach(function(question) {
