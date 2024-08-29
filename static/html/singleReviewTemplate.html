@@ -24,37 +24,11 @@
         <br>
         <h6>Considering the review above, please answer the following questions:</h6>
     </div>
-    <div id="question_template" style="display: none;">
-        <table>
-            <td>
-                <label class="Q"></label>
-            </td>
-        </table>
-        <table class="radio">
-            <tr>
-                <td>
-                    <label class="radio_for_1" for="1"></label>
-                </td>
-                <td>
-                    <input type="radio" class="range_radio_btn" value="1" onclick="onRadioButtonClicked(this)">
-                    <input type="radio" class="range_radio_btn" value="2" onclick="onRadioButtonClicked(this)">
-                    <input type="radio" class="range_radio_btn" value="3" onclick="onRadioButtonClicked(this)">
-                    <input type="radio" class="range_radio_btn" value="4" onclick="onRadioButtonClicked(this)">
-                    <input type="radio" class="range_radio_btn" value="5" onclick="onRadioButtonClicked(this)">
-                    <input type="radio" class="range_radio_btn" value="6" onclick="onRadioButtonClicked(this)">
-                    <input type="radio" class="range_radio_btn" value="7" onclick="onRadioButtonClicked(this)">
-                </td>
-                <td>
-                    <label class="radio_for_7" for="7"></label>
-                </td>
-            </tr>    
-        </table>
-    </div>
     <script>
 
         function onTemplateInstanceLoad() {
             reviewQuestions.forEach(function(question) {
-                let q = $("#question_template").clone(true);
+                let q = $(questionTemplateHtml).clone(true);
                 q.removeAttr("id");
                 if ("label" in question && question.label != "") {
                     q.children().find(".Q").text(question.label);
@@ -62,8 +36,8 @@
                 else {
                     q.children().find(".Q").hide();
                 }
-                q.children().find(".radio_for_1").text(question.for_1);
-                q.children().find(".radio_for_7").text(question.for_7);
+                q.children().find(".radio_leftmost_text").text(question.leftmost_label);
+                q.children().find(".radio_rightmost_text").text(question.rightmost_label);
                 q.children().find(".range_radio_btn").attr("name", question.name);
                 q.appendTo(".RatingForm");
                 q.show();

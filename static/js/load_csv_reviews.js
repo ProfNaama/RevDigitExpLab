@@ -1,6 +1,8 @@
 var reviewQuestions = []
 const updateGlobalQuestions = (questions) => {reviewQuestions = questions;}
 
+var questionTemplateHtml = "";
+const updateGlobalQuestionTemplate = (question_html) => {questionTemplateHtml = question_html;}
 
 const getReviewButtonKey = function(reviewButtonElement){
     return $(reviewButtonElement).parent().parent().attr("id");
@@ -203,16 +205,16 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
     for(var didx=0; didx < allReviewsJson.length; didx++){
         var elementDataJson = allReviewsJson[didx];
         // we want the review idx to continue to advance regardless of the treatment group
-        if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){
-            var newItem = loadedElementTemplate.clone(true);
+        if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){    
+            var newItem = loadedElementTemplate.clone(true);    
             $(newItem).attr("id", elementDataJson["reviewKey"]);
     
             Object.keys(elementDataJson).forEach(columnKey => {
                 if (columnKey in csvHandlersMethods){
                     csvHandlersMethods[columnKey](newItem, elementDataJson[columnKey]);
                 }
-            });
-            $(newItem).appendTo('#reviewsContainer');
+            });    
+            $(newItem).appendTo('#reviewsContainer');    
             reviewElementsArray.push(newItem);
             // hide all reviews except the first one
             $(newItem).hide();
@@ -227,15 +229,18 @@ const loadReviesData = function(){
     defArr.push($.get('../static/html/singleReviewTemplate.html'));
     defArr.push($.get('../static/surveyData/reviews_data.csv'));
     defArr.push($.get('../static/surveyData/question_bank.csv'));
+    defArr.push($.get('../static/html/questionTemplate.html'));
     defArr.push($.get('../static/surveyData/redirect_url.txt'));
-    $.when.apply($,defArr).done(function(response1, response2, response3, response4){
+    $.when.apply($,defArr).done(function(response1, response2, response3, response4, response5){
         const reviewTemplate = "<div>" + response1[2].responseText +"</div>";
         const reviewsCsvData = response2[2].responseText;
         const questionBankCsv = response3[2].responseText;
-        const redirectPrefix = response4[2].responseText;
+        const questionHtmlTemplate = response4[2].responseText;
+        const redirectPrefix = response5[2].responseText;
         var reviewsDataJson = convertCsvToJson(reviewsCsvData);
         var questionBankJson = convertCsvToJson(questionBankCsv);
         updateGlobalQuestions(questionBankJson);
+        updateGlobalQuestionTemplate(questionHtmlTemplate);
         occupyItems($(reviewTemplate), reviewsDataJson);
         $("#FinishedBTN").attr("destination", redirectPrefix);
     });

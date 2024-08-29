@@ -1,4 +1,4 @@
-﻿name,for_1,for_7,label
+﻿name,leftmost_label,rightmost_label,label
 "decision","Not at all helpfull","Very helpfull","This review is helpful for me to decide about the product."
 "familiarity","Not at all helpfull","Very helpfull","This review is helpful in familiarizing me with the product."
 "Quality","Not at all helpfull","Very helpfull","This review is useful for me to assess the quality of the product."
