@@ -1,3 +1,5 @@
+var reviewQuestions = []
+const updateGlobalQuestions = (questions) => {reviewQuestions = questions;}
 
 
 const getReviewButtonKey = function(reviewButtonElement){
@@ -224,13 +226,16 @@ const loadReviesData = function(){
     var defArr = [];
     defArr.push($.get('../static/html/singleReviewTemplate.html'));
     defArr.push($.get('../static/surveyData/reviews_data.csv'));
+    defArr.push($.get('../static/surveyData/question_bank.csv'));
     defArr.push($.get('../static/surveyData/redirect_url.txt'));
-    $.when.apply($,defArr).done(function(response1, response2, response3){
+    $.when.apply($,defArr).done(function(response1, response2, response3, response4){
         const reviewTemplate = "<div>" + response1[2].responseText +"</div>";
         const reviewsCsvData = response2[2].responseText;
-        const redirectPrefix = response3[2].responseText;
-
+        const questionBankCsv = response3[2].responseText;
+        const redirectPrefix = response4[2].responseText;
         var reviewsDataJson = convertCsvToJson(reviewsCsvData);
+        var questionBankJson = convertCsvToJson(questionBankCsv);
+        updateGlobalQuestions(questionBankJson);
         occupyItems($(reviewTemplate), reviewsDataJson);
         $("#FinishedBTN").attr("destination", redirectPrefix);
     });
