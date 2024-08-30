@@ -13,6 +13,8 @@
     font-family: 'Manrope', sans-serif;
     padding: 2px;
     margin: 2px;
+    font-size: x-large;
+    line-height: 180%;
     /* border: 0.5px solid black; */
 }
 
@@ -247,25 +249,12 @@ p {
     display: flex;
     flex-direction: row;
 }
-/* .ratings i{
-    font-size:large;
-}
-
-.card-body {
-    width: 400px;
-}
-
-.container {
-    margin: auto;
-    width: 80%;
-    padding: 20px;
-} */
 
 .reviewerAvatar {
     float: inline-start;
     height: 100px;
     border-radius: 100%;
-    background-color: var(--gray);
+    /* background-color: var(--gray); */
 }
 
 
@@ -318,33 +307,29 @@ p {
     justify-content: center; */
 }
 
-/* .DV {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-} */
-
-td {
-    width: 30%;
+table {
+    width: 100%;
 }
 
 .radio {
-    /* background-color: var(--grayOPC); */
     text-align: center;
-    width: 45vw;
-    /* margin: 5px; */
+    width: max-content;
     margin: auto ;
-
+    /* background-color: var(--grayOPC);
+    border-radius: 15px; */
 }
 
 label.Q {
-    /* border: 1px solid black; */
     background-color: var(--grayOPC);
     border-radius: 15px;
     padding-left: 15px;
     margin: 0px;
     width: 100%;
     margin-top: 30px;
+}
+
+.range_radio_btn {
+    height:18px; width:18px; vertical-align: middle;
 }
 
 
