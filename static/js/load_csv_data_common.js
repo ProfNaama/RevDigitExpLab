@@ -118,7 +118,7 @@ const getRandomTreatmentGroup = function(reviewSubjectElementsJson){
 const submitSurvey = function() {
     // the query parameter "UID" must be found in the url query string, as passed on from the feeding platform
     // UID is the user ID
-    const UNIQUE_USER_KEY = "UID";
+    const UNIQUE_USER_KEY = "PID";
     
     let urlParams = (new URL(window.location)).searchParams;
     var userID = urlParams.get(UNIQUE_USER_KEY);
