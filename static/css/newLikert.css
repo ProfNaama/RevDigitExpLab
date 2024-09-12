@@ -4,6 +4,7 @@
     --orange_D: rgb(255, 135, 66);
     --orange: rgb(255, 173, 72);
     --yellow: rgb(255, 204, 75);
+    --yellowOPC: rgb(255, 204, 75, 0.5);
     --gray: rgb(230, 230, 223); 
     --grayOPC: rgb(230, 230, 223, 0.3); 
 }
@@ -18,22 +19,22 @@
 }
 
 
-/* .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+.q_instructions {
+    /* text-align: center;
+    margin-bottom: 20px; */
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0; 
+    background-color: var(--yellowOPC);
+    padding: 10px;
+    margin: 6px;
+    z-index: 10; 
+    border-radius: 14px;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     margin-bottom: 20px;
 }
 
@@ -45,10 +46,13 @@ thead th {
 }
 
 th, td {
-    border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
     font-weight: 300; 
+}
+
+.RatingFormQuestions tr {
+    border: 1px solid var(--gray);
 }
 
 th {
@@ -56,11 +60,11 @@ th {
 }
 
 .likertStatement {
-    width: 30%;
+    width: 51%;
 }
 
 .likertRadio {
-    width: 10%;
+    width: 7%;
 }
 
 input[type="radio"] {
@@ -72,11 +76,11 @@ input[type="radio"] {
 .formSubmit {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 6px;
     background-color: var(--orange);
     color: #fff;
     border: none;
-    border-radius: 16px;
+    border-radius: 14px;
     cursor: pointer;
     font-size: 16px;
 }
