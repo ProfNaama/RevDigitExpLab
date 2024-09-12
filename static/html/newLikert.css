@@ -1,0 +1,86 @@
+:root {
+    --red_D: rgb(251, 80, 60);
+    --red: rgb(255, 100, 61);
+    --orange_D: rgb(255, 135, 66);
+    --orange: rgb(255, 173, 72);
+    --yellow: rgb(255, 204, 75);
+    --gray: rgb(230, 230, 223); 
+    --grayOPC: rgb(230, 230, 223, 0.3); 
+}
+
+* {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Manrope', sans-serif;
+    padding: 2px;
+    margin: 2px;
+    font-size: large;
+    line-height: 180%;
+}
+
+
+/* .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead th {
+    background-color: #f2f2f2;
+    font-weight: 300; 
+    font-size: smaller;
+    /* font-family: 'Arial', sans-serif; */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-weight: 300; 
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.likertStatement {
+    width: 30%;
+}
+
+.likertRadio {
+    width: 10%;
+}
+
+input[type="radio"] {
+    margin: 0;
+}
+
+
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: var(--red);
+}
