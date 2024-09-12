@@ -135,7 +135,8 @@ const submitSurvey = function() {
         return;
     }
 
-    let submitUrlBase = $("#FinishedBTN").attr("destination");
+    let submitUrlBase = submitDestinationUrl;
+    
     if (submitUrlBase.search("\\?") == -1){
         submitUrlBase += "?";
     }

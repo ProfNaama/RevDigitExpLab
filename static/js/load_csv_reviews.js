@@ -8,48 +8,37 @@ const getReviewButtonKey = function(reviewButtonElement){
     return $(reviewButtonElement).parent().parent().attr("id");
 }
 
-var currentReviewIdx = 0;
+var submitDestinationUrl="";
+
+let currentReviewIdx = 0;
 var reviewElementsArray = [];
 
-const renderSubmitButton = function() {
+const renderFormSubmitButton = function() {
     if (currentReviewIdx == reviewElementsArray.length - 1) {
-        $("#FinishedBTN").show();
-        $("#nextBTN").hide();
-        
+        $(reviewElementsArray[currentReviewIdx]).find(".formSubmit").val("Submit Survey")
     }
     else {
-        $("#FinishedBTN").hide();
-        $("#nextBTN").show();
+        $(reviewElementsArray[currentReviewIdx]).find(".formSubmit").val("Next Review")
     }
 }
 
-const nextReviewClicked = function(reviewButtonElement){
-    if (currentReviewIdx < reviewElementsArray.length - 1){
-        $(reviewElementsArray[currentReviewIdx]).hide();
-        currentReviewIdx++;
-        $(reviewElementsArray[currentReviewIdx]).show();
+const nextReviewClicked = function(reviewButtonElement) {
+    if (currentReviewIdx == reviewElementsArray.length - 1) {
+        submitSurvey();
+        return;
     }
+
+    $(reviewElementsArray[currentReviewIdx]).hide();
+    currentReviewIdx++;
+    $(reviewElementsArray[currentReviewIdx]).show();
+
     document.body.scrollTop = document.documentElement.scrollTop = 0
-    renderSubmitButton();
-}
-
-const usefullReviewClicked = function(reviewButtonElement){
-    const currentElementKey = getReviewButtonKey(reviewButtonElement);
-    reviewButtonElement.style.border = "1px solid var(--red)";
-    addPairToQuestionairData(currentElementKey, "1");
-    $(reviewButtonElement).attr("onclick", "usefullReviewUnClicked(this)");
+    renderFormSubmitButton();
 }
 
 const onRadioButtonClicked = function(radioBtnElement){
     const currentElementKey =  $(radioBtnElement).parent().parent().parent().parent().parent().parent().parent().parent().attr("id");
     addPairToQuestionairData(currentElementKey + "_" + radioBtnElement.name, radioBtnElement.value);
-}
-
-const usefullReviewUnClicked = function(reviewButtonElement){
-    const currentElementKey = getReviewButtonKey(reviewButtonElement);
-    reviewButtonElement.style.border = "1px solid black";
-    addPairToQuestionairData(currentElementKey, "0");
-    $(reviewButtonElement).attr("onclick", "usefullReviewClicked(this)");
 }
 
 const textElementHandler = function(jqueryLocator){
@@ -221,7 +210,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
         }
     }
     $(reviewElementsArray[currentReviewIdx]).show();
-    renderSubmitButton();
+    renderFormSubmitButton();
 }
 
 const loadReviesData = function(){
@@ -236,12 +225,11 @@ const loadReviesData = function(){
         const reviewsCsvData = response2[2].responseText;
         const questionBankCsv = response3[2].responseText;
         const questionHtmlTemplate = response4[2].responseText;
-        const redirectPrefix = response5[2].responseText;
+        submitDestinationUrl = response5[2].responseText;
         var reviewsDataJson = convertCsvToJson(reviewsCsvData);
         var questionBankJson = convertCsvToJson(questionBankCsv);
         updateGlobalQuestions(questionBankJson);
         updateGlobalQuestionTemplate(questionHtmlTemplate);
         occupyItems($(reviewTemplate), reviewsDataJson);
-        $("#FinishedBTN").attr("destination", redirectPrefix);
     });
 };

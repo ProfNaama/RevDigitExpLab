@@ -18,11 +18,28 @@
     <p class="reviewReviewSubjectName"></p>
     <p class="reviewText"></p>
 
-    <!-- <input class="UsefullBTN" type="button" value="useful" onclick="usefullReviewClicked(this)"> -->
-    
     <div class="RatingForm" action="">
         <br>
         <h6>Considering the review above, please answer the following questions:</h6>
+        <form action="javascript:nextReviewClicked()">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Strongly disagree</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Strongly agree</th>
+                    </tr>
+                </thead>
+                <tbody class="RatingFormQuestions">
+                </tbody>
+            </table>
+            <input type="submit" class="formSubmit" value="Next Review">
+        </form>
     </div>
     <script>
 
@@ -31,16 +48,11 @@
                 let q = $(questionTemplateHtml).clone(true);
                 q.removeAttr("id");
                 if ("label" in question && question.label != "") {
-                    q.children().find(".Q").text(question.label);
+                    q.find(".Q").text(question.label);
+                    q.find(".range_radio_btn").attr("name", question.name);
+                    q.appendTo(".RatingFormQuestions");
+                    q.show();
                 }
-                else {
-                    q.children().find(".Q").hide();
-                }
-                q.children().find(".radio_leftmost_text").text(question.leftmost_label);
-                q.children().find(".radio_rightmost_text").text(question.rightmost_label);
-                q.children().find(".range_radio_btn").attr("name", question.name);
-                q.appendTo(".RatingForm");
-                q.show();
             });
         }
         onTemplateInstanceLoad();
