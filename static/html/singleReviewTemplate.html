@@ -21,38 +21,26 @@
         <h6 class="q_instructions">Considering the information above, please answer the following questions:</h6>
         <div class="RatingForm" action="">
             <br>
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Strongly disagree</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>Strongly agree</th>
-                        </tr>
-                    </thead>
-                    <tbody class="RatingFormQuestions">
-                    </tbody>
-                </table>
+            <table class="ratingGroupTableTemplate" hidden>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="ratingFormLeftmostText"></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th class="ratingFormRightmostText"></th>
+                    </tr>
+                </thead>
+                <tbody class="RatingFormQuestions">
+                </tbody>
+            </table>
         </div>
-        <script>
-            function onTemplateInstanceLoad() {
-                reviewQuestions.forEach(function(question) {
-                    let q = $(questionTemplateHtml).clone(true);
-                    q.removeAttr("id");
-                    if ("label" in question && question.label != "") {
-                        q.find(".Q").text(question.label);
-                        q.find(".range_radio_btn").attr("name", question.name);
-                        q.appendTo(".RatingFormQuestions");
-                        q.show();
-                    }
-                });
-            }
-            onTemplateInstanceLoad();
-        </script>
         <input type="submit" class="formSubmit" value="">
     </form>
 </div>
+<script>
+    onTemplateInstanceLoad();
+</script>

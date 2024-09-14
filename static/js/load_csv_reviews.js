@@ -213,6 +213,47 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
     renderFormSubmitButton();
 }
 
+function groupLikertQuestions(likertQuestions) {
+    let groupedQuestions = {};
+    likertQuestions.forEach(function(question) {
+        let key = question["leftmost_label"] + ";" + question["rightmost_label"];
+        if (!(key in groupedQuestions)) {
+            groupedQuestions[key] = [];
+        }
+        groupedQuestions[key].push(question);
+    });
+    return groupedQuestions;
+};
+
+function onTemplateInstanceLoad() {
+    let ratingForms = $(".RatingForm");
+    let ratingForm = $(ratingForms[ratingForms.length - 1]);
+    let groupedQuestions = groupLikertQuestions(reviewQuestions);
+    Object.keys(groupedQuestions).forEach(function(key) {
+        let group = groupedQuestions[key];
+        let groupLeftLabel = group[0]["leftmost_label"];
+        let groupRightLabel = group[0]["rightmost_label"];
+        let currentRableElement = ratingForm.find(".ratingGroupTableTemplate").clone(true);
+        currentRableElement.removeAttr("hidden");
+        currentRableElement.attr("class", "ratingGroupTable");
+        currentRableElement.find(".ratingFormLeftmostText").text(groupLeftLabel);
+        currentRableElement.find(".ratingFormRightmostText").text(groupRightLabel);
+        let formQuestions = currentRableElement.find(".RatingFormQuestions")
+
+        group.forEach(function(question) {
+            let q = $(questionTemplateHtml).clone(true);
+            q.removeAttr("id");
+            if ("label" in question && question.label != "") {
+                q.find(".Q").text(question.label);
+                q.find(".range_radio_btn").attr("name", question.name);
+                q.appendTo(formQuestions);
+                q.show();
+            }
+        });
+        currentRableElement.appendTo(ratingForm);
+    });
+}
+
 const loadReviesData = function(){
     var defArr = [];
     defArr.push($.get('../static/html/singleReviewTemplate.html'));
