@@ -214,23 +214,22 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
 }
 
 function groupLikertQuestions(likertQuestions) {
-    let groupedQuestions = {};
+    let groupedQuestions = [];
     likertQuestions.forEach(function(question) {
         let key = question["leftmost_label"] + ";" + question["rightmost_label"];
-        if (!(key in groupedQuestions)) {
-            groupedQuestions[key] = [];
+        if (groupedQuestions.length == 0 || groupedQuestions[groupedQuestions.length - 1].key != key) {
+            groupedQuestions.push({key: key, questions: []});
         }
-        groupedQuestions[key].push(question);
+        groupedQuestions[groupedQuestions.length - 1].questions.push(question);
     });
-    return groupedQuestions;
+    return groupedQuestions.map(function(group) {return group.questions;});
 };
 
 function onTemplateInstanceLoad() {
     let ratingForms = $(".RatingForm");
     let ratingForm = $(ratingForms[ratingForms.length - 1]);
     let groupedQuestions = groupLikertQuestions(reviewQuestions);
-    Object.keys(groupedQuestions).forEach(function(key) {
-        let group = groupedQuestions[key];
+    groupedQuestions.forEach(function(group) {
         let groupLeftLabel = group[0]["leftmost_label"];
         let groupRightLabel = group[0]["rightmost_label"];
         let currentRableElement = ratingForm.find(".ratingGroupTableTemplate").clone(true);
