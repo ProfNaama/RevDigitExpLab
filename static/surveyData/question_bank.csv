@@ -1,39 +1,40 @@
 ﻿name,leftmost_label,rightmost_label,label
-"decision","Not at all helpfull","Very helpfull","This review is helpful for me to decide about the product."
-"familiarity","Not at all helpfull","Very helpfull","This review is helpful in familiarizing me with the product."
-"Quality","Not at all helpfull","Very helpfull","This review is useful for me to assess the quality of the product."
-"informative","Not at all helpfull","Very helpfull","I find this review informative."
-"dependable","Not at all credible","Very credible","This review is dependable."
-"honest","Not at all credible","Very credible","This review is honest."
-"sincere","Not at all credible","Very credible","This review is sincere."
-"trustworthy","Not at all credible","Very credible","This review is trustworthy."
-"credible","Not at all credible","Very credible","This review is credible."
-"consistent","Not at all consistent","Very consistent","The information provided in this review is consistent."
-"uniform","Not at all uniform","Very uniform","The information provided in this review is uniform."
-"similar","Not at all similar","Very similar","The arguments provided in this review are similar to its rating."
-"complete","Not at all complete","Very complete","This review appears to be complete."
-"understandable","Not at all understandable","Very understandable","This review is easy to understand."
-"timely","Not at all timely","Very timely","This review is timely."
-"accurate","Not at all accurate","Very accurate","This review appears to be accurate."
-"relevant","Not at all relevant","Very relevant","This review is relevant."
-"makes_sense","Not at all makes sense","Very makes sense","This review makes sense"
-"meaningful","Not at all meaningful","Very meaningful","This review is meaningful."
-"desirable","Not at all desirable","Very desirable","How desirable is this product in your opinion?"
-"good","Not at all good","Very good","How good is this product in your opinion?"
-"worthwhile","Not at all worthwhile","Very worthwhile","How worthwhile is this product in your opinion?"
-"useful","Not at all useful","Very useful","How useful is this product in your opinion?"
-"undesirable","Not at all undesirable","Very undesirable","How undesirable is this product in your opinion?"
-"bad","Not at all bad","Very bad","How bad is this product in your opinion?"
-"worthless","Not at all worthless","Very worthless","How worthless is this product in your opinion?"
-"useless","Not at all useless","Very useless","How useless is this product in your opinion?"
-"feelings","Very much disagree","Very much agree","I have mixed feelings about this product."
-"opinions","Very much disagree","Very much agree","I have mixed opinions both for and against this product, all at the same time."
-"love_hate","Very much disagree","Very much agree","I am torn between loving and hating this product."
-"matter","Very much disagree","Very much agree","This product really doesn't matter to me."
-"feelings2","Very much disagree","Very much agree","I don't have any feelings about this product at all."
-"thought","Very much disagree","Very much agree","I give little thought to this product."
-"indifferent","Very much disagree","Very much agree","I'm pretty indifferent toward this product."
-"relevance","Very much disagree","Very much agree","This product doesn't have much personal relevance to me."
-"concern","Very much disagree","Very much agree","I don't concern myself much with this product."
-"confident","Very little confidence","A lot of confidence","How confident are you of your assessments of this product?"
-"certain","Very little confidence","A lot of confidence","How certain are you of your assessments of this product?"
+decision,Strongly disagree,Strongly agree,This review is helpful for me to decide about the product.
+familiarity,Strongly disagree,Strongly agree,This review is helpful in familiarizing me with the product.
+Quality,Strongly disagree,Strongly agree,This review is useful for me to assess the quality of the product.
+informative,Strongly disagree,Strongly agree,I find this review informative.
+dependable,Strongly disagree,Strongly agree,This review is dependable.
+honest,Strongly disagree,Strongly agree,This review is honest.
+sincere,Strongly disagree,Strongly agree,This review is sincere.
+trustworthy,Strongly disagree,Strongly agree,This review is trustworthy.
+credible,Strongly disagree,Strongly agree,This review is credible.
+consistent,Strongly disagree,Strongly agree,The information provided in this review is consistent.
+uniform,Strongly disagree,Strongly agree,The information provided in this review is uniform.
+similar,Strongly disagree,Strongly agree,The arguments provided in this review are similar to its rating.
+complete,Strongly disagree,Strongly agree,This review appears to be complete.
+understandable,Strongly disagree,Strongly agree,This review is easy to understand.
+timely,Strongly disagree,Strongly agree,This review is timely.
+accurate,Strongly disagree,Strongly agree,This review appears to be accurate.
+relevant,Strongly disagree,Strongly agree,This review is relevant.
+makes_sense,Strongly disagree,Strongly agree,This review makes sense
+meaningful,Strongly disagree,Strongly agree,This review is meaningful.
+desirable,Not at all desirable,Very desirable,How desirable is this product in your opinion?
+good,Not at all good,Very good,How good is this product in your opinion?
+worthwhile,Not at all worthwhile,Very worthwhile,How worthwhile is this product in your opinion?
+useful,Not at all useful,Very useful,How useful is this product in your opinion?
+undesirable,Not at all undesirable,Very undesirable,How undesirable is this product in your opinion?
+bad,Not at all bad,Very bad,How bad is this product in your opinion?
+worthless,Not at all worthless,Very worthless,How worthless is this product in your opinion?
+useless,Not at all useless,Very useless,How useless is this product in your opinion?
+feelings,Strongly disagree,Strongly agree,I have mixed feelings about this product.
+opinions,Strongly disagree,Strongly agree,"I have mixed opinions both for and against this product, all at the same time."
+love_hate,Strongly disagree,Strongly agree,I am torn between loving and hating this product.
+matter,Strongly disagree,Strongly agree,This product really doesn't matter to me.
+feelings2,Strongly disagree,Strongly agree,I don't have any feelings about this product at all.
+thought,Strongly disagree,Strongly agree,I give little thought to this product.
+indifferent,Strongly disagree,Strongly agree,I'm pretty indifferent toward this product.
+relevance,Strongly disagree,Strongly agree,This product doesn't have much personal relevance to me.
+concern,Strongly disagree,Strongly agree,I don't concern myself much with this product.
+confident,Very little confidence,A lot of confidence,How confident are you of your assessments of this product?
+certain,Very little confidence,A lot of confidence,How certain are you of your assessments of this product?
+,,,

@@ -76,12 +76,13 @@ input[type="radio"] {
 
 .formSubmit {
     display: block;
-    width: 100%;
+    width: 20%;
     padding: 6px;
+    margin: auto;
     background-color: var(--orange);
     color: #fff;
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
     cursor: pointer;
     font-size: 16px;
 }
@@ -89,3 +90,5 @@ input[type="radio"] {
 .formSubmit:hover {
     background-color: var(--red);
 }
+
+
