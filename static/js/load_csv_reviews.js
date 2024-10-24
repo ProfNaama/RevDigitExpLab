@@ -22,6 +22,16 @@ const renderFormSubmitButton = function() {
     }
 }
 
+const delayQuestionFormMillis = 10 * 1000; // 10 seconds
+const enableReviewWithHiddenQuestions = function(currentReviewIdx){
+    $(reviewElementsArray[currentReviewIdx]).show();
+    $(reviewElementsArray[currentReviewIdx]).find(".RatingForm").hide();
+    setTimeout(() => {
+        $(reviewElementsArray[currentReviewIdx]).find(".RatingForm").show();
+
+    }, delayQuestionFormMillis);
+};
+
 const nextReviewClicked = function(reviewButtonElement) {
     if (currentReviewIdx == reviewElementsArray.length - 1) {
         submitSurvey();
@@ -30,8 +40,7 @@ const nextReviewClicked = function(reviewButtonElement) {
 
     $(reviewElementsArray[currentReviewIdx]).hide();
     currentReviewIdx++;
-    $(reviewElementsArray[currentReviewIdx]).show();
-
+    enableReviewWithHiddenQuestions(currentReviewIdx);
     document.body.scrollTop = document.documentElement.scrollTop = 0
     renderFormSubmitButton();
 }
@@ -209,7 +218,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
             $(newItem).hide();
         }
     }
-    $(reviewElementsArray[currentReviewIdx]).show();
+    enableReviewWithHiddenQuestions(currentReviewIdx);
     renderFormSubmitButton();
 }
 
