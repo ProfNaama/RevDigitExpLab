@@ -52,6 +52,13 @@ footer {
     
 }
 
+.mainHeader {
+    height: 100px;
+    background-image: url(../surveyData/graphics/LogoBig.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 p {
     line-height: 200%;
 }
