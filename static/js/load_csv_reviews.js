@@ -128,33 +128,48 @@ const csvHandlersMethods = {
     reviewSubjectName:textElementHandler(".reviewReviewSubjectName")
 };
 
-const occupySummaryStars = function(reviewSubjectElementsData){
+const occupySummaryStars = function(reviewSubjectElementsData, newItem = null){
     let ratingSum = 0.0;
     reviewSubjectElementsData.forEach(element => {
         ratingSum += parseFloat(element["reviewStars"]);
     });
     let avgRatingPercent = (ratingSum * 100) / reviewSubjectElementsData.length;
-    
-    $(".star-over").each((idx, starElement) => {
-        if (avgRatingPercent >= 100.0){
-            $(starElement).removeClass("empty-star");
-            $(starElement).addClass("full-star");
-        }
-        else if (avgRatingPercent > 0){
-            $(starElement).removeClass("empty-star");
-            $(starElement).addClass("partially-full-star");
-            starElement.style.width =  "" + avgRatingPercent + "%";
+    if (newItem == null){
+        $(".star-over").each((idx, starElement) => {
+            if (avgRatingPercent >= 100.0){
+                $(starElement).removeClass("empty-star");
+                $(starElement).addClass("full-star");
+            }
+            else if (avgRatingPercent > 0){
+                $(starElement).removeClass("empty-star");
+                $(starElement).addClass("partially-full-star");
+                starElement.style.width =  "" + avgRatingPercent + "%";
 
-        }
-        avgRatingPercent -= 100.0;
-    });
-    $(".avg-rating-num").text("" + Math.round((ratingSum / reviewSubjectElementsData.length) * 10) / 10);
-    $(".count_of_revs").text("(" + reviewSubjectElementsData.length + " reviews)");
-    
-    
+            }
+            avgRatingPercent -= 100.0;
+        });
+        $(".avg-rating-num").text("" + Math.round((ratingSum / reviewSubjectElementsData.length) * 10) / 10);
+        $(".count_of_revs").text("(" + reviewSubjectElementsData.length + " reviews)");
+    } else {
+        $(newItem.children().find(".star-over")).each((idx, starElement) => {
+            if (avgRatingPercent >= 100.0){
+                $(starElement).removeClass("empty-star");
+                $(starElement).addClass("full-star");
+            }
+            else if (avgRatingPercent > 0){
+                $(starElement).removeClass("empty-star");
+                $(starElement).addClass("partially-full-star");
+                starElement.style.width =  "" + avgRatingPercent + "%";
+
+            }
+            avgRatingPercent -= 100.0;
+        });
+        $(newItem.children().find(".avg-rating-num")).text("" + Math.round((ratingSum / reviewSubjectElementsData.length) * 10) / 10);
+        $(newItem.children().find(".count_of_revs")).text("(" + reviewSubjectElementsData.length + " reviews)");
+    }
 }
 
-const occupyStarBars = function(reviewSubjectElementsData){
+const occupyStarBars = function(reviewSubjectElementsData, newItem = null){
     let starsSummary = new Array(0, 0, 0, 0, 0, 0);
     let starsClassNames = new Array(".zero_stars", ".one_stars", ".two_stars", ".three_stars", ".four_stars", ".five_stars");
     reviewSubjectElementsData.forEach(element => {
@@ -174,7 +189,12 @@ const occupyStarBars = function(reviewSubjectElementsData){
     });
     starsSummary.forEach((currentStarCount, i) => {
         let currentStarsClassName = starsClassNames[i];
-        let element = $(".overall_Star_rating").children().find(currentStarsClassName);
+        let element = [];
+        if (newItem == null){
+            element = $(".overall_Star_rating").children().find(currentStarsClassName);
+        } else {
+            element = $(newItem.children().find(".overall_Star_rating")).children().find(currentStarsClassName);
+        }
         if (element.length > 0){
             element[0].style.width = (currentStarCount / reviewSubjectElementsData.length) * 100 + "%";
         }
@@ -182,30 +202,39 @@ const occupyStarBars = function(reviewSubjectElementsData){
 
 }
 
-const occupySummaryData = function(reviewSubjectElementsData){
-    occupySummaryStars(reviewSubjectElementsData);
-    occupyStarBars(reviewSubjectElementsData);
+const occupySummaryData = function(reviewSubjectElementsData, newItem = null){
+    console.log(reviewSubjectElementsData);
+    console.log("newItem" + JSON.stringify($(newItem)));
+    occupySummaryStars(reviewSubjectElementsData, newItem);
+    occupyStarBars(reviewSubjectElementsData, newItem);
     let firstReviewInfo = reviewSubjectElementsData[0];
-    $(".resName").text(firstReviewInfo["reviewSubjectName"]);
-    $(".resTag").text(firstReviewInfo["reviewSubjectDescription"] + firstReviewInfo["reviewSubjectLocation"]);
     let imageUrl = "url(../static/surveyData/graphics/reviewSubjects/"+ firstReviewInfo["reviewSubjectImage"] + ")";
     imageUrl += ("," + imageUrl);
-    $(".resHeader")[0].style["background-image"] = imageUrl;
+    if (newItem == null){
+        $(".resName").text(firstReviewInfo["reviewSubjectName"]);
+        $(".resTag").text(firstReviewInfo["reviewSubjectDescription"] + firstReviewInfo["reviewSubjectLocation"]);
+        $(".resHeader")[0].style["background-image"] = imageUrl;
+    } else {
+        $(newItem.children().find(".resName")).text(firstReviewInfo["reviewSubjectName"]);
+        $(newItem.children().find(".resTag")).text(firstReviewInfo["reviewSubjectDescription"] + firstReviewInfo["reviewSubjectLocation"]);
+        $(newItem.children().find(".resHeader"))[0].style["background-image"] = imageUrl;
+    }
 }
 
 const occupyItems = function(loadedElementTemplate, allReviewsJson){
     const treatmentGroup = getRandomTreatmentGroup(allReviewsJson);
     clearAllPairStartingWithKey("");
     let treatmentGroupElementsJson = allReviewsJson.filter(e => e["treatmentGroup"] == treatmentGroup);
-    occupySummaryData(treatmentGroupElementsJson);
+    //occupySummaryData(treatmentGroupElementsJson);
     
 
     for(var didx=0; didx < allReviewsJson.length; didx++){
         var elementDataJson = allReviewsJson[didx];
         // we want the review idx to continue to advance regardless of the treatment group
         if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){    
-            var newItem = loadedElementTemplate.clone(true);    
+            let newItem = loadedElementTemplate.clone(true);    
             $(newItem).attr("id", elementDataJson["reviewKey"]);
+            occupySummaryData([elementDataJson], newItem);
     
             Object.keys(elementDataJson).forEach(columnKey => {
                 if (columnKey in csvHandlersMethods){
