@@ -203,8 +203,6 @@ const occupyStarBars = function(reviewSubjectElementsData, newItem = null){
 }
 
 const occupySummaryData = function(reviewSubjectElementsData, newItem = null){
-    console.log(reviewSubjectElementsData);
-    console.log("newItem" + JSON.stringify($(newItem)));
     occupySummaryStars(reviewSubjectElementsData, newItem);
     occupyStarBars(reviewSubjectElementsData, newItem);
     let firstReviewInfo = reviewSubjectElementsData[0];
@@ -254,11 +252,13 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
 function groupLikertQuestions(likertQuestions) {
     let groupedQuestions = [];
     likertQuestions.forEach(function(question) {
-        let key = question["leftmost_label"] + ";" + question["rightmost_label"];
-        if (groupedQuestions.length == 0 || groupedQuestions[groupedQuestions.length - 1].key != key) {
-            groupedQuestions.push({key: key, questions: []});
+        if (question["label"] && question["label"] != "") {
+            let key = question["leftmost_label"] + ";" + question["rightmost_label"];
+            if (groupedQuestions.length == 0 || groupedQuestions[groupedQuestions.length - 1].key != key) {
+                groupedQuestions.push({key: key, questions: []});
+            }
+            groupedQuestions[groupedQuestions.length - 1].questions.push(question);
         }
-        groupedQuestions[groupedQuestions.length - 1].questions.push(question);
     });
     return groupedQuestions.map(function(group) {return group.questions;});
 };
@@ -268,25 +268,36 @@ function onTemplateInstanceLoad() {
     let ratingForm = $(ratingForms[ratingForms.length - 1]);
     let groupedQuestions = groupLikertQuestions(reviewQuestions);
     groupedQuestions.forEach(function(group) {
-        let groupLeftLabel = group[0]["leftmost_label"];
-        let groupRightLabel = group[0]["rightmost_label"];
-        let currentRableElement = ratingForm.find(".ratingGroupTableTemplate").clone(true);
-        currentRableElement.removeAttr("hidden");
-        currentRableElement.attr("class", "ratingGroupTable");
-        currentRableElement.find(".ratingFormLeftmostText").text(groupLeftLabel);
-        currentRableElement.find(".ratingFormRightmostText").text(groupRightLabel);
-        let formQuestions = currentRableElement.find(".RatingFormQuestions")
+        let is_likert = group[0]["is_likert"];
+        let is_label = group[0]["is_label"];
 
-        group.forEach(function(question) {
-            let q = $(questionTemplateHtml).clone(true);
-            q.removeAttr("id");
-            if ("label" in question && question.label != "") {
-                q.find(".Q").text(question.label);
-                q.find(".range_radio_btn").attr("name", question.name);
-                q.appendTo(formQuestions);
-                q.show();
-            }
-        });
+        let currentRableElement = ratingForm.find(".ratingGroupTableTemplate").clone(true);
+        if (is_likert == "1") {
+            let groupLeftLabel = group[0]["leftmost_label"];
+            let groupRightLabel = group[0]["rightmost_label"];
+            currentRableElement.removeAttr("hidden");
+            currentRableElement.attr("class", "ratingGroupTable");
+            currentRableElement.find(".ratingFormLeftmostText").text(groupLeftLabel);
+            currentRableElement.find(".ratingFormRightmostText").text(groupRightLabel);
+            let formQuestions = currentRableElement.find(".RatingFormQuestions")
+
+            group.forEach(function(question) {
+                let q = $(questionTemplateHtml).clone(true);
+                q.removeAttr("id");
+                if ("label" in question && question.label != "") {
+                    q.find(".Q").text(question.label);
+                    q.find(".range_radio_btn").attr("name", question.name);
+                    q.appendTo(formQuestions);
+                    q.show();
+                }
+            });
+        }
+        if (is_label == "1") {
+            // TODO: this is just a placeholder. Need to style this differently
+            currentRableElement.removeAttr("hidden");
+            currentRableElement.attr("class", "ratingGroupTable");
+            currentRableElement.find(".ratingFormLeftmostText").text(group[0]["label"]);
+        }
         currentRableElement.appendTo(ratingForm);
     });
 }
