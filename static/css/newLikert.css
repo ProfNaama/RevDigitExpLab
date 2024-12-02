@@ -33,10 +33,9 @@
 }
 
 .Q_label {
-
-    position: -webkit-sticky; 
+    /* position: -webkit-sticky; 
     position: sticky;
-    top: 0;  
+    top: 0;   */
     background-color: var(--yellowOPC);
     padding: 10px;
     margin: 6px;
