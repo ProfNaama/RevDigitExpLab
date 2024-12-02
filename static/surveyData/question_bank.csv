@@ -8,11 +8,11 @@ Credibility_trustworthy,Strongly disagree,Strongly agree,This review is trustwor
 Credibility_credible,Strongly disagree,Strongly agree,This review is credible.,1,0
 Consistency_mc,Strongly disagree,Strongly agree,The arguments provided in this review are similar to its rating.,1,0
 Quality,Very low,Very high,How would you rate the quality of this review?,1,0
-Ambivalence_pos_Instructions,,,"Considering only the favorable, good and reliable aspects of the online store described in the review above, answer the following questions:",0,1
+Ambivalence_pos_Instructions,,,"Considering only the favorable, good and reliable aspects of the store described in the review above, answer the following questions:",0,1
 Ambivalence_pos_favorable,Not at all favorable,Very favorable,How favorable is this store in your opinion?,1,0
 Ambivalence_pos_good,Not at all good,Very good,How good is this store in your opinion?,1,0
 Ambivalence_pos_reliable,Not at all reliable,Very reliable,How reliable is this store in your opinion?,1,0
-Ambivalence_neg_Instructions,,,"Considering only the unfavorable, bad and unreliable aspects of the online store described in the review above, answer the following questions:",0,1
+Ambivalence_neg_Instructions,,,"Considering only the unfavorable, bad and unreliable aspects of the store described in the review above, answer the following questions:",0,1
 Ambivalence_neg_unfavorable,Not at all unfavorable,Very unfavorable,How unfavorable is this store in your opinion?,1,0
 Ambivalence_neg_bad,Not at all bad,Very bad,How bad is this store in your opinion?,1,0
 Ambivalence_neg_unreliable,Not at all unreliable,Very unreliable,How unreliable is this store in your opinion?,1,0
@@ -23,6 +23,6 @@ Subjective_ambvlnc_love_hate,Strongly disagree,Strongly agree,I am torn between 
 indifference_indifferent,Strongly disagree,Strongly agree,I'm pretty indifferent toward this store.,1,0
 indifference_relevance,Strongly disagree,Strongly agree,This store doesn't have much relevance to me.,1,0
 indifference_concern,Strongly disagree,Strongly agree,I don't concern myself much with this store.,1,0
-Asses_instructions,,,"Considering your assessments above, please answer these last two questions:",0,1
+Asses_instructions,,,"Considering the answers you have provided above, please answer these last two questions:",0,1
 Asses_confident,Very low ,Very high,What is your level of confidence in your assessments of the store?,1,0
 Asses_certain,Very low ,Very high,What is your level of certainty in your assessments of the store?,1,0
