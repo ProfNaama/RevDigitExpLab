@@ -223,14 +223,8 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
     const treatmentGroup = getRandomTreatmentGroup(allReviewsJson);
     clearAllPairStartingWithKey("");
     let treatmentGroupElementsJson = allReviewsJson.filter(e => e["treatmentGroup"] == treatmentGroup);
-    //occupySummaryData(treatmentGroupElementsJson);
-    
-
-    for(var didx=0; didx < allReviewsJson.length; didx++){
-        var elementDataJson = allReviewsJson[didx];
-        // we want the review idx to continue to advance regardless of the treatment group
-        if (parseInt(elementDataJson["treatmentGroup"]) == treatmentGroup){    
-            let newItem = loadedElementTemplate.clone(true);    
+    treatmentGroupElementsJson.forEach(elementDataJson => {
+        let newItem = loadedElementTemplate.clone(true);    
             $(newItem).attr("id", elementDataJson["reviewKey"]);
             occupySummaryData([elementDataJson], newItem);
     
@@ -243,8 +237,7 @@ const occupyItems = function(loadedElementTemplate, allReviewsJson){
             reviewElementsArray.push(newItem);
             // hide all reviews except the first one
             $(newItem).hide();
-        }
-    }
+    });
     enableReviewWithHiddenQuestions(currentReviewIdx);
     renderFormSubmitButton();
 }
@@ -293,10 +286,10 @@ function onTemplateInstanceLoad() {
             });
         }
         if (is_label == "1") {
-            // TODO: this is just a placeholder. Need to style this differently
-            currentRableElement.removeAttr("hidden");
-            currentRableElement.attr("class", "ratingGroupTable");
-            currentRableElement.find(".ratingFormLeftmostText").text(group[0]["label"]);
+            let h6Element = $("<h6>");
+            h6Element.attr("class", "Q_label");
+            h6Element.text(group[0]["label"]);
+            currentRableElement = h6Element;
         }
         currentRableElement.appendTo(ratingForm);
     });

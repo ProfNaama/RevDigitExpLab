@@ -4,7 +4,7 @@
     --orange_D: rgb(255, 135, 66);
     --orange: rgb(255, 173, 72);
     --yellow: rgb(255, 204, 75);
-    --yellowOPC: rgb(255, 204, 75, 0.5);
+    --yellowOPC: rgb(253, 228, 165);
     --gray: rgb(230, 230, 223); 
     --grayOPC: rgb(230, 230, 223, 0.3); 
 }
@@ -30,6 +30,18 @@
     margin: 6px;
     z-index: 10; 
     border-radius: 14px;
+}
+
+.Q_label {
+
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;  
+    background-color: var(--yellowOPC);
+    padding: 10px;
+    margin: 6px;
+    z-index: 10; 
+    border-radius: 14px; 
 }
 
 table {

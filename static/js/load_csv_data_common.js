@@ -1,22 +1,40 @@
-
-// based on: https://www.geeksforgeeks.org/how-to-convert-csv-to-json-file-and-vice-versa-in-javascript/
-// added some escaping for " (\") as well as for ' (\') as well as for \ (\\)
-const escapeReplacement = "__RESERVED_ESCAPE_PLACEHOLDER_CHAR__";
-const commaReplacement = "__RESERVED_COMMA_PLACEHOLDER_CHAR__";
-const quoteReplacement = "__RESERVED_QUOTE_PLACEHOLDER_CHAR__";
+// Google AI Overview generated... 
+// from prompt: "javascript client side parse csv with quotes"
+// not very efficient but..
+function parseCSV(rows) {
+    const records = [];    
+    for (const row of rows) {
+        const fields = [];
+        let inQuotes = false;
+        let currentField = '';
+    
+        for (const char of row) {
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                fields.push(currentField);
+                currentField = '';
+            } else {
+                currentField += char;
+            }
+        }    
+        fields.push(currentField);
+        records.push(fields);
+    }
+    return records;
+}
 
 const convertCsvToJson = function (csv) {
     const CSVToJSON = csv => {
         csv = csv.replaceAll('\r', '');
         const lines = csv.split('\n');
         const keys = lines[0].split(',');
-        return lines.slice(1).map(line => {
-            line = line.replaceAll("\\\\", escapeReplacement).replaceAll("\\,", commaReplacement).replaceAll("\\\"", quoteReplacement).replaceAll("\"", "");
-            let tokens = line.split(',');
+        let allRecords = parseCSV(lines.slice(1));
+        return allRecords.map(tokens => {
             if (tokens.length == keys.length){
                 return tokens.reduce((acc, cur, i) => {
                     const toAdd = {};
-                    toAdd[keys[i]] = cur.replaceAll(escapeReplacement, "\\").replaceAll(commaReplacement, ",").replaceAll(quoteReplacement, "\"");
+                    toAdd[keys[i]] = cur;
                     return { ...acc, ...toAdd };
                 }, {});
             }
