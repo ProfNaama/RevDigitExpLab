@@ -41,6 +41,7 @@
     margin: 6px;
     z-index: 10; 
     border-radius: 14px; 
+    font-weight: bolder;
 }
 
 table {
