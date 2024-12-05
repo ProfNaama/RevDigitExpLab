@@ -1,5 +1,5 @@
 ﻿name,leftmost_label,rightmost_label,label,is_likert,is_label
-Review_instructions,,,"Considering the content of the review, rate the level of your egeement with the following statements:",0,1
+Review_instructions,,,"Considering the content of the review, rate the level of your agreement with the following statements:",0,1
 Helpful_decision,Strongly disagree,Strongly agree,This review is helpful for me to decide about the store.,1,0
 Helpful_familiarity,Strongly disagree,Strongly agree,This review is helpful in familiarizing me with the store.,1,0
 Helpful_Quality,Strongly disagree,Strongly agree,This review is useful for me to assess the quality of the store.,1,0
@@ -16,7 +16,7 @@ Ambivalence_neg_Instructions,,,"Considering only the unfavorable, bad and unreli
 Ambivalence_neg_unfavorable,Not at all unfavorable,Very unfavorable,How unfavorable is this store in your opinion?,1,0
 Ambivalence_neg_bad,Not at all bad,Very bad,How bad is this store in your opinion?,1,0
 Ambivalence_neg_unreliable,Not at all unreliable,Very unreliable,How unreliable is this store in your opinion?,1,0
-Subjective_ambvlnc_Instructions,,,Rate the level of your egeement with the following statements about the store described in the review above:,0,1
+Subjective_ambvlnc_Instructions,,,Rate the level of your agreement with the following statements about the store described in the review above:,0,1
 Subjective_ambvlnc_feelings,Strongly disagree,Strongly agree,I have mixed feelings about this store.,1,0
 Subjective_ambvlnc_opinions,Strongly disagree,Strongly agree,"I have mixed opinions both for and against this store, all at the same time.",1,0
 Subjective_ambvlnc_love_hate,Strongly disagree,Strongly agree,I am torn between loving and hating this store.,1,0
