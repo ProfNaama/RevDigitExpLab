@@ -3,15 +3,18 @@ Review_instructions,,,"Considering the content of the review, rate the level of 
 Helpful_decision,Strongly disagree,Strongly agree,This review is helpful for me to decide about the store.,1,0
 Helpful_familiarity,Strongly disagree,Strongly agree,This review is helpful in familiarizing me with the store.,1,0
 Helpful_Quality,Strongly disagree,Strongly agree,This review is useful for me to assess the quality of the store.,1,0
+break,,,,0,1
 Credibility_honest,Strongly disagree,Strongly agree,This review is honest.,1,0
 Credibility_trustworthy,Strongly disagree,Strongly agree,This review is trustworthy.,1,0
 Credibility_credible,Strongly disagree,Strongly agree,This review is credible.,1,0
+break ,,,,,
 Consistency_mc,Strongly disagree,Strongly agree,The arguments provided in this review are similar to its rating.,1,0
 Quality,Very low,Very high,How would you rate the quality of this review?,1,0
 Ambivalence_pos_Instructions,,,"Considering only the favorable, good and reliable aspects of the store described in the review above, answer the following questions:",0,1
 Ambivalence_pos_favorable,Not at all favorable,Very favorable,How favorable is this store in your opinion?,1,0
 Ambivalence_pos_good,Not at all good,Very good,How good is this store in your opinion?,1,0
 Ambivalence_pos_reliable,Not at all reliable,Very reliable,How reliable is this store in your opinion?,1,0
+break,,,,,
 Ambivalence_neg_Instructions,,,"Considering only the unfavorable, bad and unreliable aspects of the store described in the review above, answer the following questions:",0,1
 Ambivalence_neg_unfavorable,Not at all unfavorable,Very unfavorable,How unfavorable is this store in your opinion?,1,0
 Ambivalence_neg_bad,Not at all bad,Very bad,How bad is this store in your opinion?,1,0
