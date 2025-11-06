@@ -134,7 +134,7 @@ const getRandomTreatmentGroup = function(reviewSubjectElementsJson){
 }
 
 // the query parameter defined in <UNIQUE_USER_KEY_RECEIVED> must be found in the url query string, then it is translated to <UNIQUE_USER_KEY_SENT> and passed on from the feeding platform
-const UNIQUE_USER_KEY_RECEIVED = "PROLIFIC_PID_RECEIVED";
+const UNIQUE_USER_KEY_RECEIVED = "participantId";
 const UNIQUE_USER_KEY_SENT = "PROLIFIC_PID";
 
 
