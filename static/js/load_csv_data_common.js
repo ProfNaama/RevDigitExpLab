@@ -107,7 +107,7 @@ const decodeSessionParams = function () {
     return sessionData;
 }
 
-const TREATMENT_GROUP_PARAM = "IDRAND"
+const TREATMENT_GROUP_PARAM = "RandomID"
 const getRandomTreatmentGroup = function(reviewSubjectElementsJson){
     let treatmentGroupCache = sessionStorage.getItem(TREATMENT_GROUP_PARAM);
     if (treatmentGroupCache){
