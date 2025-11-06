@@ -133,15 +133,18 @@ const getRandomTreatmentGroup = function(reviewSubjectElementsJson){
     return treatmentGroupID;
 }
 
+// the query parameter defined in <UNIQUE_USER_KEY_RECEIVED> must be found in the url query string, then it is translated to <UNIQUE_USER_KEY_SENT> and passed on from the feeding platform
+const UNIQUE_USER_KEY_RECEIVED = "PROLIFIC_PID_RECEIVED";
+const UNIQUE_USER_KEY_SENT = "PROLIFIC_PID";
+
+
 const submitSurvey = function() {
-    // the query parameter "PROLIFIC_PID" must be found in the url query string, as passed on from the feeding platform
-    const UNIQUE_USER_KEY = "PROLIFIC_PID";
     
     let urlParams = (new URL(window.location)).searchParams;
-    var userID = urlParams.get(UNIQUE_USER_KEY);
+    var userID = urlParams.get(UNIQUE_USER_KEY_RECEIVED);
     
     if (!userID){
-        alert("GET query parameter is missing: " + UNIQUE_USER_KEY);
+        alert("GET query parameter is missing: " + UNIQUE_USER_KEY_RECEIVED);
         return;
     }    
     
@@ -162,6 +165,11 @@ const submitSurvey = function() {
     }
     let submitUrl = submitUrlBase + "treatment_group_id" + "="+ treatmentGroupCache;
     urlParams.forEach((v, k)=>{
+        // pass on all url parameters
+        // except the received unique user key which is renamed
+        if (k == UNIQUE_USER_KEY_RECEIVED){
+            k = UNIQUE_USER_KEY_SENT;
+        }
         submitUrl += ("&" + k + "=" + v);
     });
     let sessionData = decodeSessionParams();
