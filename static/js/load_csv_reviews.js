@@ -22,7 +22,7 @@ const renderFormSubmitButton = function() {
     }
 }
 
-const delayQuestionFormMillis = 10 * 1000; // 10 seconds
+const delayQuestionFormMillis = 5 * 1000; // 10 seconds
 const enableReviewWithHiddenQuestions = function(currentReviewIdx){
     $(reviewElementsArray[currentReviewIdx]).show();
     $(reviewElementsArray[currentReviewIdx]).find(".RatingForm").hide();
